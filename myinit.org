@@ -1,0 +1,155 @@
+#+title: Org emacs config file
+#+startup: overview
+
+
+* Interface
+** Cleanining interface
+   #+BEGIN_SRC emacs-lisp
+     (setq inhibit-startup-screen t)
+     (menu-bar-mode 0)
+     (tool-bar-mode 0)
+     (scroll-bar-mode 0)
+     (tooltip-mode 0)
+   #+END_SRC
+** Opacity
+   #+begin_src emacs-lisp
+     (set-frame-parameter (selected-frame) 'alpha '(100 100))
+     (add-to-list 'default-frame-alist '(alpha 100 100))
+   #+end_src
+** gruvbox
+   #+BEGIN_SRC emacs-lisp
+     (use-package gruvbox-theme
+       :ensure t
+       )
+     (load-theme 'gruvbox-dark-hard t)
+   #+END_SRC
+** All the incons
+   #+begin_src emacs-lisp
+     (use-package all-the-icons)
+   #+end_src
+** Modeline
+   #+begin_src emacs-lisp
+     (use-package doom-modeline
+       :ensure t
+       :init (doom-modeline-mode 1))
+
+     (set-face-attribute 'mode-line nil
+                         :background "#282828"
+                         )
+   #+end_src
+* Settings
+  #+begin_src emacs-lisp
+    (setq-default indent-tabs-mode nil)
+  #+end_src
+* Vim settings
+** Evil Mode
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil
+       :init      ;; tweak evil's configuration before loading it
+       (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+       (setq evil-want-keybinding nil)
+       (setq evil-vsplit-window-right t)
+       (setq evil-split-window-below t)
+       (evil-mode))
+
+     (use-package evil-collection
+       :after evil
+       :config
+       (setq evil-collection-mode-list '(dashboard dired ibuffer))
+       (evil-collection-init))
+
+     (use-package evil-tutor)
+   #+END_SRC
+** General keybindings
+   #+BEGIN_SRC emacs-lisp
+     (use-package general
+       :config
+       (general-evil-setup t))
+   #+END_SRC
+** Some keymaps
+   #+BEGIN_SRC emacs-lisp
+     ;; buffers
+     (nvmap :prefix "SPC"
+       "b b"   '(ibuffer :which-key "Ibuffer")
+       "b c"   '(clone-indirect-buffer-other-window :which-key "Clone indirect buffer other window")
+       "b k"   '(kill-current-buffer :which-key "Kill current buffer")
+       "n b"   '(next-buffer :which-key "Next buffer")
+       "b p"   '(previous-buffer :which-key "Previous buffer")
+       "b B"   '(ibuffer-list-buffers :which-key "Ibuffer list buffers")
+       "b K"   '(kill-buffer :which-key "Kill buffer"))
+
+     ;; others
+     (nvmap :prefix "SPC"
+       "e"   '(dired-jump :which-key "Explore"))
+   #+END_SRC
+** Exit insert mode
+   #+begin_src emacs-lisp
+     (use-package key-chord
+       :ensure t
+       )
+
+     (require 'key-chord)
+     (key-chord-mode 1)
+     (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
+   #+end_src
+* Autocomplete
+  #+BEGIN_SRC emacs-lisp
+    (use-package auto-complete
+      :ensure t
+      :init
+      (progn
+        (ac-config-default)
+        (global-auto-complete-mode t)
+        ))
+  #+END_SRC
+* Org mode settings
+** Org bullets
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-bullets
+       :ensure t
+       :config
+       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+   #+END_SRC
+** Org tempo
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-tempo
+       :ensure nil)
+   #+END_SRC
+* Dired
+  #+begin_src emacs-lisp
+    (use-package all-the-icons-dired)
+    (use-package peep-dired)
+
+    (with-eval-after-load 'dired
+      ;;(define-key dired-mode-map (kbd "M-p") 'peep-dired)
+      (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+      (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+      (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+      (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file))
+
+    (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+    ;; Get file icons in dired
+    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  #+end_src
+* Fonts settings
+  #+BEGIN_SRC emacs-lisp
+    (set-face-attribute 'default nil
+                        :font "Source Code Pro"
+                        :height 110
+                        :weight 'medium)
+    (set-face-attribute 'variable-pitch nil
+                        :font "Source Code Pro"
+                        :height 120
+                        :weight 'medium)
+    (set-face-attribute 'fixed-pitch nil
+                        :font "Source Code Pro"
+                        :height 110
+                        :weight 'medium)
+    ;; Makes commented text and keywords italics.
+    ;; This is working in emacsclient but not emacs.
+    ;; Your font must have an italic face available.
+    (set-face-attribute 'font-lock-comment-face nil
+                        :slant 'italic)
+    (set-face-attribute 'font-lock-keyword-face nil
+                        :slant 'italic)
+  #+END_SRC
