@@ -41,6 +41,26 @@
   #+begin_src emacs-lisp
     (setq-default indent-tabs-mode nil)
   #+end_src
+* Utils
+** Electric pairing
+   #+begin_src emacs-lisp
+     (electric-pair-mode 1)
+
+     (setq electric-pair-pairs
+         '(
+             (?\" . ?\")
+             (?\' . ?\')
+             (?\( . ?\))
+             (?\[ . ?\])
+             (?\{ . ?\})))
+   #+end_src
+** Wich key
+  #+begin_src emacs-lisp
+    (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
+  #+end_src
 * Vim settings
 ** Evil Mode
    #+BEGIN_SRC emacs-lisp
@@ -66,22 +86,6 @@
        :config
        (general-evil-setup t))
    #+END_SRC
-** Some keymaps
-   #+BEGIN_SRC emacs-lisp
-     ;; buffers
-     (nvmap :prefix "SPC"
-       "b b"   '(ibuffer :which-key "Ibuffer")
-       "b c"   '(clone-indirect-buffer-other-window :which-key "Clone indirect buffer other window")
-       "b k"   '(kill-current-buffer :which-key "Kill current buffer")
-       "n b"   '(next-buffer :which-key "Next buffer")
-       "b p"   '(previous-buffer :which-key "Previous buffer")
-       "b B"   '(ibuffer-list-buffers :which-key "Ibuffer list buffers")
-       "b K"   '(kill-buffer :which-key "Kill buffer"))
-
-     ;; others
-     (nvmap :prefix "SPC"
-       "e"   '(dired-jump :which-key "Explore"))
-   #+END_SRC
 ** Exit insert mode
    #+begin_src emacs-lisp
      (use-package key-chord
@@ -92,6 +96,37 @@
      (key-chord-mode 1)
      (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
    #+end_src
+* Keymaps
+** Buffers
+   #+BEGIN_SRC emacs-lisp
+     ;; buffers
+     (nvmap :prefix "SPC"
+       "b b"   '(ibuffer :which-key "Ibuffer")
+       "b c"   '(clone-indirect-buffer-other-window :which-key "Clone indirect buffer other window")
+       "b k"   '(kill-current-buffer :which-key "Kill current buffer")
+       "n b"   '(next-buffer :which-key "Next buffer")
+       "b p"   '(previous-buffer :which-key "Previous buffer")
+       "b B"   '(ibuffer-list-buffers :which-key "Ibuffer list buffers")
+       "b K"   '(kill-buffer :which-key "Kill buffer"))
+   #+END_SRC
+** Explorer
+    #+begin_src emacs-lisp
+      (nvmap :prefix "SPC"
+        "e"   '(dired-jump :which-key "Explore"))
+    #+end_src
+** Terminal
+   #+begin_src emacs-lisp
+    (nvmap :prefix "SPC"
+        "v t"   '(eshell :which-key "Eshell"))
+   #+end_src>
+** Windows navigation
+    Better window navigation in evile mode.
+    #+begin_src emacs-lisp
+     (define-key evil-normal-state-map  (kbd "C-h") 'evil-window-left)
+     (define-key evil-normal-state-map  (kbd "C-j") 'evil-window-down)
+     (define-key evil-normal-state-map  (kbd "C-k") 'evil-window-up)
+     (define-key evil-normal-state-map  (kbd "C-l") 'evil-window-right)
+    #+end_src
 * Autocomplete
   #+BEGIN_SRC emacs-lisp
     (use-package auto-complete
@@ -118,14 +153,15 @@
 * Dired
   #+begin_src emacs-lisp
     (use-package all-the-icons-dired)
+    (use-package dired-open)
     (use-package peep-dired)
 
     (with-eval-after-load 'dired
-      ;;(define-key dired-mode-map (kbd "M-p") 'peep-dired)
-      (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
-      (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
-      (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
-      (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file))
+        ;;(define-key dired-mode-map (kbd "M-p") 'peep-dired)
+        (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+        (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+        (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+        (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file))
 
     (add-hook 'peep-dired-hook 'evil-normalize-keymaps)
     ;; Get file icons in dired
