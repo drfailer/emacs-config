@@ -40,6 +40,8 @@
 * Settings
   #+begin_src emacs-lisp
     (setq-default indent-tabs-mode nil)
+    (global-display-line-numbers-mode 1)
+    (setq-default truncate-lines t)
   #+end_src
 * Utils
 ** Electric pairing
