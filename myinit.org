@@ -37,10 +37,34 @@
                          :background "#282828"
                          )
    #+end_src
+** Dashboard
+   #+begin_src emacs-lisp
+      (use-package dashboard
+      :init      ;; tweak dashboard config before loading it
+      (setq dashboard-set-heading-icons t)
+      (setq dashboard-set-file-icons t)
+      (setq dashboard-banner-logo-title "Hello Mr Failer")
+      ;;(setq dashboard-startup-banner 'logo) ;; use standard emacs logo as banner
+      (setq dashboard-startup-banner "~/.emacs.d/emacs-dash.png")  ;; use custom image as banner
+      (setq dashboard-center-content nil) ;; set to 't' for centered content
+      (setq dashboard-items '((recents . 5)
+                              (agenda . 5 )
+                              (bookmarks . 3)
+                              (projects . 3)
+                              (registers . 3)))
+      :config
+      (dashboard-setup-startup-hook)
+      (dashboard-modify-heading-icons '((recents . "file-text")
+                                  (bookmarks . "book"))))
+
+    ;; for emacs client
+     (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+   #+end_src
 * Settings
   #+begin_src emacs-lisp
     (setq-default indent-tabs-mode nil)
-    (global-display-line-numbers-mode 1)
+    (add-hook 'prog-mode-hook 'linum-mode)
+    ;; (global-display-line-numbers-mode 1)
     (setq-default truncate-lines t)
   #+end_src
 * Utils
@@ -51,7 +75,6 @@
      (setq electric-pair-pairs
          '(
              (?\" . ?\")
-             (?\' . ?\')
              (?\( . ?\))
              (?\[ . ?\])
              (?\{ . ?\})))
@@ -63,6 +86,88 @@
     :config
     (which-key-mode))
   #+end_src
+** Snippets
+   #+begin_src emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :init
+        (yas-global-mode 1))
+
+    (use-package yasnippet-snippets
+      :ensure t)
+   #+end_src
+** Hungry delete
+   #+begin_src emacs-lisp
+     ; deletes all the whitespace when you hit backspace or delete
+     (use-package hungry-delete
+     :ensure t
+     :config
+     (global-hungry-delete-mode))
+   #+end_src
+** Treemacs
+   #+begin_src emacs-lisp
+  (use-package treemacs
+    :ensure t
+    :defer t
+    :config
+    (progn
+
+      (setq treemacs-follow-after-init          t
+            treemacs-width                      35
+            treemacs-indentation                2
+            treemacs-git-integration            t
+            treemacs-collapse-dirs              3
+            treemacs-silent-refresh             nil
+            treemacs-change-root-without-asking nil
+            treemacs-sorting                    'alphabetic-desc
+            treemacs-show-hidden-files          t
+            treemacs-never-persist              nil
+            treemacs-is-never-other-window      nil
+            treemacs-goto-tag-strategy          'refetch-index)
+
+      (treemacs-follow-mode t)
+      (treemacs-filewatch-mode t))
+    :bind
+    (:map global-map
+          ([f8]        . treemacs-toggle)
+          ([f9]        . treemacs-projectile-toggle)
+          ("<C-M-tab>" . treemacs-toggle)
+          ("M-0"       . treemacs-select-window)
+          ("C-c 1"     . treemacs-delete-other-windows)
+        ))
+   #+end_src
+** Ivy consel and swiper
+   #+begin_src emacs-lisp
+(use-package counsel
+  :after ivy
+  :config (counsel-mode))
+(use-package ivy
+  :defer 0.1
+  :diminish
+  :bind
+  (("C-c C-r" . ivy-resume)
+   ("C-x B" . ivy-switch-buffer-other-window))
+  :custom
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  :config
+  (ivy-mode))
+(use-package ivy-rich
+  :after ivy
+  :custom
+  (ivy-virtual-abbreviate 'full
+   ivy-rich-switch-buffer-align-virtual-buffer t
+   ivy-rich-path-style 'abbrev)
+  :config
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer)
+  (ivy-rich-mode 1)) ;; this gets us descriptions in M-x.
+(use-package swiper
+  :after ivy
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
+   #+end_src
 * Vim settings
 ** Evil Mode
    #+BEGIN_SRC emacs-lisp
@@ -113,8 +218,9 @@
    #+END_SRC
 ** Explorer
     #+begin_src emacs-lisp
-      (nvmap :prefix "SPC"
-        "e"   '(dired-jump :which-key "Explore"))
+            (nvmap :prefix "SPC"
+              "e"   '(dired-jump :which-key "Explore")
+              "t"   '(treemacs :which-key "treemacs toggle"))
     #+end_src
 ** Terminal
    #+begin_src emacs-lisp
@@ -129,6 +235,11 @@
      (define-key evil-normal-state-map  (kbd "C-k") 'evil-window-up)
      (define-key evil-normal-state-map  (kbd "C-l") 'evil-window-right)
     #+end_src
+** Some bindings
+   #+begin_src emacs-lisp
+    (fset 'yes-or-no-p 'y-or-n-p)
+    (global-set-key (kbd "<f5>") 'revert-buffer)
+   #+end_src
 * Autocomplete
   #+BEGIN_SRC emacs-lisp
     (use-package auto-complete
@@ -140,6 +251,10 @@
         ))
   #+END_SRC
 * Org mode settings
+** Org repo
+   #+begin_src emacs-lisp
+    (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+   #+end_src
 ** Org bullets
    #+BEGIN_SRC emacs-lisp
      (use-package org-bullets
