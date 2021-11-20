@@ -50,7 +50,6 @@
       (setq dashboard-items '((recents . 5)
                               (agenda . 5 )
                               (bookmarks . 3)
-                              (projects . 3)
                               (registers . 3)))
       :config
       (dashboard-setup-startup-hook)
@@ -63,8 +62,8 @@
 * Settings
   #+begin_src emacs-lisp
     (setq-default indent-tabs-mode nil)
-    (add-hook 'prog-mode-hook 'linum-mode)
-    ;; (global-display-line-numbers-mode 1)
+    ;; (add-hook 'prog-mode-hook 'linum-mode)
+    (global-display-line-numbers-mode 1)
     (setq-default truncate-lines t)
   #+end_src
 * Utils
@@ -216,6 +215,19 @@
        "b B"   '(ibuffer-list-buffers :which-key "Ibuffer list buffers")
        "b K"   '(kill-buffer :which-key "Kill buffer"))
    #+END_SRC
+** Files
+   #+begin_src emacs-lisp
+(nvmap :states '(normal visual) :keymaps 'override :prefix "SPC"
+       "."     '(find-file :which-key "Find file")
+       "f f"   '(find-file :which-key "Find file")
+       "f s"   '(save-buffer :which-key "Save file")
+       "f u"   '(sudo-edit-find-file :which-key "Sudo find file")
+       "f C"   '(copy-file :which-key "Copy file")
+       "f D"   '(delete-file :which-key "Delete file")
+       "f R"   '(rename-file :which-key "Rename file")
+       "f S"   '(write-file :which-key "Save file as...")
+       "f U"   '(sudo-edit :which-key "Sudo edit file"))
+   #+end_src
 ** Explorer
     #+begin_src emacs-lisp
             (nvmap :prefix "SPC"
@@ -235,7 +247,7 @@
      (define-key evil-normal-state-map  (kbd "C-k") 'evil-window-up)
      (define-key evil-normal-state-map  (kbd "C-l") 'evil-window-right)
     #+end_src
-** Some bindings
+** Some other bindings
    #+begin_src emacs-lisp
     (fset 'yes-or-no-p 'y-or-n-p)
     (global-set-key (kbd "<f5>") 'revert-buffer)
