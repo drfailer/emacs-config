@@ -1,42 +1,43 @@
 #+title: Org emacs config file
 #+startup: overview
 
-
 * Interface
-** Cleanining interface
-   #+BEGIN_SRC emacs-lisp
-     (setq inhibit-startup-screen t)
-     (menu-bar-mode 0)
-     (tool-bar-mode 0)
-     (scroll-bar-mode 0)
-     (tooltip-mode 0)
-   #+END_SRC
-** Opacity
-   #+begin_src emacs-lisp
-     (set-frame-parameter (selected-frame) 'alpha '(100 100))
-     (add-to-list 'default-frame-alist '(alpha 100 100))
-   #+end_src
-** gruvbox
-   #+BEGIN_SRC emacs-lisp
-     (use-package gruvbox-theme
-       :ensure t
-       )
-     (load-theme 'gruvbox-dark-hard t)
-   #+END_SRC
-** All the incons
-   #+begin_src emacs-lisp
-     (use-package all-the-icons)
-   #+end_src
-** Modeline
-   #+begin_src emacs-lisp
-     (use-package doom-modeline
-       :ensure t
-       :init (doom-modeline-mode 1))
+** Tweaks
+*** Cleanining interface
+    #+BEGIN_SRC emacs-lisp
+      (setq inhibit-startup-screen t)
+      (menu-bar-mode 0)
+      (tool-bar-mode 0)
+      (scroll-bar-mode 0)
+      (tooltip-mode 0)
+    #+END_SRC
+*** Opacity
+    #+begin_src emacs-lisp
+      (set-frame-parameter (selected-frame) 'alpha '(100 100))
+      (add-to-list 'default-frame-alist '(alpha 100 100))
+    #+end_src
+** Theming
+*** gruvbox
+    #+BEGIN_SRC emacs-lisp
+      (use-package gruvbox-theme
+        :ensure t
+        )
+      (load-theme 'gruvbox-dark-hard t)
+    #+END_SRC
+*** All the incons
+    #+begin_src emacs-lisp
+      (use-package all-the-icons)
+    #+end_src
+*** Modeline
+    #+begin_src emacs-lisp
+      (use-package doom-modeline
+        :ensure t
+        :init (doom-modeline-mode 1))
 
-     (set-face-attribute 'mode-line nil
-                         :background "#282828"
-                         )
-   #+end_src
+      (set-face-attribute 'mode-line nil
+                          :background "#282828"
+                          )
+    #+end_src
 ** Dashboard
    #+begin_src emacs-lisp
       (use-package dashboard
@@ -137,35 +138,38 @@
    #+end_src
 ** Ivy consel and swiper
    #+begin_src emacs-lisp
-(use-package counsel
-  :after ivy
-  :config (counsel-mode))
-(use-package ivy
-  :defer 0.1
-  :diminish
-  :bind
-  (("C-c C-r" . ivy-resume)
-   ("C-x B" . ivy-switch-buffer-other-window))
-  :custom
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  :config
-  (ivy-mode))
-(use-package ivy-rich
-  :after ivy
-  :custom
-  (ivy-virtual-abbreviate 'full
-   ivy-rich-switch-buffer-align-virtual-buffer t
-   ivy-rich-path-style 'abbrev)
-  :config
-  (ivy-set-display-transformer 'ivy-switch-buffer
-                               'ivy-rich-switch-buffer-transformer)
-  (ivy-rich-mode 1)) ;; this gets us descriptions in M-x.
-(use-package swiper
-  :after ivy
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
+   (use-package counsel
+     :after ivy
+     :config (counsel-mode))
+
+   (use-package ivy
+     :defer 0.1
+     :diminish
+     :bind
+     (("C-c C-r" . ivy-resume)
+      ("C-x B" . ivy-switch-buffer-other-window))
+     :custom
+     (setq ivy-count-format "(%d/%d) ")
+     (setq ivy-use-virtual-buffers t)
+     (setq enable-recursive-minibuffers t)
+     :config
+     (ivy-mode))
+
+   (use-package ivy-rich
+     :after ivy
+     :custom
+     (ivy-virtual-abbreviate 'full
+      ivy-rich-switch-buffer-align-virtual-buffer t
+      ivy-rich-path-style 'abbrev)
+     :config
+     (ivy-set-display-transformer 'ivy-switch-buffer
+                                  'ivy-rich-switch-buffer-transformer)
+     (ivy-rich-mode 1))
+
+   (use-package swiper
+     :after ivy
+     :bind (("C-s" . swiper)
+            ("C-r" . swiper)))
    #+end_src
 * Vim settings
 ** Evil Mode
@@ -203,6 +207,11 @@
      (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
    #+end_src
 * Keymaps
+** M-x
+   #+begin_src emacs-lisp
+(nvmap :keymaps 'override :prefix "SPC"
+       "SPC"   '(counsel-M-x :which-key "M-x"))
+   #+end_src
 ** Buffers
    #+BEGIN_SRC emacs-lisp
      ;; buffers
@@ -263,6 +272,25 @@
         ))
   #+END_SRC
 * Org mode settings
+** Basics
+   #+begin_src emacs-lisp
+(setq org-directory "~/.emacs.d/Org/"
+      org-agenda-files '("~/.emacs.d/Org/agenda.org"))
+(setq org-src-preserve-indentation nil
+    org-src-tab-acts-natively t
+    org-edit-src-content-indentation 0)
+   #+end_src
+** TODO keywords
+   #+begin_src emacs-lisp
+(setq org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+        '((sequence
+           "TODO"           ; A task that is ready to be tackled
+           "PROJ"           ; A project that contains other tasks
+           "WAIT"           ; Something is holding up this task
+           "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+           "DONE"           ; Task has been completed
+           "CANCELLED" )))  ; Task has been cancelled
+   #+end_src
 ** Org repo
    #+begin_src emacs-lisp
     (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
@@ -279,6 +307,26 @@
      (use-package org-tempo
        :ensure nil)
    #+END_SRC
+** Org keybindings
+   #+begin_src emacs-lisp
+(nvmap :keymaps 'override :prefix "SPC"
+       "m *"   '(org-ctrl-c-star :which-key "Org-ctrl-c-star")
+       "m +"   '(org-ctrl-c-minus :which-key "Org-ctrl-c-minus")
+       "m ."   '(counsel-org-goto :which-key "Counsel org goto")
+       "m e"   '(org-export-dispatch :which-key "Org export dispatch")
+       "m f"   '(org-footnote-new :which-key "Org footnote new")
+       "m h"   '(org-toggle-heading :which-key "Org toggle heading")
+       "m i"   '(org-toggle-item :which-key "Org toggle item")
+       "m n"   '(org-store-link :which-key "Org store link")
+       "m o"   '(org-set-property :which-key "Org set property")
+       "m t"   '(org-todo :which-key "Org todo")
+       "m x"   '(org-toggle-checkbox :which-key "Org toggle checkbox")
+       "m B"   '(org-babel-tangle :which-key "Org babel tangle")
+       "m I"   '(org-toggle-inline-images :which-key "Org toggle inline imager")
+       "m T"   '(org-todo-list :which-key "Org todo list")
+       "o a"   '(org-agenda :which-key "Org agenda")
+       )
+   #+end_src
 * Dired
   #+begin_src emacs-lisp
     (use-package all-the-icons-dired)
