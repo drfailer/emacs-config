@@ -15,6 +15,7 @@
 (key-chord-mode 1)
 ;; remap jk as escape
 (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map  "kl" 'forward-char)
 
 (require 'general)
 
@@ -44,7 +45,6 @@
        "f R"   '(rename-file :which-key "Rename file")
        "f S"   '(write-file :which-key "Save file as...")
        "f U"   '(sudo-edit :which-key "Sudo edit file"))
-
 
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
