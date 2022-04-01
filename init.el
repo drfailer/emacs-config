@@ -94,19 +94,11 @@
 (use-package vertico
   :init
   (vertico-mode)
-
-  ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
-
-  ;; Show more candidates
-  ;; (setq vertico-count 20)
-
-  ;; Grow and shrink the Vertico minibuffer
-  ;; (setq vertico-resize t)
-
-  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  ;; (setq vertico-cycle t)
-  )
+  (setq vertico-scroll-margin 0)
+  (setq vertico-count 20)
+  (setq vertico-resize nil)
+  ;; enable C-n and C-p
+  (setq vertico-cycle t))
 
 
 
@@ -175,9 +167,9 @@
 ;; VIM BINDINGS
 (use-package evil
   :demand t
-  :bind (("<escape>" . keyboard-escape-quit))
-         ;; ("C-n" . evil-next-line)
-         ;; ("C-p" . evil-previous-line))
+  :bind (("<escape>" . keyboard-escape-quit)
+         ("C-n" . evil-next-line)
+         ("C-p" . evil-previous-line))
   :init
   ;; allows for using cgn
   (setq evil-search-module 'evil-search)
@@ -196,7 +188,7 @@
 (define-key evil-normal-state-map  (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map  (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map  (kbd "C-l") 'evil-window-right)
-(define-key evil-insert-state-map  (kbd "C-s") 'evil-normal-state)
+(define-key evil-insert-state-map  (kbd "C-i") 'evil-normal-state)
 
 (use-package evil-smartparens
   :hook (smartparens-mode . evil-smartparens-mode))
@@ -232,36 +224,47 @@
               ("C-c  C" . hs-toggle-hiding)))
 
 ;; THEME
-(use-package cyberpunk-theme
+(use-package spacegray-theme
   :ensure t
   )
-(load-theme 'cyberpunk t)
+(load-theme 'spacegray t)
+;; black baground
+;; (add-to-list 'default-frame-alist '(background-color . "#000000"))
+(set-background-color "#000000")
+(set-face-background 'fringe "#000000")
 
 (use-package eglot
   :bind (:map eglot-mode-map
               ("C-h ." . display-local-help)
               ("C-h d" . eldoc-doc-buffer)
-              ("M-RET" . eglot-code-actions))
+              ("M-RET" . eglot-code-actions)
+	      ("C-c r" . 'eglot-rename))
   :ensure t
   :hook (;; Whatever works
          (c-mode          . eglot-ensure)
+         (bash-mode       . eglot-ensure)
          ;; require: eglot-java
          ;; (java-mode       . eglot-ensure)
          ;; pip install --user 'python-language-server[all]' -U
          (python-mode . eglot-ensure)))
-  ;; :commands (eglot eglot-ensure)))
+
+;; (define-key eglot-mode-map (kbd "C-c r") 'eglot-rename)
+;; (define-key eglot-mode-map (kbd "C-c o") 'eglot-code-action-organize-imports)
+;; (define-key eglot-mode-map (kbd "C-c h") 'eldoc)
+;; (define-key eglot-mode-map (kbd "<f6>") 'xref-find-definitions)
+
 
 ;; FONTS SETTINGS
 (set-face-attribute 'default nil
-                    :font "Source Code Pro"
+                    :font "hack"
                     :height 100
                     :weight 'medium)
 (set-face-attribute 'variable-pitch nil
-                    :font "Source Code Pro"
+                    :font "hack"
                     :height 110
                     :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-                    :font "Source Code Pro"
+                    :font "hack"
                     :height 100
                     :weight 'medium)
 ;; Makes commented text and keywords italics.
@@ -276,10 +279,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("b89a4f5916c29a235d0600ad5a0849b1c50fab16c2c518e1d98f0412367e7f97" "c560237b7505f67a271def31c706151afd7aa6eba9f69af77ec05bde5408dbcd" default))
  '(package-selected-packages
-   '(eglot corfu-doc corfu spacegray-theme evil-surround evil-commentary evil-smartparens orderless vertico yasnippet-snippets which-key use-package undo-fu org-bullets key-chord hungry-delete gruvbox-theme general evil-collection cyberpunk-theme auto-complete)))
+   '(yasnippet-snippets which-key vertico use-package undo-fu spacegray-theme org-bullets orderless key-chord hungry-delete gruvbox-theme general evil-surround evil-smartparens evil-commentary evil-collection eglot cyberpunk-theme corfu-doc auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
