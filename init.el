@@ -73,6 +73,7 @@
 (load "~/.emacs.d/config/evil.el") ;; evil stuff
 (load "~/.emacs.d/config/orgmode.el") ;; org stuff
 (load "~/.emacs.d/config/color.el") ;; theming
+(load "~/.emacs.d/config/lsp.el") ;; lsp
 
 ;;-----------------------------------------------------------------------------
 
@@ -82,7 +83,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-bullets yasnippet-snippets which-key vertico use-package undo-fu orderless key-chord haskell-mode general evil-surround evil-smartparens evil-commentary evil-collection corfu-doc)))
+   '(evil-lion org-bullets yasnippet-snippets which-key vertico use-package undo-fu orderless key-chord haskell-mode general evil-surround evil-smartparens evil-commentary evil-collection corfu-doc)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

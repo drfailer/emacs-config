@@ -21,3 +21,12 @@
 ;; (define-key eglot-mode-map (kbd "C-c o") 'eglot-code-action-organize-imports)
 ;; (define-key eglot-mode-map (kbd "C-c h") 'eldoc)
 ;; (define-key eglot-mode-map (kbd "<f6>") 'xref-find-definitions)
+
+(require 'general)
+
+(nvmap :keymaps 'override :prefix "SPC"
+  "l r"   '(eglot-rename :which-key "lsp rename")
+  "l o i" '(eglot-code-action-organize-imports :which-key "lsp organize imports")
+  "l d"   '(eldoc :which-key "lsp doc")
+  "l v d" '(xref-find-definitions :which-key "lsp rename")
+  "l f"   '(eglot-format :which-key "lsp format"))

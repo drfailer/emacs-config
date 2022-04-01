@@ -45,6 +45,12 @@
   :config
   (global-evil-surround-mode 1))
 
+;; use `gl' to align left or `gL' to align right
+(use-package evil-lion
+  :ensure t
+  :config
+  (evil-lion-mode))
+
 ;; Vim Bindings Everywhere else
 (use-package evil-collection
   :after evil
