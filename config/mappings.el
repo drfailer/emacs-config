@@ -38,10 +38,14 @@
   (find-file "~/.emacs.d/"))
 
 (nvmap :keymaps 'override :prefix "SPC"
-       "v e s"   '(eshell :which-key "eshell")
+       "v e s" '(eshell :which-key "eshell")
        "v t"   '(open-zsh-term :which-key "term")
-       "v r c"   '(open-emacs-config :which-key "emacsrc")
+       "v r c" '(open-emacs-config :which-key "emacsrc")
        "x"     '(dired-jump :which-key "Ex"))
+
+;; visal keymaps
+(nvmap :state 'visual :keymaps 'override :prefix "SPC"
+  "TAB"   '(indent-region :which-key "indent"))
 
 ;; buffers:
 (nvmap :keymaps 'override :prefix "SPC"
@@ -64,6 +68,15 @@
        "f R"   '(rename-file :which-key "Rename file")
        "f S"   '(write-file :which-key "Save file as...")
        "f U"   '(sudo-edit :which-key "Sudo edit file"))
+
+;; run region of shell script using <leader>rr
+(add-hook 'shell-mode-hook
+	  (defun shellcmd ()
+	    (interactive)
+	    (shell-command-on-region (region-beginning) (region-end) "bash"))
+
+	  (nvmap :state 'visual :keymaps 'override :prefix "SPC"
+	    "r r"   '(shellcmd :which-key "runshell")))
 
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)

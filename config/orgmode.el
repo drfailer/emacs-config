@@ -22,6 +22,22 @@
 (setq org-startup-folded 'content)
 (setq org-cycle-separator-lines 2)
 
+;; babel load languages
+(org-babel-do-load-languages
+'org-babel-load-languages
+'((haskell . t) (emacs-lisp . t) (shell . t)
+    (C . t) (lua . t) (java . t)
+    (lisp . t)))
+(setq org-confirm-babel-evaluate nil)
+
+;; title height
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.2))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+
 ;; TODO keywords:
 (setq org-todo-keywords '((sequence "TODO" "PROJ" "WAIT" "|" "DONE" "CANCELLED" )))
 

@@ -21,7 +21,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;; MODELINE SETTINGS:
-(setq mode-line-position (list "[%l:%c]"))
+(setq mode-line-position (list " [%l:%c]"))
 (setq mode-line-format nil)
 
 (set-face-attribute 'mode-line nil
@@ -35,9 +35,9 @@
 ;; MODELINE FUNCTIONS:
 (defun get-vim-mode ()
   (cond
-   (( eq evil-state 'visual) '(" VISUAL" 'font-lock-string-face))
-   (( eq evil-state 'normal) '(" NORMAL" 'font-lock-comment-face))
-   (( eq evil-state 'insert) '(" INSERT" 'font-lock-builtin-face))
+   (( eq evil-state 'visual) '(" VISUAL " 'font-lock-string-face))
+   (( eq evil-state 'normal) '(" NORMAL " 'font-lock-comment-face))
+   (( eq evil-state 'insert) '(" INSERT " 'font-lock-builtin-face))
    (t '("*" 'font-lock-comment-face))))
 
 (defun display-read-only ()
@@ -71,20 +71,24 @@
                        (propertize (substring vc 5)
                                    'face 'font-lock-comment-face)
                        " ")))
-       ;;----------------------------------------------------------------------
 
        ;;----------------------------------------------------------------------
        ;; file name
        '(:eval (propertize " %b " 'face 'font-lock-regexp-grouping-construct))
+
+       ;;----------------------------------------------------------------------
+       ;; buffer position (percentage)
+       '(:eval (propertize " %p " 'face 'font-lock-type-face))
        
        ;;----------------------------------------------------------------------
+       ;; position
        mode-line-position
 
        ;;----------------------------------------------------------------------
        ;; buffer modified
        '(:eval
 	 (propertize
-	  (cond ((buffer-modified-p) " [+] ")
+	  (cond ((buffer-modified-p) " [+]")
 		(t ""))
 	  'face 'font-lock-builtin-face))
 
@@ -93,8 +97,11 @@
        '(:eval (propertize
                 " " 'display
                 `((space :align-to (- (+ right right-fringe right-margin)
-                                      ,(+ 3 (string-width mode-name)))))))
+                                      ,(+ 6 (string-width mode-name) (string-width eol-mnemonic-unix)))))))
+
        ;;----------------------------------------------------------------------
+       ;; encoding and eol
+       '(:eval (propertize " %Z " 'face 'font-lock-negation-char-face))
 
        ;;----------------------------------------------------------------------
        ;; the current major mode
