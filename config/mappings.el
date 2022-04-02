@@ -11,6 +11,14 @@
 ;; leave insert mode
 (define-key evil-insert-state-map  (kbd "C-i") 'evil-normal-state)
 
+;; C-u to upcase the previous word
+(defun caps-prev-word ()
+  (interactive)
+  (backward-word)
+  (upcase-word 1))
+
+(define-key evil-insert-state-map  (kbd "C-u") 'caps-prev-word)
+
 (require 'key-chord)
 (key-chord-mode 1)
 ;; remap jk as escape
@@ -19,9 +27,20 @@
 
 (require 'general)
 
+;; onpen term and use zsh
+(defun open-zsh-term ()
+  (interactive)
+  (term "zsh"))
+
+;; edit emacs config
+(defun open-emacs-config ()
+  (interactive)
+  (find-file "~/.emacs.d/"))
+
 (nvmap :keymaps 'override :prefix "SPC"
-       "v t"   '(eshell :which-key "term")
-       "v r c"   '((find-file "~/.emacs.d/") :which-key "term")
+       "v e s"   '(eshell :which-key "eshell")
+       "v t"   '(open-zsh-term :which-key "term")
+       "v r c"   '(open-emacs-config :which-key "emacsrc")
        "x"     '(dired-jump :which-key "Ex"))
 
 ;; buffers:

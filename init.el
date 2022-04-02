@@ -55,10 +55,10 @@
   :ensure t)
 
 ;;; FOLDING
-(use-package hideshow
-  :hook (prog-mode . hs-minor-mode)
-  :bind (:map hs-minor-mode-map
-              ("C-c  C" . hs-toggle-hiding)))
+;; (use-package hideshow
+;;   :hook (prog-mode . hs-minor-mode)
+;;   :bind (:map hs-minor-mode-map
+;;               ("C-c  C" . hs-toggle-hiding)))
 
 ;; haskell mode
 (use-package haskell-mode
@@ -83,10 +83,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-lion org-bullets yasnippet-snippets which-key vertico use-package undo-fu orderless key-chord haskell-mode general evil-surround evil-smartparens evil-commentary evil-collection corfu-doc)))
+   '(evil-vimish-fold vimish-fold evil-lion org-bullets yasnippet-snippets which-key vertico use-package undo-fu orderless key-chord haskell-mode general evil-surround evil-smartparens evil-commentary evil-collection corfu-doc)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'dired-find-alternate-file 'disabled nil)

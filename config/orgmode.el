@@ -9,6 +9,19 @@
     org-src-tab-acts-natively t
     org-edit-src-content-indentation 0)
 
+;; some basic settings
+(setq org-ellipsis " ▾")
+(setq org-hide-emphasis-markers t)
+(setq org-src-fontify-natively t)
+(setq org-fontify-whole-heading-line t)
+(setq org-fontify-quote-and-verse-blocks t)
+(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 2)
+(setq org-hide-block-startup nil)
+(setq org-src-preserve-indentation nil)
+(setq org-startup-folded 'content)
+(setq org-cycle-separator-lines 2)
+
 ;; TODO keywords:
 (setq org-todo-keywords '((sequence "TODO" "PROJ" "WAIT" "|" "DONE" "CANCELLED" )))
 

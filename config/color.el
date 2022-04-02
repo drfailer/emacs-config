@@ -35,14 +35,14 @@
 ;; MODELINE FUNCTIONS:
 (defun get-vim-mode ()
   (cond
-   (( eq evil-state 'visual) '("VISUAL" 'font-lock-string-face))
-   (( eq evil-state 'normal) '("NORMAL" 'font-lock-comment-face))
-   (( eq evil-state 'insert) '("INSERT" 'font-lock-builtin-face))
+   (( eq evil-state 'visual) '(" VISUAL" 'font-lock-string-face))
+   (( eq evil-state 'normal) '(" NORMAL" 'font-lock-comment-face))
+   (( eq evil-state 'insert) '(" INSERT" 'font-lock-builtin-face))
    (t '("*" 'font-lock-comment-face))))
 
 (defun display-read-only ()
   (cond
-   (buffer-read-only '("  " 'font-lock-warning-face))
+   (buffer-read-only '(" ﱣ " 'font-lock-warning-face))
    (t '("  " 'font-lock-constant-face))))
 ;;-----------------------------------------------------------------------------
 

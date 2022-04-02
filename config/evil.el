@@ -51,6 +51,20 @@
   :config
   (evil-lion-mode))
 
+;; vim like folds
+(use-package vimish-fold
+  :ensure
+  :after evil)
+
+(use-package evil-vimish-fold
+  :ensure
+  :after vimish-fold
+  :init
+  (setq evil-vimish-fold-mode-lighter " ::")
+  (setq evil-vimish-fold-target-modes '(prog-mode conf-mode text-mode))
+  :config
+  (global-evil-vimish-fold-mode))
+
 ;; Vim Bindings Everywhere else
 (use-package evil-collection
   :after evil
