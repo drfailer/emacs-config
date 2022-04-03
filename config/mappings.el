@@ -35,7 +35,7 @@
 ;; edit emacs config
 (defun open-emacs-config ()
   (interactive)
-  (find-file "~/.emacs.d/"))
+  (find-file "~/.emacs.d/config/"))
 
 (nvmap :keymaps 'override :prefix "SPC"
        "v e s" '(eshell :which-key "eshell")

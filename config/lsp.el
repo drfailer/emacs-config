@@ -11,7 +11,7 @@
   :ensure t
   :hook (;; Whatever works
          (c-mode          . eglot-ensure)
-         (bash-mode       . eglot-ensure)
+         (sh-mode         . eglot-ensure)
          ;; require: eglot-java
          ;; (java-mode       . eglot-ensure)
          ;; pip install --user 'python-language-server[all]' -U

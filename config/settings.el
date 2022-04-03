@@ -18,6 +18,7 @@
 (add-to-list 'default-frame-alist '(alpha 100 100))
 (global-display-line-numbers-mode 1) ;; line number
 ;; (global-display-fill-column-indicator-mode 1)
+(setq inferior-lisp-program "clisp")
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------

@@ -17,18 +17,6 @@
   :init
   (corfu-global-mode))
 
-(use-package corfu-doc)
-(add-hook 'corfu-mode-hook #'corfu-doc-mode)
-(define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down) ;; corfu-next
-(define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)  ;; corfu-previous
-(define-key corfu-map (kbd "M-d") #'corfu-doc-toggle)
-
-;; Use dabbrev with Corfu!
-(use-package dabbrev
-  ;; Swap M-/ and C-M-/
-  :bind (("M-/" . dabbrev-completion)
-         ("C-M-/" . dabbrev-expand)))
-
 ;; Optionally use the 'orderless' completion style. See '+orderless-dispatch'
 ;; in the Consult wiki for an advanced Orderless style dispatcher.
 ;; Enable 'partial-completion' for files to allow path expansion.
@@ -41,6 +29,18 @@
   (setq completion-styles '(orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
+
+;; Use dabbrev with Corfu!
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-j" . dabbrev-completion)
+         ("C-M-j" . dabbrev-expand)))
+
+(use-package corfu-doc)
+(add-hook 'corfu-mode-hook #'corfu-doc-mode)
+(define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down) ;; corfu-next
+(define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)  ;; corfu-previous
+(define-key corfu-map (kbd "M-d") #'corfu-doc-toggle)
 
 ;;-----------------------------------------------------------------------------
 
