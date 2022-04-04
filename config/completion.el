@@ -33,7 +33,7 @@
 ;; Use dabbrev with Corfu!
 (use-package dabbrev
   ;; Swap M-/ and C-M-/
-  :bind (("M-j" . dabbrev-completion)
+  :bind (("M-n" . dabbrev-completion)
          ("C-M-j" . dabbrev-expand)))
 
 (use-package corfu-doc)
@@ -41,6 +41,28 @@
 (define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down) ;; corfu-next
 (define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)  ;; corfu-previous
 (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle)
+
+(use-package cape
+  :bind (("C-c C-f" . cape-file)) ;; bind for files
+  :init
+  ;; Add `completion-at-point-functions', used by `completion-at-point'.
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  :config
+  ;;---------------------------------------------------------
+  ;; solve pcomplete bug (eshell)
+  ;; Silence then pcomplete capf, no errors or messages!
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-silent)
+
+  ;; Ensure that pcomplete does not write to the buffer
+  ;; and behaves as a pure `completion-at-point-function'.
+  (advice-add 'pcomplete-completions-at-point :around #'cape-wrap-purify)
+  ;;---------------------------------------------------------
+  (add-hook 'eshell-mode-hook
+            (lambda () (setq-local corfu-quit-at-boundary t
+                              corfu-quit-no-match t
+                              corfu-auto nil)
+              (corfu-mode))))
 
 ;;-----------------------------------------------------------------------------
 

@@ -9,7 +9,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (tooltip-mode 0)
-(global-hl-line-mode t)
+(global-hl-line-mode 1)
 (blink-cursor-mode 0)
 (setq make-backup-files nil) ;; no backup files
 (setq-default truncate-lines t)

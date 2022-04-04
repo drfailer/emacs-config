@@ -23,6 +23,12 @@
 ;; MODELINE SETTINGS:
 (setq mode-line-position (list " [%l:%c]"))
 (setq mode-line-format nil)
+(setq display-time-string-forms
+      '((propertize (concat "  " 24-hours ":" minutes " ")
+ 		    'face 'font-lock-keywords)))
+(setq battery-mode-line-format " %b%p%%")
+(display-battery-mode)
+(display-time-mode)
 
 (set-face-attribute 'mode-line nil
 		    :background "#121212"
@@ -62,8 +68,6 @@
        '(:eval (let ((mode (get-vim-mode)))
 		 (propertize (car mode) 'face (cadr mode))))
 
-       ;;----------------------------------------------------------------------
-       mode-line-misc-info ; for eyebrowse
 
        ;;----------------------------------------------------------------------
        '(:eval (when-let (vc vc-mode)
@@ -97,7 +101,10 @@
        '(:eval (propertize
                 " " 'display
                 `((space :align-to (- (+ right right-fringe right-margin)
-                                      ,(+ 6 (string-width mode-name) (string-width eol-mnemonic-unix)))))))
+                                      ,(+ 5 (string-width mode-name)
+					  (string-width eol-mnemonic-unix)
+					  (string-width display-time-string)
+					  (string-width battery-mode-line-string)))))))
 
        ;;----------------------------------------------------------------------
        ;; encoding and eol
@@ -105,4 +112,12 @@
 
        ;;----------------------------------------------------------------------
        ;; the current major mode
-       (propertize " %m " 'face 'font-lock-string-face)))
+       (propertize " %m " 'face 'font-lock-string-face)
+       
+       ;;----------------------------------------------------------------------
+       ;; time and battery
+       mode-line-misc-info))
+
+;; (format display-time-string)
+;; (format global-mode-string)
+;; (format (car battery-mode-line-string))

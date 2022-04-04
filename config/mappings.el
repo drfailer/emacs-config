@@ -12,12 +12,12 @@
 (define-key evil-insert-state-map  (kbd "C-i") 'evil-normal-state)
 
 ;; C-u to upcase the previous word
-(defun caps-prev-word ()
+(defun df/caps-prev-word ()
   (interactive)
   (backward-word)
   (upcase-word 1))
 
-(define-key evil-insert-state-map  (kbd "C-u") 'caps-prev-word)
+(define-key evil-insert-state-map  (kbd "C-u") 'df/caps-prev-word)
 
 (require 'key-chord)
 (key-chord-mode 1)
@@ -28,19 +28,20 @@
 (require 'general)
 
 ;; onpen term and use zsh
-(defun open-zsh-term ()
+(defun df/open-zsh-term ()
   (interactive)
   (term "zsh"))
 
-;; edit emacs config
-(defun open-emacs-config ()
+;; open emacs config from anywhere
+(defun df/emacs-config ()
   (interactive)
-  (find-file "~/.emacs.d/config/"))
+  (cd "~/.emacs.d/config")
+  (call-interactively 'find-file))
 
 (nvmap :keymaps 'override :prefix "SPC"
        "v e s" '(eshell :which-key "eshell")
-       "v t"   '(open-zsh-term :which-key "term")
-       "v r c" '(open-emacs-config :which-key "emacsrc")
+       "v t"   '(df/open-zsh-term :which-key "term")
+       "v r c" '(df/emacs-config :which-key "emacsrc")
        "x"     '(dired-jump :which-key "Ex"))
 
 ;; visal keymaps
@@ -71,13 +72,19 @@
 
 ;; run region of shell script using <leader>rr
 (add-hook 'shell-mode-hook
-	  (defun shellcmd ()
+	  (defun df/shellcmd ()
 	    (interactive)
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
 
 	  (nvmap :state 'visual :keymaps 'override :prefix "SPC"
-	    "r r"   '(shellcmd :which-key "runshell")))
+	    "r r"   '(df/shellcmd :which-key "runshell")))
 
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
+
+;; NOTE: may be fun and useful
+;; (completing-read
+;;  "Complete a foo: "
+;;  '(("foobar1" 1) ("barfoo" 2) ("foobaz" 3) ("foobar2" 4))
+;;  nil t "")

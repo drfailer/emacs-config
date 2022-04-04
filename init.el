@@ -74,6 +74,7 @@
 (load "~/.emacs.d/config/orgmode.el") ;; org stuff
 (load "~/.emacs.d/config/color.el") ;; theming
 (load "~/.emacs.d/config/lsp.el") ;; lsp
+(load "~/.emacs.d/config/conf-eshell.el") ;; eshell
 
 ;;-----------------------------------------------------------------------------
 
