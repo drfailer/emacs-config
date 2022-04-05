@@ -9,11 +9,6 @@
 	     (setq-local global-hl-line-mode nil)
 	     (display-line-numbers-mode 0)))
 
-(add-hook 'term-mode-hook
-	  (lambda ()
-	     (setq-local global-hl-line-mode nil)
-	     (display-line-numbers-mode 0)))
-
 ;;-----------------------------------------------------------------------------
 ;; set PATH
 (setenv "PATH"

@@ -30,3 +30,12 @@
   "l d"   '(eldoc :which-key "lsp doc")
   "l v d" '(xref-find-definitions :which-key "lsp rename")
   "l f"   '(eglot-format :which-key "lsp format"))
+
+;;-----------------------------------------------------------------------------
+;; fork of slime (lisp programming)
+;; (use-package sly
+;;   :commands (sly sly-connect)
+;;   :init
+;;   (setq sly-default-lisp 'sbcl)
+;;   :config
+;;   (define-key sly-prefix-map (kbd "M-h") 'sly-documentation-lookup))
