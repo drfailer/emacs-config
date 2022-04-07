@@ -38,8 +38,8 @@
 
 (use-package corfu-doc)
 (add-hook 'corfu-mode-hook #'corfu-doc-mode)
-(define-key corfu-map (kbd "M-p") #'corfu-doc-scroll-down) ;; corfu-next
-(define-key corfu-map (kbd "M-n") #'corfu-doc-scroll-up)  ;; corfu-previous
+(define-key corfu-map (kbd "M-k") #'corfu-doc-scroll-down) ;; corfu-next
+(define-key corfu-map (kbd "M-j") #'corfu-doc-scroll-up)  ;; corfu-previous
 (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle)
 
 (use-package cape

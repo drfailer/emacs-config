@@ -27,7 +27,10 @@
   (setq evil-split-window-right t)
   (setq evil-undo-system 'undo-fu)
   :config
-  (evil-set-leader 'normal " "))
+  (evil-set-leader 'normal " ")
+  (evil-set-initial-state 'dired-mode 'emacs)
+  (setq evil-insert-state-cursor '(box "white")
+	evil-normal-state-cursor '(box "white")))
 
 ;; vim surround
 (use-package evil-smartparens
@@ -66,11 +69,11 @@
   (global-evil-vimish-fold-mode))
 
 ;; Vim Bindings Everywhere else
-(use-package evil-collection
-  :after evil
-  :config
-  (setq evil-want-integration t)
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :config
+;;   (setq evil-want-integration t)
+;;   (evil-collection-init))
 
 ;; easier way to map stuff
 (use-package general

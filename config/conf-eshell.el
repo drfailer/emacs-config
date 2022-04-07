@@ -48,8 +48,8 @@
 
 ;; prompt function
 (setq-default eshell-prompt-function
-      (lambda nil
+      (lambda ()
 	(concat
 	 (propertize (df/dir-base-name) 'face 'font-lock-builtin-face)
-	 (propertize " ➙ " 'face 'font-lock-keyword-face))))
+	 (propertize " $ " 'face 'font-lock-keyword-face))))
 (setq eshell-highlight-prompt nil)

@@ -11,6 +11,7 @@
 (tooltip-mode 0)
 (global-hl-line-mode 1)
 (blink-cursor-mode 0)
+(show-paren-mode t)
 (setq make-backup-files nil) ;; no backup files
 (setq-default truncate-lines t)
 ;; fix transparancy bug:
@@ -66,24 +67,17 @@
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
+;; dired:
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first")))
+;;-----------------------------------------------------------------------------
+
+;;-----------------------------------------------------------------------------
 ;; FONTS SETTINGS
-(set-face-attribute 'default nil
-                    :font "hack"
-                    :height 100
-                    :weight 'medium)
-(set-face-attribute 'variable-pitch nil
-                    :font "hack"
-                    :height 110
-                    :weight 'medium)
-(set-face-attribute 'fixed-pitch nil
-                    :font "hack"
-                    :height 100
-                    :weight 'medium)
-;; Makes commented text and keywords italics.
-;; This is working in emacsclient but not emacs.
-;; Your font must have an italic face available.
-(set-face-attribute 'font-lock-comment-face nil
-                    :slant 'italic)
-(set-face-attribute 'font-lock-keyword-face nil
-                    :slant 'italic)
+(set-face-attribute 'default nil :font "hack" :height 100 :weight 'medium)
+(set-face-attribute 'variable-pitch nil :font "hack" :height 110 :weight 'medium)
+(set-face-attribute 'fixed-pitch nil :font "hack" :height 100 :weight 'medium)
 ;;-----------------------------------------------------------------------------

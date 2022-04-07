@@ -82,6 +82,7 @@
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "C-x c") 'delete-window)
 
 ;; NOTE: may be fun and useful
 ;; (completing-read
