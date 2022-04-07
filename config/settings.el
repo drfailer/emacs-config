@@ -77,7 +77,15 @@
 
 ;;-----------------------------------------------------------------------------
 ;; FONTS SETTINGS
-(set-face-attribute 'default nil :font "hack" :height 100 :weight 'medium)
-(set-face-attribute 'variable-pitch nil :font "hack" :height 110 :weight 'medium)
-(set-face-attribute 'fixed-pitch nil :font "hack" :height 100 :weight 'medium)
+(defun df/set-fonts ()
+  (set-face-attribute 'default nil :font "hack" :height 100 :weight 'medium)
+  (set-face-attribute 'variable-pitch nil :font "hack" :height 110 :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil :font "hack" :height 100 :weight 'medium))
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                ;; (setq doom-modeline-icon t)
+                (with-selected-frame frame
+                  (df/set-fonts))))
+    (df/set-fonts))
 ;;-----------------------------------------------------------------------------
