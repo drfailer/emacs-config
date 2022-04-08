@@ -4,11 +4,6 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
-;; (use-package spacegray-theme
-;;   :ensure t
-;;   )
-;; (load-theme 'spacegray t)
-
 (use-package modus-themes
   :ensure t
   )
@@ -122,7 +117,3 @@
        ;;----------------------------------------------------------------------
        ;; time and battery
        mode-line-misc-info))
-
-;; (format display-time-string)
-;; (format global-mode-string)
-;; (format (car battery-mode-line-string))

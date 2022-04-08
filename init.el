@@ -39,6 +39,13 @@
 ;;-----------------------------------------------------------------------------
 ;; PACKAGES:
 
+;; dired:
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first")))
+
 ;; WICHKEY
 (use-package which-key
 :ensure t
@@ -83,7 +90,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yasnippet-snippets which-key vertico use-package undo-fu spacegray-theme org-bullets orderless modus-themes key-chord haskell-mode general evil-vimish-fold evil-surround evil-smartparens evil-lion evil-commentary eglot corfu-doc cape annalist)))
+   '(visual-fill-column org-tree-slide yasnippet-snippets which-key vertico use-package undo-fu spacegray-theme org-bullets orderless modus-themes key-chord haskell-mode general evil-vimish-fold evil-surround evil-smartparens evil-lion evil-commentary eglot corfu-doc cape annalist)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -94,3 +101,4 @@
  '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
  '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
  '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
+(put 'dired-find-alternate-file 'disabled nil)

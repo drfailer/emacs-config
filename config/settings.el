@@ -18,6 +18,7 @@
 (set-frame-parameter (selected-frame) 'alpha '(100 100))
 (add-to-list 'default-frame-alist '(alpha 100 100))
 (global-display-line-numbers-mode 1) ;; line number
+(menu-bar--display-line-numbers-mode-relative)
 
 ;; (global-display-fill-column-indicator-mode 1)
 
@@ -67,24 +68,14 @@
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
-;; dired:
-(use-package dired
-  :ensure nil
-  :commands (dired dired-jump)
-  :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first")))
-;;-----------------------------------------------------------------------------
-
-;;-----------------------------------------------------------------------------
 ;; FONTS SETTINGS
 (defun df/set-fonts ()
-  (set-face-attribute 'default nil :font "hack" :height 100 :weight 'medium)
-  (set-face-attribute 'variable-pitch nil :font "hack" :height 110 :weight 'medium)
-  (set-face-attribute 'fixed-pitch nil :font "hack" :height 100 :weight 'medium))
+  (set-face-attribute 'default nil :font "hack" :height 88 :weight 'medium)
+  (set-face-attribute 'variable-pitch nil :font "hack" :height 90 :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil :font "hack" :height 88 :weight 'medium))
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)
-                ;; (setq doom-modeline-icon t)
                 (with-selected-frame frame
                   (df/set-fonts))))
     (df/set-fonts))
