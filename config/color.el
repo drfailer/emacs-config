@@ -33,7 +33,7 @@
 		    :foreground "grey"
 		    :box nil)
 (set-face-attribute 'mode-line-inactive nil
-		    :background "#000000"
+		    :background "#212121"
 		    :foreground "grey"
 		    :box nil)
 ;;-----------------------------------------------------------------------------

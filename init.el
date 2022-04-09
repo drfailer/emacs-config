@@ -17,6 +17,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;; PACKAGES SETUP:
+;;-----------------------------------------------------------------------------
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("elpa" . "https://elpa.gnu.org/packages/")
@@ -34,55 +35,20 @@
 (setq use-package-verbose t)
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
-;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
-;; PACKAGES:
-
-;; dired:
-(use-package dired
-  :ensure nil
-  :commands (dired dired-jump)
-  :bind (("C-x C-j" . dired-jump))
-  :custom ((dired-listing-switches "-agho --group-directories-first")))
-
-;; WICHKEY
-(use-package which-key
-:ensure t
-:config
-(which-key-mode))
-
-;; SINIPPETS
-(use-package yasnippet
-  :ensure t
-  :init
-    (yas-global-mode 1))
-
-(use-package yasnippet-snippets
-  :ensure t)
-
-;;; FOLDING
-;; (use-package hideshow
-;;   :hook (prog-mode . hs-minor-mode)
-;;   :bind (:map hs-minor-mode-map
-;;               ("C-c  C" . hs-toggle-hiding)))
-
-;; haskell mode
-(use-package haskell-mode
-  :ensure t)
-
-;; adding .hs extension for haskell mode
-(push '("\\.hs\\'" . haskell-mode) auto-mode-alist)
-
-
-;; load some files
+;; LOAD CONFIG:
+;;-----------------------------------------------------------------------------
+(load "~/.emacs.d/config/utils.el") ;; some functions and pluggins
 (load "~/.emacs.d/config/completion.el") ;; corfu & more
-(load "~/.emacs.d/config/evil.el") ;; evil stuff
+(load "~/.emacs.d/config/mappings.el") ;; evil stuff
 (load "~/.emacs.d/config/orgmode.el") ;; org stuff
-(load "~/.emacs.d/config/color.el") ;; theming
-(load "~/.emacs.d/config/lsp.el") ;; lsp
+(load "~/.emacs.d/config/color.el") ;; theming and modeline format
 (load "~/.emacs.d/config/conf-eshell.el") ;; eshell
+(load "~/.emacs.d/config/lsp.el") ;; lsp
 
+;;-----------------------------------------------------------------------------
+;; custom variables (emacs stuff)
 ;;-----------------------------------------------------------------------------
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

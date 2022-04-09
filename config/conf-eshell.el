@@ -4,6 +4,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;; remve hl-line and numbers in eshell
+;;-----------------------------------------------------------------------------
 (add-hook 'eshell-mode-hook
 	  (lambda ()
 	     (setq-local global-hl-line-mode nil)
@@ -11,17 +12,33 @@
 
 ;;-----------------------------------------------------------------------------
 ;; set PATH
+;;-----------------------------------------------------------------------------
 (setenv "PATH"
         (concat
          "~/.config/zsh/scripts"
          (getenv "PATH")))
 
 ;;-----------------------------------------------------------------------------
-;; set pager
+;; SET PAGER
+;;-----------------------------------------------------------------------------
 (setenv "PAGER" "bat") ;; needs bat to be installed
 
 ;;-----------------------------------------------------------------------------
-;; aliases
+;; FUNCTION
+;;-----------------------------------------------------------------------------
+(defun df/pull-from-dir (dirname)
+  (interactive)
+  (let ((my-fdn (lambda (x)
+		  (if (= (aref dirname (- (length dirname) 1)) 47)
+		      dirname
+		    (concat dirname "/")))))
+    (eshell/mv (concat (funcall my-fdn dirname)
+		       (completing-read (concat dirname ": ") (directory-files dirname) nil t ""))
+	       (eshell/pwd))))
+
+;;-----------------------------------------------------------------------------
+;; ALIASES
+;;-----------------------------------------------------------------------------
 (add-hook 'eshell-mode-hook (lambda ()
     ;; aps
     (eshell/alias "e" "find-file $1")
@@ -33,15 +50,19 @@
     (eshell/alias "gd" "cd ~/Downloads/")
     (eshell/alias "gs" "cd ~/.config/zsh/scripts")
     (eshell/alias "gC" "cd ~/.config/")
-    (eshell/alias "d" "dired $1")))
+    (eshell/alias "d" "dired $1")
+
+    ;; move
+    (eshell/alias "md" "df/pull-from-dir \"~/Downloads/\"")))
 
 ;;-----------------------------------------------------------------------------
-;; prompt
+;; PROMPT
+;;-----------------------------------------------------------------------------
 ;; get the name of the current directory
 (defun df/dir-base-name ()
   "give current directory base name (or ~ in /home/user/)"
   (let ((pwd (eshell/pwd))
-	(myhome "/home/failer"))
+	(myhome "/home/drfailer"))
     (if (equal pwd myhome)
 	"~"
       (car (last (split-string pwd "/"))))))

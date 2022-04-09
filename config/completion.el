@@ -14,6 +14,7 @@
   (corfu-echo-documentation 0.25)
   (corfu-quit-at-boundary t)
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+  :bind (:map corfu-map ("RET" . nil))
   :init
   (corfu-global-mode))
 
@@ -61,7 +62,7 @@
   (add-hook 'eshell-mode-hook
             (lambda () (setq-local corfu-quit-at-boundary t
                               corfu-quit-no-match t
-                              corfu-auto nil)
+                              corfu-auto t)
               (corfu-mode))))
 
 ;;-----------------------------------------------------------------------------
