@@ -86,10 +86,12 @@
 ;; FUNCTIONS:
 ;;-----------------------------------------------------------------------------
 ;; C-u to upcase the previous word
-(defun df/caps-prev-word ()
-  (interactive)
-  (backward-word)
-  (upcase-word 1))
+;; (defun df/caps-prev-word ()
+;;   (interactive)
+;;   (backward-word)
+;;   (upcase-word 1))
+;; upercase previous word
+;; (define-key evil-insert-state-map  (kbd "C-u") 'df/caps-prev-word)
 
 ;; onpen term and use zsh
 (defun df/open-zsh-term ()
@@ -118,15 +120,10 @@
 ;; leave insert mode
 (define-key evil-insert-state-map  (kbd "C-i") 'evil-normal-state)
 
-;; upercase previous word
-(define-key evil-insert-state-map  (kbd "C-u") 'df/caps-prev-word)
-
 (require 'key-chord)
 (key-chord-mode 1)
-;; remap jk as escape
-(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
-;; easy skip parens
-(key-chord-define evil-insert-state-map  "kl" 'forward-char)
+(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state) ;; remap jk as escape
+(key-chord-define evil-insert-state-map  "kl" 'forward-char) ;; easy skip parens
 
 (require 'general)
 
@@ -137,11 +134,11 @@
        "x"     '(dired-jump :which-key "Ex"))
 
 ;; visal keymaps
-(nvmap :state 'visual :keymaps 'override :prefix "SPC"
+(vmap :keymaps 'override :prefix "SPC"
   "TAB"   '(indent-region :which-key "indent"))
 
 ;; buffers:
-(nvmap :keymaps 'override :prefix "SPC"
+(nmap :keymaps 'override :prefix "SPC"
   "f b"   '(switch-to-buffer :which-key "Switch to buffer")
   "b b"   '(switch-to-buffer :which-key "buffer")
   "b c"   '(clone-indirect-buffer-other-window :which-key "Clone indirect buffer other window")
@@ -153,7 +150,7 @@
 
 
 ;; find files
-(nvmap :states '(normal visual) :keymaps 'override :prefix "SPC"
+(nvmap :keymaps 'override :prefix "SPC"
   "f B"   '(bookmark-jump :which-key "bookmark jump")
   "f f"   '(find-file :which-key "Find file")
   "f u"   '(sudo-edit-find-file :which-key "Sudo find file")
@@ -164,7 +161,7 @@
   "f U"   '(sudo-edit :which-key "Sudo edit file"))
 
 ;; bookmarks
-(nvmap :states '(normal visual) :keymaps 'override :prefix "SPC"
+(nvmap :keymaps 'override :prefix "SPC"
   "B j"   '(bookmark-jump :which-key "bookmark jump")
   "B s"   '(bookmark-set :which-key "bookmark set"))
 
@@ -174,7 +171,7 @@
 	    (interactive)
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
 
-	  (nvmap :state 'visual :keymaps 'override :prefix "SPC"
+	  (vmap :keymaps 'override :prefix "SPC"
 	    "r r"   '(df/shellcmd :which-key "runshell")))
 
 ;; Simple convenient mappings:

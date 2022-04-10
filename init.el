@@ -19,7 +19,7 @@
 ;; PACKAGES SETUP:
 ;;-----------------------------------------------------------------------------
 (setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
+    '(("melpa" . "https://melpa.org/packages/")
         ("elpa" . "https://elpa.gnu.org/packages/")
         ("org" . "https://orgmode.org/elpa/")
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
