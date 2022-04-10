@@ -112,6 +112,9 @@
 (define-key evil-normal-state-map  (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map  (kbd "C-l") 'evil-window-right)
 
+;; fix cyclig in org mode
+(evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+
 ;; leave insert mode
 (define-key evil-insert-state-map  (kbd "C-i") 'evil-normal-state)
 
