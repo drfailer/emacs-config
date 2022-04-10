@@ -57,7 +57,7 @@
 ;;-----------------------------------------------------------------------------
 (defun df/set-fonts ()
   (set-face-attribute 'default nil :font "hack" :height 88 :weight 'medium)
-  (set-face-attribute 'variable-pitch nil :font "hack" :height 90 :weight 'medium)
+  (set-face-attribute 'variable-pitch nil :font "hack" :height 88 :weight 'medium)
   (set-face-attribute 'fixed-pitch nil :font "hack" :height 88 :weight 'medium))
 (if (daemonp)
     (add-hook 'after-make-frame-functions

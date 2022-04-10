@@ -55,7 +55,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;; MODELINE FORMAT:
-(setq-default mode-line-format
+(setq df/mode-line-format
       (list
        ;;----------------------------------------------------------------------
        ;; read only buffer
@@ -117,3 +117,23 @@
        ;;----------------------------------------------------------------------
        ;; time and battery
        mode-line-misc-info))
+
+;; default mode line format
+(setq-default mode-line-format df/mode-line-format)
+(setq-default df/mode-line-hidden nil) ;; mode line active by default
+
+;; toggle mode line
+(defun df/toggle-mode-line ()
+  "function used to toggle the mode line, it sets up the modeline
+format to nil or to `df/mode-line-format' depending of the status of
+`df/mode-line-hidden'"
+  (interactive)
+  (let ((local/modeline-off (lambda ()
+			     (setq df/mode-line-hidden t)
+			     (setq mode-line-format nil)))
+	(local/modeline-on (lambda ()
+			      (setq df/mode-line-hidden nil)
+			      (setq mode-line-format df/mode-line-format))))
+    (if (not df/mode-line-hidden)
+	(funcall local/modeline-off)
+      (funcall local/modeline-on))))

@@ -9,9 +9,6 @@
 ;; Org Agenda:
 (setq org-directory "~/.emacs.d/Org/"
       org-agenda-files '("~/.emacs.d/Org/agenda.org"))
-(setq org-src-preserve-indentation nil
-    org-src-tab-acts-natively t
-    org-edit-src-content-indentation 0)
 
 ;; TODO keywords:
 (setq org-todo-keywords '((sequence "TODO" "PROJ" "WAIT" "|" "DONE" "CANCELLED" )))
@@ -22,7 +19,6 @@
 
 ;; global orgmode settings
 (use-package org
-  :hook (org-mode . efs/org-mode-setup)
   :config
   (setq org-ellipsis " ▾")
   (setq org-hide-emphasis-markers t)

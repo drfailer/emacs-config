@@ -45,6 +45,7 @@
 ;; FUNTIONS:
 ;;-----------------------------------------------------------------------------
 
+;; TEST
 ;; use emacs builtin bookmark system instead
 ;; TODO: may be interessant to use this for doing smth else (brave script for instance)
 ;; TODO: extend this -> give a command to the function for instance
@@ -55,13 +56,11 @@
 ;;   (let ((filename (completing-read prompt (mapcar (lambda (x) (car x))
 ;; 						  files) nil t "")))
 ;;     (df/find-list filename files)))
-
 ;; ;; open the selected file (filepath that has been returned by
 ;; ;; `df/select-bookmark')
 ;; (defun df/open-config (my-configs-files)
 ;;   (interactive)
 ;;   (find-file (df/select-config "Bookmarks: " my-configs-files)))
-
 ;; ;; special bookmark system for config files
 ;; ;; similar to default emacs bookmark system
 ;; (defun df/configs ()
