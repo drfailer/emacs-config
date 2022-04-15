@@ -23,7 +23,7 @@
 (setq mode-line-format nil)
 (setq display-time-string-forms
       '((propertize (concat "  " 24-hours ":" minutes " ")
- 		    'face 'font-lock-keywords)))
+ 		    'face 'font-lock-keyword-face)))
 (setq battery-mode-line-format " %b%p%%")
 (display-battery-mode)
 (display-time-mode)

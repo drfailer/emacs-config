@@ -17,19 +17,15 @@
          ;; pip install --user 'python-language-server[all]' -U
          (python-mode . eglot-ensure)))
 
-;; (define-key eglot-mode-map (kbd "C-c r") 'eglot-rename)
-;; (define-key eglot-mode-map (kbd "C-c o") 'eglot-code-action-organize-imports)
-;; (define-key eglot-mode-map (kbd "C-c h") 'eldoc)
-;; (define-key eglot-mode-map (kbd "<f6>") 'xref-find-definitions)
-
 (require 'general)
 
-(nvmap :keymaps 'override :prefix "SPC"
-  "l r"   '(eglot-rename :which-key "lsp rename")
-  "l o i" '(eglot-code-action-organize-imports :which-key "lsp organize imports")
-  "l d"   '(eldoc :which-key "lsp doc")
-  "l v d" '(xref-find-definitions :which-key "lsp rename")
-  "l f"   '(eglot-format :which-key "lsp format"))
+;; some mappings
+(evil-define-key 'normal 'global (kbd "<leader>l r")   'eglot-rename)
+(evil-define-key 'normal 'global (kbd "<leader>l o i") 'eglot-code-action-organize-imports)
+(evil-define-key 'normal 'global (kbd "<leader>l a")   'eglot-code-actions)
+(evil-define-key 'normal 'global (kbd "<leader>l d")   'eldoc)
+(evil-define-key 'normal 'global (kbd "<leader>l v d") 'xref-find-definitions)
+(evil-define-key 'normal 'global (kbd "<leader>l f")   'eglot-format)
 
 ;;-----------------------------------------------------------------------------
 ;; fork of slime (lisp programming)

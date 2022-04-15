@@ -14,21 +14,19 @@
 ;; VIM BINDINGS
 (use-package evil
   :demand t
-  :bind (("<escape>" . keyboard-escape-quit))
-         ;; ("C-n" . evil-next-line)
-         ;; ("C-p" . evil-previous-line))
+  :bind (("<escape>" . keyboard-escape-quit)
+         ("C-n" . evil-next-line)
+         ("C-p" . evil-previous-line))
   :init
-  ;; allows for using cgn
-  ;; (setq evil-search-module 'evil-search)
   (setq evil-want-keybinding nil)
-  ;; no vim insert bindings
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-Y-yank-to-eol t)
   (setq evil-split-window-below t)
   (setq evil-split-window-right t)
   (setq evil-undo-system 'undo-fu)
+  (setq evil-want-C-u-scroll t)
   :config
-  (evil-set-leader 'normal " ")
+  (evil-set-leader 'normal " ") ;; <leader>
   (evil-set-initial-state 'dired-mode 'emacs)
   (setq evil-insert-state-cursor '(box "white")
 	evil-normal-state-cursor '(box "white")))
@@ -69,15 +67,9 @@
   :config
   (global-evil-vimish-fold-mode))
 
-;; easier way to map stuff
-(use-package general
-  :config
-  (general-evil-setup t))
-
 ;; enable to map keysequence without modifier key (ex: "kj" -> ESC)
 (use-package key-chord
   :ensure t)
-;;-----------------------------------------------------------------------------
 
 ;; Enable evil mode
 (evil-mode 1)
@@ -85,14 +77,6 @@
 ;;-----------------------------------------------------------------------------
 ;; FUNCTIONS:
 ;;-----------------------------------------------------------------------------
-;; C-u to upcase the previous word
-;; (defun df/caps-prev-word ()
-;;   (interactive)
-;;   (backward-word)
-;;   (upcase-word 1))
-;; upercase previous word
-;; (define-key evil-insert-state-map  (kbd "C-u") 'df/caps-prev-word)
-
 ;; onpen term and use zsh
 (defun df/open-zsh-term ()
   (interactive)
@@ -108,6 +92,11 @@
 ;; MAPPINGS:
 ;;-----------------------------------------------------------------------------
 
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state) ;; remap jk as escape
+(key-chord-define evil-insert-state-map  "kl" 'forward-char) ;; easy skip parens
+
 ;; Moving threw panes:
 (define-key evil-normal-state-map  (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map  (kbd "C-j") 'evil-window-down)
@@ -117,62 +106,43 @@
 ;; fix cyclig in org mode
 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
 
-;; leave insert mode
-(define-key evil-insert-state-map  (kbd "C-i") 'evil-normal-state)
+;; launching app
+(evil-define-key 'normal 'global (kbd "<leader>v e s") 'eshell)
+(evil-define-key 'normal 'global (kbd "<leader>v t")   'df/open-zsh-term)
+(evil-define-key 'normal 'global (kbd "<leader>x")     'dired-jump)
 
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state) ;; remap jk as escape
-(key-chord-define evil-insert-state-map  "kl" 'forward-char) ;; easy skip parens
+;; indent
+(evil-define-key 'visual 'global (kbd "<leader>TAB") 'indent-region)
 
-(require 'general)
-
-(nvmap :keymaps 'override :prefix "SPC"
-       "v e s" '(eshell :which-key "eshell")
-       "v t"   '(df/open-zsh-term :which-key "term")
-       ;; "v r c" '(df/configs :which-key "emacsrc")
-       "x"     '(dired-jump :which-key "Ex"))
-
-;; visal keymaps
-(vmap :keymaps 'override :prefix "SPC"
-  "TAB"   '(indent-region :which-key "indent"))
-
-;; buffers:
-(nmap :keymaps 'override :prefix "SPC"
-  "f b"   '(switch-to-buffer :which-key "Switch to buffer")
-  "b b"   '(switch-to-buffer :which-key "buffer")
-  "b c"   '(clone-indirect-buffer-other-window :which-key "Clone indirect buffer other window")
-  "b k"   '(kill-current-buffer :which-key "Kill current buffer")
-  "n b"   '(next-buffer :which-key "Next buffer")
-  "b p"   '(previous-buffer :which-key "Previous buffer")
-  "b B"   '(ibuffer-list-buffers :which-key "Ibuffer list buffers")
-  "b K"   '(kill-buffer :which-key "Kill buffer"))
-
-
-;; find files
-(nvmap :keymaps 'override :prefix "SPC"
-  "f B"   '(bookmark-jump :which-key "bookmark jump")
-  "f f"   '(find-file :which-key "Find file")
-  "f u"   '(sudo-edit-find-file :which-key "Sudo find file")
-  "f C"   '(copy-file :which-key "Copy file")
-  "f D"   '(delete-file :which-key "Delete file")
-  "f R"   '(rename-file :which-key "Rename file")
-  "f S"   '(write-file :which-key "Save file as...")
-  "f U"   '(sudo-edit :which-key "Sudo edit file"))
+;; buffer management
+(evil-define-key 'normal 'global (kbd "<leader>f b") 'switch-to-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>b b") 'switch-to-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>b c") 'clone-indirect-buffer-other-window)
+(evil-define-key 'normal 'global (kbd "<leader>b k") 'kill-current-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>n b") 'next-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>b p") 'previous-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>b B") 'ibuffer-list-buffers)
+(evil-define-key 'normal 'global (kbd "<leader>b K") 'kill-buffer)
 
 ;; bookmarks
-(nvmap :keymaps 'override :prefix "SPC"
-  "B j"   '(bookmark-jump :which-key "bookmark jump")
-  "B s"   '(bookmark-set :which-key "bookmark set"))
+(evil-define-key 'normal 'global (kbd "<leader>f B") 'bookmark-jump)
+(evil-define-key 'normal 'global (kbd "<leader>B j") 'bookmark-jump)
+(evil-define-key 'normal 'global (kbd "<leader>B s") 'bookmark-set)
+
+;; files mappings
+(evil-define-key 'normal 'global (kbd "<leader>f f") 'find-file)
+(evil-define-key 'normal 'global (kbd "<leader>f C") 'copy-file)
+(evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
+(evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
+
+;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
 
 ;; run region of shell script using <leader>rr
 (add-hook 'shell-mode-hook
 	  (defun df/shellcmd ()
 	    (interactive)
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
-
-	  (vmap :keymaps 'override :prefix "SPC"
-	    "r r"   '(df/shellcmd :which-key "runshell")))
+	  (evil-define-key 'normal 'local (kbd "<leader>r r") 'df/shellcmd))
 
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)

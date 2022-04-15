@@ -41,7 +41,7 @@
 ;;-----------------------------------------------------------------------------
 (load "~/.emacs.d/config/utils.el") ;; some functions and pluggins
 (load "~/.emacs.d/config/completion.el") ;; corfu & more
-(load "~/.emacs.d/config/mappings.el") ;; evil stuff
+(load "~/.emacs.d/config/evil-mappings.el") ;; evil and mappings
 (load "~/.emacs.d/config/orgmode.el") ;; org stuff
 (load "~/.emacs.d/config/color.el") ;; theming and modeline format
 (load "~/.emacs.d/config/conf-eshell.el") ;; eshell
