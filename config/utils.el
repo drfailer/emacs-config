@@ -41,6 +41,10 @@
 ;; adding .hs extension for haskell mode
 (push '("\\.hs\\'" . haskell-mode) auto-mode-alist)
 
+;; markdown mode
+(use-package markdown-mode
+  :ensure t)
+
 ;;-----------------------------------------------------------------------------
 ;; FUNTIONS:
 ;;-----------------------------------------------------------------------------

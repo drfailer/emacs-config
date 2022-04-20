@@ -17,8 +17,6 @@
          ;; pip install --user 'python-language-server[all]' -U
          (python-mode . eglot-ensure)))
 
-(require 'general)
-
 ;; some mappings
 (evil-define-key 'normal 'global (kbd "<leader>l r")   'eglot-rename)
 (evil-define-key 'normal 'global (kbd "<leader>l o i") 'eglot-code-action-organize-imports)

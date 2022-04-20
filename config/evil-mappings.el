@@ -14,9 +14,7 @@
 ;; VIM BINDINGS
 (use-package evil
   :demand t
-  :bind (("<escape>" . keyboard-escape-quit)
-         ("C-n" . evil-next-line)
-         ("C-p" . evil-previous-line))
+  :bind (("<escape>" . keyboard-escape-quit))
   :init
   (setq evil-want-keybinding nil)
   (setq evil-disable-insert-state-bindings t)
@@ -112,7 +110,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>x")     'dired-jump)
 
 ;; indent
-(evil-define-key 'visual 'global (kbd "<leader>TAB") 'indent-region)
+(evil-define-key '(normal visual) 'global (kbd "<leader>TAB") 'indent-region)
 
 ;; buffer management
 (evil-define-key 'normal 'global (kbd "<leader>f b") 'switch-to-buffer)
@@ -147,4 +145,9 @@
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
+;; simpler mapping for azerty keyboard 
 (global-set-key (kbd "C-x c") 'delete-window)
+(global-set-key (kbd "C-x &") 'delete-other-windows)
+(global-set-key (kbd "C-x é") 'split-window-below)
+(global-set-key (kbd "C-x \"") 'split-window-right)
+

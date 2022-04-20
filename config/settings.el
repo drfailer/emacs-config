@@ -20,6 +20,9 @@
 (add-to-list 'default-frame-alist '(alpha 100 100))
 (global-display-line-numbers-mode 1) ;; line number
 (menu-bar--display-line-numbers-mode-relative)
+;; turn off ring bell
+(setq ring-bell-function 'ignore)
+(delete-selection-mode 1)
 
 ;; (global-display-fill-column-indicator-mode 1)
 
