@@ -23,7 +23,6 @@
 ;; turn off ring bell
 (setq ring-bell-function 'ignore)
 (delete-selection-mode 1)
-(setq fill-column 80)
 
 ;; fix scrolling
 (setq scroll-step            1

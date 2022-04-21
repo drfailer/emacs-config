@@ -24,7 +24,7 @@
   (setq evil-undo-system 'undo-fu)
   (setq evil-want-C-u-scroll t)
   :config
-  (evil-set-leader 'normal " ") ;; <leader>
+  (evil-set-leader '(normal visual) " ") ;; <leader>
   (evil-set-initial-state 'dired-mode 'emacs)
   (setq evil-insert-state-cursor '(box "white")
 	evil-normal-state-cursor '(box "white")))
@@ -86,6 +86,13 @@
   (cd path)
   (call-interactively 'find-file))
 
+(setq df/gdfcim nil)
+(defun df/toggle-gdfcim ()
+  (interactive)
+  (setq fill-column 80)
+  (if (not df/gdfcim)
+      (setq df/gdfcim (global-display-fill-column-indicator-mode 1))
+    (setq df/gdfcim (global-display-fill-column-indicator-mode 0))))
 ;;-----------------------------------------------------------------------------
 ;; MAPPINGS:
 ;;-----------------------------------------------------------------------------
@@ -132,6 +139,9 @@
 (evil-define-key 'normal 'global (kbd "<leader>f C") 'copy-file)
 (evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
 (evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
+
+;; toggle stuff
+(evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
 
 ;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
 

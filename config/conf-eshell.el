@@ -27,6 +27,9 @@
 ;; FUNCTION
 ;;-----------------------------------------------------------------------------
 (defun df/pull-from-dir (dirname)
+  "Uses `completing-read' to ask the user to select a file from the
+directory `dirname' and poll the selected file in the current
+directory."
   (interactive)
   (let ((my-fdn (lambda (x)
 		  (if (= (aref dirname (- (length dirname) 1)) 47)
@@ -51,6 +54,9 @@
     (eshell/alias "gs" "cd ~/.config/zsh/scripts")
     (eshell/alias "gC" "cd ~/.config/")
     (eshell/alias "d" "dired $1")
+
+    ;; list
+    (eshell/alias "ll" "ls -al")
 
     ;; move
     (eshell/alias "md" "df/pull-from-dir \"~/Downloads/\"")))
