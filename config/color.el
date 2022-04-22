@@ -4,17 +4,20 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
+(setq df/current-theme 'black)
 (use-package modus-themes
   :ensure t
   )
-(load-theme 'modus-vivendi t)
+(if (equal df/current-theme 'black)
+    (load-theme 'modus-vivendi t)
+  (load-theme 'modus-operandi t))
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
 ;; SOME FIX
 ;; black baground
-(set-background-color "#000000")
-(set-face-background 'fringe "#000000")
+;; (set-background-color "#000000")
+;; (set-face-background 'fringe "#000000")
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
@@ -28,14 +31,15 @@
 (display-battery-mode)
 (display-time-mode)
 
-(set-face-attribute 'mode-line nil
-		    :background "#121212"
-		    :foreground "grey"
-		    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-		    :background "#212121"
-		    :foreground "grey"
-		    :box nil)
+(when (equal df/current-theme 'black)
+  (set-face-attribute 'mode-line nil
+		      :background "#121212"
+		      :foreground "grey"
+		      :box nil)
+  (set-face-attribute 'mode-line-inactive nil
+		      :background "#212121"
+		      :foreground "grey"
+		      :box nil))
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------

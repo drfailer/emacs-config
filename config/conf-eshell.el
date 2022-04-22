@@ -47,6 +47,7 @@ directory."
     (eshell/alias "e" "find-file $1")
     (eshell/alias "emacs" "find-file $1")
     (eshell/alias "ee" "find-file-other-window $1")
+    (eshell/alias "clear" "clear 1")
 
     ;; find directories
     (eshell/alias "gc" "cd ~/Desktop/cours/s2/")

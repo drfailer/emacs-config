@@ -80,12 +80,6 @@
   (interactive)
   (term "zsh"))
 
-;; open emacs config from anywhere
-(defun df/fuzzy-find-file (path)
-  (interactive)
-  (cd path)
-  (call-interactively 'find-file))
-
 (setq df/gdfcim nil)
 (defun df/toggle-gdfcim ()
   (interactive)

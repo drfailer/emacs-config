@@ -101,6 +101,13 @@
    (t (df/find-list key (cdr lst)))))
 
 
+;; open a directory using find-file (whithout selection)
+(defun df/fuzzy-find-file (path)
+  (interactive)
+  (cd path)
+  (call-interactively 'find-file))
+
+
 ;; NOTE: may be fun and useful
 ;; (completing-read
 ;;  "Complete a foo: "

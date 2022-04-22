@@ -23,7 +23,6 @@
 ;; turn off ring bell
 (setq ring-bell-function 'ignore)
 (delete-selection-mode 1)
-(setq fill-column 80)
 
 ;; fix scrolling
 (setq scroll-step            1
@@ -58,9 +57,9 @@
 ;; FONTS SETTINGS
 ;;-----------------------------------------------------------------------------
 (defun df/set-fonts ()
-  (set-face-attribute 'default nil :font "Hack" :height 88)
-  (set-face-attribute 'variable-pitch nil :font "Hack" :height 88)
-  (set-face-attribute 'fixed-pitch nil :font "Hack" :height 88))
+  (set-face-attribute 'default nil :font "Hack-9")
+  (set-face-attribute 'fixed-pitch nil :font "Hack-9")
+  (set-face-attribute 'variable-pitch nil :font "FiraGO-9.5:weight=Light"))
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)
