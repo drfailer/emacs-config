@@ -48,8 +48,11 @@ directory."
     (eshell/alias "emacs" "find-file $1")
     (eshell/alias "ee" "find-file-other-window $1")
     (eshell/alias "clear" "clear 1")
+    (eshell/alias "zz" "zathura $1")
 
     ;; find directories
+    (eshell/alias "ge" "cd ~/.emacs.d/")
+    (eshell/alias "gO" "cd ~/.emacs.d/Org/")
     (eshell/alias "gc" "cd ~/Desktop/cours/s2/")
     (eshell/alias "gd" "cd ~/Downloads/")
     (eshell/alias "gs" "cd ~/.config/zsh/scripts")

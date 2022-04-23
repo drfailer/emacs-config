@@ -87,6 +87,12 @@
   (if (not df/gdfcim)
       (setq df/gdfcim (global-display-fill-column-indicator-mode 1))
     (setq df/gdfcim (global-display-fill-column-indicator-mode 0))))
+
+;; fill region with 80 columns
+(defun df/fill-gegion ()
+  (interactive)
+  (setq fill-column 80)
+  (fill-region (region-beginning) (region-end)))
 ;;-----------------------------------------------------------------------------
 ;; MAPPINGS:
 ;;-----------------------------------------------------------------------------
@@ -112,6 +118,7 @@
 
 ;; indent
 (evil-define-key '(normal visual) 'global (kbd "<leader>TAB") 'indent-region)
+(evil-define-key 'visual 'global (kbd "<leader>gq") 'df/fill-gegion)
 
 ;; buffer management
 (evil-define-key 'normal 'global (kbd "<leader>f b") 'switch-to-buffer)

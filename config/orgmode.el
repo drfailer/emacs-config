@@ -7,14 +7,14 @@
 
 ;;-----------------------------------------------------------------------------
 ;; font settings
-(defun df/font-setup ()
- (custom-set-faces ;; title height
-  '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
+(custom-set-faces ;; title height
+ '(org-level-1 ((t (:inherit outline-1 :height 1.3))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.2))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.05))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
 
+(defun df/font-setup ()
  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
@@ -25,7 +25,18 @@
  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
  (set-face-attribute 'line-number nil :inherit 'fixed-pitch))
 
-(add-hook 'variable-pitch-mode 'df/font-setup)
+;; toggle variable-pitch-mode with proper fonts
+(setq df/var-pitch-enable nil)
+(defun df/var-pitch-mode ()
+  (interactive)
+  (if (not df/var-pitch-enable)
+      (progn
+	(setq df/var-pitch-enable t)
+	(variable-pitch-mode 1)
+	(df/font-setup))
+    (progn
+	(setq df/var-pitch-enable nil)
+	(variable-pitch-mode 0))))
 
 ;;-----------------------------------------------------------------------------
 ;; org settings
