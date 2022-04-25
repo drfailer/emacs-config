@@ -134,13 +134,24 @@
 (setq org-directory "~/.emacs.d/Org/"
       org-agenda-files '("~/.emacs.d/Org/agenda.org"))
 
-;; TODO keywords:
-(setq org-todo-keywords '((sequence "TODO" "PROJ" "WAIT" "|" "DONE" "CANCELLED" )))
+;; TODO keywords and faces:
+(setq org-todo-keywords '((sequence "TODO" "PROJ" "STRT" "WAIT" "|" "DONE" "CANCELLED" )))
+(setq org-todo-keyword-faces
+      '(("PROJ" . (:foreground "RoyalBlue1" :weight bold))
+        ("STRT" . (:foreground "OrangeRed" :weight bold))
+        ("WAIT" . (:foreground "SlateBlue3" :weight bold))))
+(setq org-tag-faces
+      '(("HOME" . (:foreground "GoldenRod" :weight bold))
+        ("RESEARCH" . (:foreground "RoyalBlue" :weight bold))
+        ("OS" . (:foreground "IndianRed1" :weight bold))
+        ("DEV" . (:foreground "IndianRed1" :weight bold))
+        ("IMPORTANT" . (:foreground "Red" :weight bold))
+        ("noexport" . (:foreground "LimeGreen" :weight bold))))
 
 ;; Open agenda and schedule
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c s") 'org-agenda-schedule)
-(global-set-key (kbd "C-c c") 'org-agenda-capture)
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; custom command for agenda menu
 (setq org-agenda-custom-commands
@@ -162,22 +173,45 @@
 
 ;;-----------------------------------------------------------------------------
 ;; TODO: Org Capture:
-;; (use-package org-capture
-;;   :config
-;;   (setq org-capture-templates
-;;         '(("c" "Cours" entry
-;;            (file+headline "~/.emacs.d/Org/cours.org" "Cours") ;; COURS -> primary heading in the org file
-;;            "* COURS %?")
-;;           ("p" "Prompt" entry ;; this one will have a prompt displayed
-;;            (file+headline "~/.emacs.d/Org/global.org" "GLOBAL")
-;;            "* %^{Prompt} %?")
-;;           ("o" "option in prompt" entry ;; this one will have a prompt displayed with selection
-;;            (file+headline "~/.emacs.d/Org/global.org" "GLOBAL")
-;;            "* %^{Select one of those|ONE|TWO|TREE} %?") ;; may use this one to choose the todo keyword
-;;           ("t" "task with date" entry ;; this one will have a prompt displayed with selection
-;;            (file+headline "~/.emacs.d/Org/global.org" "Scheduled Task")
-;;            "* %^{Select one of those|ONE|TWO|TREE}\n SCHEDULE: %^t\n text %?") ;; you can use %i as well to copy hilighted stuff
-;;           ("a" "submenu")
-;;           ("ao" "option in prompt" entry ;; this one will have a prompt displayed with selection
-;;            (file+headline "~/.emacs.d/Org/global.org" "GLOBAL")
-;;            "* %^{Select one of those|ONE|TWO|TREE} %?")))
+(use-package org-capture
+  :ensure nil
+  :config
+  (setq org-capture-templates
+        '(;; add a TODO to Work
+	  ("w" "TODO Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
+           "* TODO %?")
+	  ;; add a TODO to Home
+	  ("h" "TODO Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+           "* TODO %?")
+	  ;; add a TODO to Emacs
+	  ("e" "TODO Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+           "* TODO %?")
+
+	  ;; Prompts for keywords
+          ("k" "keywords")
+	  ;; Work
+          ("kw" "KEY Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?")
+	  ;; Home
+          ("kh" "KEY Home" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?")
+	  ;; Emacs
+          ("ke" "KEY Emacs" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Emacs")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?")
+
+	  ;; Scheduling
+          ("s" "Scheduling")
+	  ;; Work
+          ("sw" "Schedule Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t")
+	  ;; Home
+          ("sh" "Schedule Home" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t"))))
