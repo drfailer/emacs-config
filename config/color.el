@@ -139,3 +139,17 @@ format to nil or to `df/mode-line-format' depending of the status of
     (progn
       (setq df/mode-line-hidden nil)
       (setq mode-line-format df/mode-line-format))))
+
+(defun df/switch-theme ()
+  (interactive)
+  (if (equal df/current-theme 'black)
+      (progn
+	(setq df/current-theme 'white)
+	(modus-themes-load-operandi)
+	(set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
+	(set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil))
+    (progn
+      (setq df/current-theme 'black)
+      (modus-themes-load-vivendi)
+      (set-face-attribute 'mode-line nil :background "#121212" :foreground "grey" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#212121" :foreground "grey" :box nil))))

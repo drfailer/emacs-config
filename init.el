@@ -36,6 +36,9 @@
 (setq package-native-compile t)
 (setq comp-deferred-compilation t)
 
+;; loading org file
+;; (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
+
 ;;-----------------------------------------------------------------------------
 ;; LOAD CONFIG:
 ;;-----------------------------------------------------------------------------
