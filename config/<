@@ -15,12 +15,7 @@
  '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
 
 ;; latex preview scale
-(set-default 'preview-scale-function 1.2)
-(defun update-org-latex-fragments ()
-  (org-latex-preview '(64))
-  (plist-put org-format-latex-options :scale text-scale-mode-amount)
-  (org-latex-preview '(16)))
-(add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
+(set-default 'preview-scale-function 1.4)
 
 (defun df/font-setup ()
  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
@@ -158,7 +153,6 @@
 
 ;; Open agenda and schedule
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c C-a") (lambda () (interactive) (find-file "~/.emacs.d/Org/agenda.org")))
 (global-set-key (kbd "C-c s") 'org-agenda-schedule)
 (global-set-key (kbd "C-c c") 'org-capture)
 
@@ -189,30 +183,30 @@
         '(;; add a TODO to Work
 	  ("w" "TODO Work" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Work")
-           "* TODO %?\n")
+           "* TODO %?")
 	  ;; add a TODO to Home
 	  ("h" "TODO Work" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Home")
-           "* TODO %?\n")
+           "* TODO %?")
 	  ;; add a TODO to Emacs
 	  ("e" "TODO Work" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Home")
-           "* TODO %?\n")
+           "* TODO %?")
 
 	  ;; Prompts for keywords
           ("k" "keywords")
 	  ;; Work
           ("kw" "KEY Work" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Work")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?")
 	  ;; Home
           ("kh" "KEY Home" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Home")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?")
 	  ;; Emacs
           ("ke" "KEY Emacs" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Emacs")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?")
 
 	  ;; Scheduling
           ("s" "Scheduling")
