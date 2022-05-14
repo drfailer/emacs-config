@@ -146,6 +146,23 @@
 
 ;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
 
+;; winner mode
+(winner-mode)
+(define-key evil-window-map (kbd ",") 'winner-undo)
+(define-key evil-window-map (kbd ";") 'winner-undo)
+
+;; dired
+(eval-after-load "dired"
+	  '(progn
+	    (define-key dired-mode-map (kbd "h") 'dired-up-directory)
+	    (define-key dired-mode-map (kbd "j") 'dired-next-line)
+	    (define-key dired-mode-map (kbd "k") 'dired-previous-line)
+	    (define-key dired-mode-map (kbd "l") 'dired-find-alternate-file)
+	    (define-key dired-mode-map (kbd "J") 'dired-goto-file)
+	    (define-key dired-mode-map (kbd "K") 'dired-kill-line)
+	    (define-key dired-mode-map (kbd "^") 'describe-mode)
+	    (define-key dired-mode-map (kbd "n") 'dired-do-redisplay)))
+
 ;; run region of shell script using <leader>rr
 (add-hook 'shell-mode-hook
 	  (defun df/shellcmd ()
