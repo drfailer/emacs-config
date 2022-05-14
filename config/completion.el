@@ -16,7 +16,7 @@
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
   :bind (:map corfu-map ("RET" . nil))
   :init
-  (corfu-global-mode))
+  (global-corfu-mode))
 
 ;; Optionally use the 'orderless' completion style. See '+orderless-dispatch'
 ;; in the Consult wiki for an advanced Orderless style dispatcher.
