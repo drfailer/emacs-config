@@ -32,12 +32,15 @@
 (display-time-mode)
 
 (when (equal df/current-theme 'black)
-  (set-face-attribute 'mode-line nil
-		      :background "#121212"
+  (progn
+    (set-face-attribute 'mode-line nil
+		      :background "#090909"
 		      :foreground "grey"
 		      :box nil)
+    (set-face-attribute 'line-number nil
+		      :background "#010101"))
   (set-face-attribute 'mode-line-inactive nil
-		      :background "#212121"
+		      :background "#121212"
 		      :foreground "grey"
 		      :box nil))
 ;;-----------------------------------------------------------------------------
