@@ -4,31 +4,28 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
-(setq df/current-theme 'one)
+(setq df/default-theme 'one)
 (use-package modus-themes
   :ensure t)
 (use-package doom-themes
   :ensure t)
 
 ;; theme settings
-(cond
- ((equal df/current-theme 'white)
-  (progn
-    (load-theme 'modus-operandi t)
-    (set-face-attribute 'mode-line-inactive nil
-		      :background "#121212"
-		      :foreground "grey"
-		      :box nil)))
- ((equal df/current-theme 'black)
-  (progn
-    (load-theme 'modus-vivendi t)
-    (set-face-attribute 'mode-line nil
-		      :background "#090909"
-		      :foreground "grey"
-		      :box nil)
-    (set-face-attribute 'line-number nil
-			:background "#010101")))
- ((equal df/current-theme 'one) (load-theme 'doom-one t)))
+(defun df/theme-settings ()
+  (cond
+   ((equal df/default-theme 'white)
+    (progn
+      (load-theme 'modus-operandi t)
+      (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)))
+   ((equal df/default-theme 'black)
+    (progn
+      (load-theme 'modus-vivendi t)
+      (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
+      (set-face-attribute 'line-number nil :background "#010101")))
+   ((equal df/default-theme 'one) (load-theme 'doom-one t))))
+(df/theme-settings)
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
@@ -149,16 +146,23 @@ format to nil or to `df/mode-line-format' depending of the status of
       (setq df/mode-line-hidden nil)
       (setq mode-line-format df/mode-line-format))))
 
+;; switch theme with a menu and apply my settings
 (defun df/switch-theme ()
   (interactive)
-  (if (equal df/current-theme 'black)
-      (progn
-	(setq df/current-theme 'white)
-	(modus-themes-load-operandi)
-	(set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
-	(set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil))
+  (let ((theme (completing-read "Themes: " '("one" "dark" "white"))))
     (progn
-      (setq df/current-theme 'black)
-      (modus-themes-load-vivendi)
-      (set-face-attribute 'mode-line nil :background "#121212" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#212121" :foreground "grey" :box nil))))
+      (cond
+       ((string= theme "one") (setq df/default-theme 'one))
+       ((string= theme "white") (setq df/default-theme 'white))
+       ((string= theme "dark") (setq df/default-theme 'black))
+       (t (message "Unknown theme")))
+      (df/theme-settings))))
+
+(defun disable-all-themes ()
+  "disable all active themes."
+  (dolist (i custom-enabled-themes)
+    (disable-theme i)))
+
+;; disable previous theme before loading a new one
+(defadvice load-theme (before disable-themes-first activate)
+  (disable-all-themes))

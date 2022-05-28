@@ -49,35 +49,32 @@
 ;; FUNTIONS:
 ;;-----------------------------------------------------------------------------
 
-;; TEST
-;; use emacs builtin bookmark system instead
-;; TODO: may be interessant to use this for doing smth else (brave script for instance)
-;; TODO: extend this -> give a command to the function for instance
-;; ;; use completing-read function to make the user chose a bookmarded
-;; ;; file and return the file path
-;; (defun df/select-config (prompt files)
-;;   (interactive)
-;;   (let ((filename (completing-read prompt (mapcar (lambda (x) (car x))
-;; 						  files) nil t "")))
-;;     (df/find-list filename files)))
-;; ;; open the selected file (filepath that has been returned by
-;; ;; `df/select-bookmark')
-;; (defun df/open-config (my-configs-files)
-;;   (interactive)
-;;   (find-file (df/select-config "Bookmarks: " my-configs-files)))
-;; ;; special bookmark system for config files
-;; ;; similar to default emacs bookmark system
-;; (defun df/configs ()
-;;   (interactive)
-;;   (df/open-config '(("init" "~/.emacs.d/init.el")
-;; 	   	      ("settings" "~/.emacs.d/config/settings.el")
-;; 		      ("mappings" "~/.emacs.d/config/mappings.el")
-;; 	   	      ("color" "~/.emacs.d/config/color.el")
-;; 	   	      ("evil" "~/.emacs.d/config/evil.el")
-;; 	   	      ("completion" "~/.emacs.d/config/completion.el")
-;; 	   	      ("conf-eshell" "~/.emacs.d/config/conf-eshell.el")
-;; 	   	      ("orgmode" "~/.emacs.d/config/orgmode.el")
-;; 	   	      ("lsp" "~/.emacs.d/config/lsp.el"))))
+;; find item
+(defun df/find-in-list (key lst)
+  (cond
+   ((null lst) nil)
+   ((string= key (caar lst)) (cadar lst))
+   (t (df/find-list key (cdr lst)))))
+
+;; select item in a dictionary
+(defun df/select-item (prompt items)
+  (interactive)
+  (let ((names (completing-read prompt (mapcar (lambda (x) (car x))
+						  items) nil t "")))
+    (df/find-in-list names items)))
+
+;; open web bookmark
+(defun df/open-bmk (bmks)
+  (interactive)
+  (async-shell-command
+   (concat "brave " (df/select-item "Bookmarks: " bmks))))
+
+;; load bookmarks file
+(load-file "~/.emacs.d/webmks.el")
+
+(defun df/web-search ()
+  (interactive)
+  (df/open-bmk *df/bmks*))
 
 ;; find a key in a list of ((key val)..) and return val
 (defun df/repl-config (repls)
@@ -91,14 +88,6 @@
 (df/repl-config '(term-mode-hook
 		  inferior-python-mode-hook
 		  inferior-lisp-mode-hook))
-
-
-;; find item
-(defun df/find-list (key lst)
-  (cond
-   ((null lst) nil)
-   ((string= key (caar lst)) (cadar lst))
-   (t (df/find-list key (cdr lst)))))
 
 
 ;; open a directory using find-file (whithout selection)

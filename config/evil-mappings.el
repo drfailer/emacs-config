@@ -114,6 +114,7 @@
 ;; launching app
 (evil-define-key 'normal 'global (kbd "<leader>v e s") 'eshell)
 (evil-define-key 'normal 'global (kbd "<leader>v t")   'df/open-zsh-term)
+(evil-define-key 'normal 'global (kbd "<leader>e")     'dired-jump-other-window)
 (evil-define-key 'normal 'global (kbd "<leader>x")     'dired-jump)
 
 ;; indent
@@ -145,6 +146,9 @@
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
 
 ;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
+
+;; web search
+(evil-define-key 'normal 'global (kbd "<leader>f s") 'df/web-search)
 
 ;; winner mode
 (winner-mode)
