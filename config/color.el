@@ -4,20 +4,38 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
-(setq df/current-theme 'black)
+(setq df/current-theme 'one)
 (use-package modus-themes
-  :ensure t
-  )
-(if (equal df/current-theme 'black)
+  :ensure t)
+(use-package doom-themes
+  :ensure t)
+
+;; theme settings
+(cond
+ ((equal df/current-theme 'white)
+  (progn
+    (load-theme 'modus-operandi t)
+    (set-face-attribute 'mode-line-inactive nil
+		      :background "#121212"
+		      :foreground "grey"
+		      :box nil)))
+ ((equal df/current-theme 'black)
+  (progn
     (load-theme 'modus-vivendi t)
-  (load-theme 'modus-operandi t))
+    (set-face-attribute 'mode-line nil
+		      :background "#090909"
+		      :foreground "grey"
+		      :box nil)
+    (set-face-attribute 'line-number nil
+			:background "#010101")))
+ ((equal df/current-theme 'one) (load-theme 'doom-one t)))
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
 ;; SOME FIX
 ;; black baground
 ;; (set-background-color "#000000")
-;; (set-face-background 'fringe "#000000")
+;; (set-face-background 'fringe "#FFFFFF")
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
@@ -31,18 +49,6 @@
 (display-battery-mode)
 (display-time-mode)
 
-(when (equal df/current-theme 'black)
-  (progn
-    (set-face-attribute 'mode-line nil
-		      :background "#090909"
-		      :foreground "grey"
-		      :box nil)
-    (set-face-attribute 'line-number nil
-		      :background "#010101"))
-  (set-face-attribute 'mode-line-inactive nil
-		      :background "#121212"
-		      :foreground "grey"
-		      :box nil))
 ;;-----------------------------------------------------------------------------
 
 ;;-----------------------------------------------------------------------------
