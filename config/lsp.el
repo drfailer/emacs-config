@@ -25,6 +25,18 @@
 (evil-define-key 'normal 'global (kbd "<leader>l v d") 'xref-find-definitions)
 (evil-define-key 'normal 'global (kbd "<leader>l f")   'eglot-format)
 
+;; lsp mode
+;; (use-package lsp-mode
+;;   :init
+;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+;;          (c-mode . lsp)
+;;          (sh-mode . lsp)
+;;          ;; if you want which-key integration
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp)
+
 ;;-----------------------------------------------------------------------------
 ;; fork of slime (lisp programming)
 ;; (use-package sly

@@ -38,6 +38,9 @@
 (use-package haskell-mode
   :ensure t)
 
+(use-package hindent
+  :ensure t)
+
 ;; adding .hs extension for haskell mode
 (push '("\\.hs\\'" . haskell-mode) auto-mode-alist)
 
@@ -48,33 +51,6 @@
 ;;-----------------------------------------------------------------------------
 ;; FUNTIONS:
 ;;-----------------------------------------------------------------------------
-
-;; find item
-(defun df/find-in-list (key lst)
-  (cond
-   ((null lst) nil)
-   ((string= key (caar lst)) (cadar lst))
-   (t (df/find-list key (cdr lst)))))
-
-;; select item in a dictionary
-(defun df/select-item (prompt items)
-  (interactive)
-  (let ((names (completing-read prompt (mapcar (lambda (x) (car x))
-						  items) nil t "")))
-    (df/find-in-list names items)))
-
-;; open web bookmark
-(defun df/open-bmk (bmks)
-  (interactive)
-  (async-shell-command
-   (concat "brave " (df/select-item "Bookmarks: " bmks))))
-
-;; load bookmarks file
-(load-file "~/.emacs.d/webmks.el")
-
-(defun df/web-search ()
-  (interactive)
-  (df/open-bmk *df/bmks*))
 
 ;; find a key in a list of ((key val)..) and return val
 (defun df/repl-config (repls)
