@@ -20,7 +20,7 @@
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-Y-yank-to-eol t)
   (setq evil-split-window-below t)
-  (setq evil-split-window-right t)
+  (setq evil-vsplit-window-right t)
   (setq evil-undo-system 'undo-fu)
   (setq evil-want-C-u-scroll t)
   :config

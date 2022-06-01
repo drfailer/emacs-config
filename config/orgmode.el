@@ -191,13 +191,25 @@
            (file+headline "~/.emacs.d/Org/agenda.org" "Work")
            "* TODO %?\n")
 	  ;; add a TODO to Home
-	  ("h" "TODO Work" entry
+	  ("h" "TODO Home" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Home")
            "* TODO %?\n")
 	  ;; add a TODO to Emacs
-	  ("e" "TODO Work" entry
+	  ("e" "TODO Emacs" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Home")
            "* TODO %?\n")
+
+	  ;; new note
+          ("n" "NOTES")
+	  ("nn" "NOTE" entry
+           (file "~/.emacs.d/Org/notes/notes.org")
+           "* %?\n")
+	  ("nc" "cours" entry
+           (file+headline "~/.emacs.d/Org/notes/notes.org" "Cours")
+           "* %?\n")
+	  ("np" "prog" entry
+           (file+headline "~/.emacs.d/Org/notes/notes.org" "Programming")
+           "* %?\n")
 
 	  ;; Prompts for keywords
           ("k" "keywords")
