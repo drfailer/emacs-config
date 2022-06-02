@@ -48,6 +48,24 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package popper
+  :ensure t ; or :straight t
+  :bind (("C-c <tab>"   . popper-toggle-latest)
+         ("C-<tab>"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+	  "^\\*eshell.*\\*$" eshell-mode ;eshell as a popup
+          "^\\*shell.*\\*$"  shell-mode  ;shell as a popup
+          "^\\*term.*\\*$"   term-mode   ;term as a popup
+          help-mode
+          compilation-mode))
+  (popper-mode +1)
+  (popper-echo-mode +1))
+
 ;;-----------------------------------------------------------------------------
 ;; FUNTIONS:
 ;;-----------------------------------------------------------------------------

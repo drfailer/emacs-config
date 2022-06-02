@@ -44,11 +44,19 @@
 (define-key corfu-map (kbd "M-d") #'corfu-doc-toggle)
 
 (use-package cape
-  :bind (("C-c C-f" . cape-file)) ;; bind for files
+  :bind (("C-c C-f" . cape-file)
+	 ;; ("C-c p w" . cape-ispell)
+	 ("C-c p t" . cape-tex)) ;; bind for files
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-tex)
+  ;; (add-to-list 'completion-at-point-functions #'cape-ispell)
+  ;; (add-to-list 'completion-at-point-functions #'cape-dict)
+  ;;(add-to-list 'completion-at-point-functions #'cape-keyword)
+  ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
+  ;;(add-to-list 'completion-at-point-functions #'cape-line)
   :config
   ;;---------------------------------------------------------
   ;; solve pcomplete bug (eshell)
