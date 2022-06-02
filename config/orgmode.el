@@ -194,10 +194,48 @@
 	  ("h" "TODO Home" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Home")
            "* TODO %?\n")
-	  ;; add a TODO to Emacs
-	  ("e" "TODO Emacs" entry
-           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+	  ;; add a TODO to PC
+	  ("p" "TODO PC" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "PC")
            "* TODO %?\n")
+	  ;; add a TODO to Personal
+	  ("o" "TODO Perso" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Personal")
+           "* TODO %?\n")
+
+	  ;; Prompts for keywords
+          ("k" "keywords")
+	  ;; Work
+          ("kw" "KEY Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+	  ;; Home
+          ("kh" "KEY Home" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+	  ;; PC
+          ("kp" "KEY PC" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "PC")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+	  ;; Personal
+          ("ko" "KEY Perso" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Personal")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
+
+	  ;; Scheduling
+          ("s" "Scheduling")
+	  ;; Work
+          ("sw" "Schedule Work" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t")
+	  ;; Home
+          ("sh" "Schedule Home" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t")
+	  ;; Personal
+          ("so" "Schedule Perso" entry
+           (file+headline "~/.emacs.d/Org/agenda.org" "Personal")
+           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t")
 
 	  ;; new note
           ("n" "NOTES")
@@ -210,29 +248,6 @@
 	  ("np" "prog" entry
            (file+headline "~/.emacs.d/Org/notes/notes.org" "Programming")
            "* %?\n")
-
-	  ;; Prompts for keywords
-          ("k" "keywords")
-	  ;; Work
-          ("kw" "KEY Work" entry
-           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
-	  ;; Home
-          ("kh" "KEY Home" entry
-           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
-	  ;; Emacs
-          ("ke" "KEY Emacs" entry
-           (file+headline "~/.emacs.d/Org/agenda.org" "Emacs")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n")
-
-	  ;; Scheduling
-          ("s" "Scheduling")
-	  ;; Work
-          ("sw" "Schedule Work" entry
-           (file+headline "~/.emacs.d/Org/agenda.org" "Work")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t")
-	  ;; Home
-          ("sh" "Schedule Home" entry
-           (file+headline "~/.emacs.d/Org/agenda.org" "Home")
-           "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t"))))
+	  ("np" "proj" entry
+           (file+headline "~/.emacs.d/Org/notes/notes.org" "Projects")
+           "* %?\n"))))

@@ -57,6 +57,9 @@
   (setq popper-reference-buffers
         '("\\*Messages\\*"
           "Output\\*$"
+	  "\\*Python\\*"
+	  "\\*haskell\\*"
+	  "\\*Lisp\\*"
           "\\*Async Shell Command\\*"
 	  "^\\*eshell.*\\*$" eshell-mode ;eshell as a popup
           "^\\*shell.*\\*$"  shell-mode  ;shell as a popup
@@ -65,6 +68,33 @@
           compilation-mode))
   (popper-mode +1)
   (popper-echo-mode +1))
+
+;; pdf tool
+;; (use-package pdf-tools
+;;    :defer t
+;;    :config
+;;        (pdf-tools-install)
+;;        (setq-default pdf-view-display-size 'fit-page)
+;;    :bind (:map pdf-view-mode-map
+;;          ("<s-spc>" .  pdf-view-scroll-down-or-next-page)
+;;          ("g"  . pdf-view-first-page)
+;;          ("G"  . pdf-view-last-page)
+;;          ("l"  . image-forward-hscroll)
+;;          ("h"  . image-backward-hscroll)
+;;          ("j"  . pdf-view-next-page)
+;;          ("k"  . pdf-view-previous-page)
+;;          ("e"  . pdf-view-goto-page)
+;;          ("u"  . pdf-view-revert-buffer)
+;;          ("al" . pdf-annot-list-annotations)
+;;          ("ad" . pdf-annot-delete)
+;;          ("aa" . pdf-annot-attachment-dired)
+;;          ("am" . pdf-annot-add-markup-annotation)
+;;          ("at" . pdf-annot-add-text-annotation)
+;;          ("y"  . pdf-view-kill-ring-save)
+;;          ("i"  . pdf-misc-display-metadata)
+;;          ("s"  . pdf-occur)
+;;          ("b"  . pdf-view-set-slice-from-bounding-box)
+;;          ("r"  . pdf-view-reset-slice)))
 
 ;;-----------------------------------------------------------------------------
 ;; FUNTIONS:
