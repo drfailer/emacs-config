@@ -73,7 +73,8 @@
 ;; (use-package pdf-tools
 ;;    :defer t
 ;;    :config
-;;        (pdf-tools-install)
+;;        ;; (pdf-tools-install)
+;;        (pdf-loader-install)
 ;;        (setq-default pdf-view-display-size 'fit-page)
 ;;    :bind (:map pdf-view-mode-map
 ;;          ("<s-spc>" .  pdf-view-scroll-down-or-next-page)
