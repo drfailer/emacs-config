@@ -10,6 +10,14 @@
 (use-package doom-themes
   :ensure t)
 
+;; modus themes org headings
+(setq modus-themes-headings
+      '((1 . (rainbow nil))
+	(2 . (rainbow nil))
+	(3 . (rainbow nil))
+	(4 . (rainbow nil))
+	(t . (semilight nil))))
+
 ;; theme settings
 (defun df/theme-settings ()
   (cond

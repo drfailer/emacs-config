@@ -99,8 +99,7 @@
 
 (require 'key-chord)
 (key-chord-mode 1)
-(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state) ;; remap jk as escape
-(key-chord-define evil-insert-state-map  "kl" 'forward-char) ;; easy skip parens
+(key-chord-define evil-insert-state-map  "kj" 'evil-normal-state) ;; remap kj as escape
 
 ;; Moving threw panes:
 (define-key evil-normal-state-map  (kbd "C-h") 'evil-window-left)
