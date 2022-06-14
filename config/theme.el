@@ -9,6 +9,8 @@
   :ensure t)
 (use-package doom-themes
   :ensure t)
+(use-package gruvbox-theme
+  :ensure t)
 
 ;; modus themes org headings
 (setq modus-themes-headings
@@ -32,7 +34,13 @@
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
-   ((equal df/default-theme 'one) (load-theme 'doom-one t))))
+   ((equal df/default-theme 'one) (load-theme 'doom-one t))
+   ((equal df/default-theme 'gruvbox)
+    (progn
+      (load-theme 'gruvbox-dark-hard t)
+      (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#252525" :foreground "grey" :box nil)
+      (set-face-attribute 'line-number nil :background "#1d2021")))))
 (df/theme-settings)
 ;;-----------------------------------------------------------------------------
 
@@ -157,12 +165,13 @@ format to nil or to `df/mode-line-format' depending of the status of
 ;; switch theme with a menu and apply my settings
 (defun df/switch-theme ()
   (interactive)
-  (let ((theme (completing-read "Themes: " '("one" "dark" "white"))))
+  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox"))))
     (progn
       (cond
        ((string= theme "one") (setq df/default-theme 'one))
        ((string= theme "white") (setq df/default-theme 'white))
        ((string= theme "dark") (setq df/default-theme 'black))
+       ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
        (t (message "Unknown theme")))
       (df/theme-settings))))
 
