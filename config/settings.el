@@ -59,9 +59,8 @@
 (defun df/set-fonts ()
   (set-face-attribute 'default nil :font "Hack-9")
   (set-face-attribute 'fixed-pitch nil :font "Hack-9")
-  ;; (set-face-attribute 'default nil :font "xos4 Terminus-9")
-  ;; (set-face-attribute 'fixed-pitch nil :font "xos4 Terminus-9")
-  (set-face-attribute 'variable-pitch nil :font "FiraGO-9.5:weight=Light"))
+  ;;(set-face-attribute 'variable-pitch nil :font "FiraGO-9.5:weight=Light")
+  (set-face-attribute 'variable-pitch nil :font "DejaVu Sans-9.5"))
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)

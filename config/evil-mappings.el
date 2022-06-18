@@ -173,10 +173,6 @@
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
 	  (evil-define-key 'normal 'local (kbd "<leader>r r") 'df/shellcmd))
 
-;; compile org latex
-(add-hook 'org-mode-hook
-	  (evil-define-key 'normal 'local (kbd "<leader>r r") 'org-latex-export-to-pdf))
-
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
