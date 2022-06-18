@@ -69,6 +69,14 @@
   (popper-mode +1)
   (popper-echo-mode +1))
 
+;; magit
+(use-package magit
+  :ensure t)
+;; C-x g magit-status
+;; TAB on unstage file git diff
+;; s stage
+;; ? actions
+
 ;; pdf tool
 ;; (use-package pdf-tools
 ;;    :defer t

@@ -29,6 +29,13 @@
   (setq evil-insert-state-cursor '(box "white")
 	evil-normal-state-cursor '(box "white")))
 
+;; evil collection (evil integration everywhere)
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :init
+  (evil-collection-init))
+
 ;; vim surround
 (use-package evil-smartparens
   :hook (smartparens-mode . evil-smartparens-mode))

@@ -35,12 +35,13 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (c-mode . lsp)
-         (sh-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
+         (sh-mode . lsp))
   :commands (lsp lsp-deferred)
   :config
   (lsp-enable-which-key-integration t))
+
+;; config lsp
+(setq lsp-headerline-breadcrumb-enable nil)
 
 ;; lsp ui
 (use-package lsp-ui
