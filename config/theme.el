@@ -21,7 +21,7 @@
 	(t . (semilight nil))))
 
 ;; modus themes settings
-(setq modus-themes-syntax '(faint))
+;; (setq modus-themes-syntax '(faint))
 
 ;; theme settings
 (defun df/theme-settings ()

@@ -1,4 +1,4 @@
-;;===========================================================================;;
+;===========================================================================;;
 ;; LSP
 ;;===========================================================================;;
 
@@ -57,6 +57,11 @@
 (evil-define-key 'normal 'global (kbd "<leader>l v r") 'lsp-find-references)
 (evil-define-key 'normal 'global (kbd "<leader>l f")   'lsp-format-buffer)
 (evil-define-key 'visual 'global (kbd "<leader>l f")   'lsp-format-region)
+
+;; fix corfu completion with lsp
+(add-hook 'lsp-completion-mode-hook
+          (lambda ()
+            (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
 
 ;;-----------------------------------------------------------------------------
 ;; fork of slime (lisp programming)
