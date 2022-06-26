@@ -248,6 +248,6 @@
 	  ("np" "prog" entry
            (file+headline "~/.emacs.d/Org/notes/notes.org" "Programming")
            "* %?\n")
-	  ("np" "proj" entry
+	  ("nP" "proj" entry
            (file+headline "~/.emacs.d/Org/notes/notes.org" "Projects")
            "* %?\n"))))

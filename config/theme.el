@@ -41,7 +41,7 @@
       (set-face-attribute 'line-number nil :background "#010101")))
    ((equal df/default-theme 'one) (load-theme 'doom-one t))
    ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
-   ((equal df/default-theme 'gruvbox-dark-hard)
+   ((equal df/default-theme 'gruvbox)
     (progn
       (load-theme 'gruvbox-dark-hard t)
       (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
