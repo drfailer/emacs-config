@@ -11,6 +11,8 @@
   :ensure t)
 (use-package gruvbox-theme
   :ensure t)
+(use-package zenburn-theme
+  :ensure t)
 
 ;; modus themes org headings
 (setq modus-themes-headings
@@ -38,7 +40,8 @@
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
    ((equal df/default-theme 'one) (load-theme 'doom-one t))
-   ((equal df/default-theme 'gruvbox)
+   ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
+   ((equal df/default-theme 'gruvbox-dark-hard)
     (progn
       (load-theme 'gruvbox-dark-hard t)
       (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
@@ -168,13 +171,14 @@ format to nil or to `df/mode-line-format' depending of the status of
 ;; switch theme with a menu and apply my settings
 (defun df/switch-theme ()
   (interactive)
-  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox"))))
+  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "zenburn"))))
     (progn
       (cond
        ((string= theme "one") (setq df/default-theme 'one))
        ((string= theme "white") (setq df/default-theme 'white))
        ((string= theme "dark") (setq df/default-theme 'black))
        ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
+       ((string= theme "zenburn") (setq df/default-theme 'zenburn))
        (t (message "Unknown theme")))
       (df/theme-settings))))
 
