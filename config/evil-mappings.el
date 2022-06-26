@@ -161,10 +161,14 @@
 (define-key evil-window-map (kbd ",") 'winner-undo)
 (define-key evil-window-map (kbd ";") 'winner-undo)
 
+(defun df/dired-alternate-up ()
+  (interactive)
+  (find-alternate-file ".."))
+
 ;; dired
 (eval-after-load "dired"
 	  '(progn
-	    (define-key dired-mode-map (kbd "h") 'dired-up-directory)
+	    (define-key dired-mode-map (kbd "h") 'df/dired-alternate-up)
 	    (define-key dired-mode-map (kbd "j") 'dired-next-line)
 	    (define-key dired-mode-map (kbd "k") 'dired-previous-line)
 	    (define-key dired-mode-map (kbd "l") 'dired-find-alternate-file)
