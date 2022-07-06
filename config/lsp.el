@@ -45,7 +45,10 @@
 
 ;; lsp ui
 (use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode))
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq lsp-ui-sideline-show-diagnostics t)
+  (setq lsp-ui-sideline-update-mode 'line))
 
 ;; lsp-mode mappings
 (evil-define-key 'normal 'global (kbd "<leader>l r")   'lsp-rename)
@@ -57,6 +60,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>l v r") 'lsp-find-references)
 (evil-define-key 'normal 'global (kbd "<leader>l f")   'lsp-format-buffer)
 (evil-define-key 'visual 'global (kbd "<leader>l f")   'lsp-format-region)
+(evil-define-key 'normal 'global (kbd "<leader>l e")   'flymake-show-buffer-diagnostics)
 
 ;; fix corfu completion with lsp
 (add-hook 'lsp-completion-mode-hook

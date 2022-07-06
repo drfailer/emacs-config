@@ -59,6 +59,7 @@
           "Output\\*$"
 	  "\\*Python\\*"
 	  "\\*haskell\\*"
+	  "\\*Flymake diagnostics for .*\\*"
 	  "\\*Lisp\\*"
           "\\*Async Shell Command\\*"
 	  ;; "^\\*eshell.*\\*$" eshell-mode ;eshell as a popup
