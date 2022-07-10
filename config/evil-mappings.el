@@ -147,9 +147,13 @@
 (evil-define-key 'normal 'global (kbd "<leader>f C") 'copy-file)
 (evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
 (evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
+(evil-define-key 'normal 'global (kbd "<leader>f g") 'rgrep)
 
 ;; toggle stuff
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
+(evil-define-key 'normal 'global (kbd "<leader>t m") 'df/toggle-mode-line) ;; doesn't work ?
+(evil-define-key 'normal 'global (kbd "<leader>t w") 'df/writing-mode)
+(evil-define-key 'normal 'global (kbd "<leader>t p") 'df/var-pitch-mode)
 
 ;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
 
@@ -183,6 +187,9 @@
 	    (interactive)
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
 	  (evil-define-key 'normal 'local (kbd "<leader>r r") 'df/shellcmd))
+
+(add-hook 'org-mode
+          (evil-define-key 'normal 'global (kbd "<leader>t P") 'org-tree-slide-mode))
 
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)

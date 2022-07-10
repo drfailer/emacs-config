@@ -96,9 +96,8 @@
   (setq-local global-hl-line-mode nil)
   (org-indent-mode 1)
   (display-line-numbers-mode 0)
-  (visual-fill-column-mode 1)
-  ;; (variable-pitch-mode 1)
-  (text-scale-set 1))
+  ;; (text-scale-set 1)
+  (visual-fill-column-mode 1))
 
 ;; deactivate writing mode
 (defun df/writing-mode-off ()
@@ -106,9 +105,8 @@
   (setq-local global-hl-line-mode t)
   (org-indent-mode 0)
   (display-line-numbers-mode 1)
-  (visual-fill-column-mode 0)
-  ;; (variable-pitch-mode 0)
-  (text-scale-mode 0))
+  ;; (text-scale-mode 0)
+  (visual-fill-column-mode 0))
 
 ;; toggle writing mode
 (defun df/writing-mode ()
@@ -123,12 +121,17 @@
 ;; set some settings for the presetation
 (defun df/prez-start ()
   (org-display-inline-images)
+  (df/var-pitch-mode)
   (df/writing-mode-on)
   (text-scale-set 3))
 
+(defun df/prez-end ()
+  (df/writing-mode-off)
+  (text-scale-set 0))
+
 (use-package org-tree-slide
   :hook ((org-tree-slide-play . df/prez-start)
-	 (org-tree-slide-stop . df/writing-mode-off))
+	 (org-tree-slide-stop . df/prez-end))
   :custom
   (org-tree-slide-slide-in-effect-toggle t))
 

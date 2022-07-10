@@ -4,7 +4,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
-(setq df/default-theme 'one)
+(setq df/default-theme 'gruvbox)
 (use-package modus-themes
   :ensure t)
 (use-package doom-themes
