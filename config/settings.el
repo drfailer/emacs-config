@@ -18,7 +18,8 @@
 ;; fix transparancy bug:
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 ;; (set-frame-parameter (selected-frame) 'alpha '(100 100))
-(add-to-list 'default-frame-alist '(alpha 100 100))
+(add-to-list 'default-frame-alist '(alpha 90 90))
+;; (add-to-list 'default-frame-alist '(alpha 100 100))
 (global-display-line-numbers-mode 1) ;; line number
 (menu-bar--display-line-numbers-mode-relative)
 ;; turn off ring bell
