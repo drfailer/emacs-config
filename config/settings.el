@@ -33,6 +33,9 @@
 ;; use sbcl when run lisp
 (setq inferior-lisp-program "sbcl")
 
+;; use space rather than tabs
+(setq indent-tabs-mode nil)
+
 ;;-----------------------------------------------------------------------------
 ;; UTF8
 ;;-----------------------------------------------------------------------------

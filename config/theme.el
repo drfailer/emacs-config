@@ -50,12 +50,13 @@
 (df/theme-settings)
 ;;-----------------------------------------------------------------------------
 
-;;-----------------------------------------------------------------------------
-;; SOME FIX
 ;; black baground
-;; (set-background-color "#000000")
-;; (set-face-background 'fringe "#FFFFFF")
-;;-----------------------------------------------------------------------------
+(defun df/black-bg ()
+  (interactive)
+  (progn
+    (set-background-color "#000000")
+    (set-face-background 'fringe "#000000")
+    (set-face-background 'line-number "#000000")))
 
 ;;-----------------------------------------------------------------------------
 ;; MODELINE SETTINGS:
