@@ -58,6 +58,10 @@
   :config
   (evil-lion-mode))
 
+;; multiple cursor
+(use-package evil-multiedit
+  :ensure t)
+
 ;; vim like folds
 (use-package vimish-fold
   :ensure
@@ -154,6 +158,22 @@
 (evil-define-key 'normal 'global (kbd "<leader>t m") 'df/toggle-mode-line) ;; doesn't work ?
 (evil-define-key 'normal 'global (kbd "<leader>t w") 'df/writing-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t p") 'df/var-pitch-mode)
+
+;; multiedit (https://github.com/hlissner/evil-multiedit)
+(evil-define-key 'visual 'global (kbd "R") 'evil-multiedit-match-all)
+(evil-define-key '(normal visual) 'global (kbd "M-d") 'evil-multiedit-match-and-next)
+(evil-define-key 'insert 'global (kbd "M-d") 'evil-multiedit-toggle-marker-here)
+(evil-define-key '(normal visual) 'global (kbd "M-D") 'evil-multiedit-match-and-prev)
+(evil-define-key 'visual 'global (kbd "C-M-D") 'evil-multiedit-restore)
+(evil-define-key 'global evil-multiedit-mod-map (kbd "RET") 'evil-multiedit-toggle-or-restrict-region)
+(evil-define-key 'global evil-motion-state-map (kbd "RET") 'evil-multiedit-toggle-or-restrict-region)
+(evil-define-key 'global evil-multiedit-mod-map (kbd "C-n") 'evil-multiedit-next)
+(evil-define-key 'global evil-multiedit-mod-map (kbd "C-p") 'evil-multiedit-prev)
+(evil-define-key 'insert evil-multiedit-insert-state-map (kbd "C-n") 'evil-multiedit-next)
+(evil-define-key 'insert evil-multiedit-insert-state-map (kbd "c-p") 'evil-multiedit-prev)
+
+(evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match)
+
 
 ;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
 
