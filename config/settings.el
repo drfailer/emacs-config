@@ -34,7 +34,7 @@
 (setq inferior-lisp-program "sbcl")
 
 ;; use space rather than tabs
-(setq indent-tabs-mode nil)
+(indent-tabs-mode 0)
 
 ;;-----------------------------------------------------------------------------
 ;; UTF8
