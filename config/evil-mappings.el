@@ -209,6 +209,9 @@
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
 	  (evil-define-key 'normal 'local (kbd "<leader>r r") 'df/shellcmd))
 
+;; compile
+(evil-define-key 'normal 'global (kbd "<leader>c c") 'compile)
+
 (add-hook 'org-mode
           (evil-define-key 'normal 'global (kbd "<leader>t P") 'org-tree-slide-mode))
 
