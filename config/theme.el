@@ -59,6 +59,29 @@
     (set-face-background 'line-number "#000000")))
 
 ;;-----------------------------------------------------------------------------
+;; Transparancy:
+
+(defun df/set-transparancy (an af)
+  "set transparancy `an' for the current focused emacs frame and `af' for non
+focused ones."
+  (progn
+    (set-frame-parameter (selected-frame) 'alpha (list an af))
+    (add-to-list 'default-frame-alist (list 'alpha an af))))
+
+;; toggle transparancy.
+(setq df/transparancy-on 1)
+(defun df/toggle-transparancy ()
+  "Allow to toggle transparancy."
+  (interactive)
+  (if df/transparancy-on
+      (progn
+	(df/set-transparancy 100 100)
+	(setq df/transparancy-on nil))
+    (progn
+	(df/set-transparancy 90 90)
+	(setq df/transparancy-on 1))))
+
+;;-----------------------------------------------------------------------------
 ;; MODELINE SETTINGS:
 (setq mode-line-position (list " [%l:%c]"))
 (setq mode-line-format nil)

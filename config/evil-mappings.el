@@ -155,9 +155,10 @@
 
 ;; toggle stuff
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
-(evil-define-key 'normal 'global (kbd "<leader>t m") 'df/toggle-mode-line) ;; doesn't work ?
+(evil-define-key 'normal 'global (kbd "<leader>t m") 'df/toggle-mode-line)
 (evil-define-key 'normal 'global (kbd "<leader>t w") 'df/writing-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t p") 'df/var-pitch-mode)
+(evil-define-key 'normal 'global (kbd "<leader>t a") 'df/toggle-transparancy)
 
 ;; multiedit (https://github.com/hlissner/evil-multiedit)
 (evil-define-key 'visual 'global (kbd "R") 'evil-multiedit-match-all)
