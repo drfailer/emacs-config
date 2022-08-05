@@ -68,6 +68,9 @@ focused ones."
     (set-frame-parameter (selected-frame) 'alpha (list an af))
     (add-to-list 'default-frame-alist (list 'alpha an af))))
 
+;; set default transparancy
+(df/set-transparancy 90 90)
+
 ;; toggle transparancy.
 (setq df/transparancy-on 1)
 (defun df/toggle-transparancy ()
@@ -139,7 +142,7 @@ focused ones."
        ;;----------------------------------------------------------------------
        ;; buffer position (percentage)
        '(:eval (propertize " %p " 'face 'font-lock-type-face))
-       
+
        ;;----------------------------------------------------------------------
        ;; position
        mode-line-position
@@ -169,7 +172,7 @@ focused ones."
        ;;----------------------------------------------------------------------
        ;; the current major mode
        (propertize " %m " 'face 'font-lock-string-face)
-       
+
        ;;----------------------------------------------------------------------
        ;; time and battery
        mode-line-misc-info))

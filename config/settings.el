@@ -15,8 +15,6 @@
 (show-paren-mode t)
 (setq make-backup-files nil) ;; no backup files
 (setq-default truncate-lines t)
-;; fix transparancy bug:
-(df/set-transparancy 90 90)
 (global-display-line-numbers-mode 1) ;; line number
 (menu-bar--display-line-numbers-mode-relative)
 ;; turn off ring bell

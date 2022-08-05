@@ -48,6 +48,10 @@
 (use-package markdown-mode
   :ensure t)
 
+;; rust
+(use-package rust-mode
+  :ensure t)
+
 (use-package popper
   :ensure t ; or :straight t
   :bind (("C-c <tab>"   . popper-toggle-latest)
