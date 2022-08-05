@@ -63,6 +63,7 @@
   (setq org-src-preserve-indentation nil)
   (setq org-startup-folded 'content)
   (setq org-cycle-separator-lines 2)
+  (org-indent-mode 1)
   (df/font-setup))
 
 ;;-----------------------------------------------------------------------------
@@ -138,6 +139,7 @@
 ;;-----------------------------------------------------------------------------
 ;; open notes and agenda
 (evil-define-key 'normal 'global (kbd "<leader>O a") (lambda () (interactive) (find-file "~/.emacs.d/Org/agenda.org")))
+(evil-define-key 'normal 'global (kbd "<leader>O j") (lambda () (interactive) (find-file "~/.emacs.d/Org/journal.org")))
 (evil-define-key 'normal 'global (kbd "<leader>O n") (lambda () (interactive) (df/fuzzy-find-file "~/.emacs.d/Org/notes/")))
 
 ;;-----------------------------------------------------------------------------
@@ -239,6 +241,10 @@
           ("so" "Schedule Perso" entry
            (file+headline "~/.emacs.d/Org/agenda.org" "Personal")
            "* %^{keyword|TODO|PROJ|STRT|WAIT} %?\n SCHEDULE: %^t")
+
+	  ;; journal
+	  ("j" "journal" entry (file+datetree "~/.emacs.d/Org/journal.org")
+	   "* %?\n %i\n %a")
 
 	  ;; new note
           ("n" "NOTES")

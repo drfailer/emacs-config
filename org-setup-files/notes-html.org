@@ -1,0 +1,228 @@
+#+OPTIONS: toc:2
+#+OPTIONS: num:nil
+#+HTML_HEAD: <style type:"text/css">
+#+HTML_HEAD: html {
+#+HTML_HEAD: 	font-size: 62.5%;
+#+HTML_HEAD: }
+#+HTML_HEAD: body {
+#+HTML_HEAD: 	background-color: #282828;
+#+HTML_HEAD: 	color: #fff;
+#+HTML_HEAD: 	font-family: "Century Gothic", helvetica, arial, sans-serif;
+#+HTML_HEAD: 	font-size: 1.4em; /* equiv 14px */
+#+HTML_HEAD: 	line-height: 1.5; /* adapt to your design */
+#+HTML_HEAD: 	max-width: 1000px;
+#+HTML_HEAD: 	margin: auto;
+#+HTML_HEAD: }
+#+HTML_HEAD: p,
+#+HTML_HEAD: ul,
+#+HTML_HEAD: ol,
+#+HTML_HEAD: dl,
+#+HTML_HEAD: blockquote,
+#+HTML_HEAD: pre,
+#+HTML_HEAD: td,
+#+HTML_HEAD: th,
+#+HTML_HEAD: label,
+#+HTML_HEAD: textarea,
+#+HTML_HEAD: caption,
+#+HTML_HEAD: details,
+#+HTML_HEAD: figure,
+#+HTML_HEAD: hgroup {
+#+HTML_HEAD: 	font-size: 1em; /* equiv 14px */
+#+HTML_HEAD: 	line-height: 1.5;
+#+HTML_HEAD: 	margin: 1.5em 0 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: h1, .h1-like {
+#+HTML_HEAD: 	font-size: 1.8571em; /* equiv 26px */
+#+HTML_HEAD: 	font-weight: normal;
+#+HTML_HEAD: 	line-height: 1.6154em;
+#+HTML_HEAD: 	margin: .8077em 0 0 0;
+#+HTML_HEAD:    color: #458598;
+#+HTML_HEAD: }
+#+HTML_HEAD: h2, .h2-like {
+#+HTML_HEAD: 	font-size: 1.7143em; /* equiv 24px */
+#+HTML_HEAD: 	font-weight: normal;
+#+HTML_HEAD: 	line-height: 1.75em;
+#+HTML_HEAD: 	margin: .875em 0 0 0;
+#+HTML_HEAD:    color: #d79921;
+#+HTML_HEAD: }
+#+HTML_HEAD: h3, .h3-like {
+#+HTML_HEAD: 	font-size: 1.5714em; /* equiv 22px */
+#+HTML_HEAD: 	font-weight: normal;
+#+HTML_HEAD: 	line-height: 1.909em;
+#+HTML_HEAD: 	margin: .9545em 0 0 0;
+#+HTML_HEAD:    color: #b16286;
+#+HTML_HEAD: }
+#+HTML_HEAD: h4, .h4-like {
+#+HTML_HEAD: 	font-size: 1.4286em; /* equiv 20px */
+#+HTML_HEAD: 	font-weight: normal;
+#+HTML_HEAD: 	line-height: 1.05em;
+#+HTML_HEAD: 	margin:  1.05em 0 0 0;
+#+HTML_HEAD:    color: #cc241d;
+#+HTML_HEAD: }
+#+HTML_HEAD: h5, .h5-like {
+#+HTML_HEAD: 	font-size: 1.2857em; /* equiv 18px */
+#+HTML_HEAD: 	font-weight: normal;
+#+HTML_HEAD: 	line-height: 1.1667em;
+#+HTML_HEAD: 	margin:  1.1667em 0 0 0;
+#+HTML_HEAD:    color: #b8bb26;
+#+HTML_HEAD: }
+#+HTML_HEAD: h6, .h6-like {
+#+HTML_HEAD: 	font-size: 1.1429em; /* equiv 16px */
+#+HTML_HEAD: 	font-weight: normal;
+#+HTML_HEAD: 	line-height: 1.3125em;
+#+HTML_HEAD: 	margin:  1.3125em 0 0 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: .smaller {
+#+HTML_HEAD: 	font-size: .7143em; /* equiv 10px */
+#+HTML_HEAD: 	line-height: 2.1em;
+#+HTML_HEAD: }
+#+HTML_HEAD: .small {
+#+HTML_HEAD: 	font-size: .8571em; /* equiv 12px */
+#+HTML_HEAD: 	line-height: 1.75em;
+#+HTML_HEAD: }
+#+HTML_HEAD: .big {
+#+HTML_HEAD: 	font-size: 1.1429em; /* equiv 16px */
+#+HTML_HEAD: 	line-height: 1.3125em;
+#+HTML_HEAD: }
+#+HTML_HEAD: .bigger {
+#+HTML_HEAD: 	font-size: 1.2857em; /* equiv 18px */
+#+HTML_HEAD: 	line-height: 1.1667em;
+#+HTML_HEAD: }
+#+HTML_HEAD: .biggest {
+#+HTML_HEAD: 	font-size: 1.4286em; /* equiv 20px */
+#+HTML_HEAD: 	line-height: 1.05em;
+#+HTML_HEAD: }
+#+HTML_HEAD: html,
+#+HTML_HEAD: body,
+#+HTML_HEAD: textarea,
+#+HTML_HEAD: figure,
+#+HTML_HEAD: label {
+#+HTML_HEAD: 	margin: 0;
+#+HTML_HEAD: 	padding: 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: ul,
+#+HTML_HEAD: ol {
+#+HTML_HEAD: 	padding-left: 2em;
+#+HTML_HEAD: }
+#+HTML_HEAD: code,
+#+HTML_HEAD: pre,
+#+HTML_HEAD: samp {
+#+HTML_HEAD: 	white-space: pre-wrap;
+#+HTML_HEAD: 	font-family: consolas, 'DejaVu Sans Mono', courier, monospace;
+#+HTML_HEAD: }
+#+HTML_HEAD: code { line-height: 1em; }
+#+HTML_HEAD: table { margin-bottom: 1.5em; }
+#+HTML_HEAD: p:first-child,
+#+HTML_HEAD: ul:first-child,
+#+HTML_HEAD: ol:first-child,
+#+HTML_HEAD: dl:first-child,
+#+HTML_HEAD: blockquote:first-child,
+#+HTML_HEAD: pre:first-child,
+#+HTML_HEAD: h1:first-child,
+#+HTML_HEAD: h2:first-child,
+#+HTML_HEAD: h3:first-child,
+#+HTML_HEAD: h4:first-child,
+#+HTML_HEAD: h5:first-child,
+#+HTML_HEAD: h6:first-child {
+#+HTML_HEAD: 	margin-top: 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: li p,
+#+HTML_HEAD: li ul,
+#+HTML_HEAD: li ol {
+#+HTML_HEAD: 	margin-top: 0;
+#+HTML_HEAD: 	margin-bottom: 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+#+HTML_HEAD: 	display: block;
+#+HTML_HEAD: }
+#+HTML_HEAD: img, table, td, blockquote, code, pre, textarea, input, video {
+#+HTML_HEAD: 	max-width: 100%;
+#+HTML_HEAD: }
+#+HTML_HEAD: div, textarea, table, td, th, code, pre, samp {
+#+HTML_HEAD: 	word-wrap: break-word;
+#+HTML_HEAD: 	-webkit-hyphens: auto;
+#+HTML_HEAD: 	-moz-hyphens: auto;
+#+HTML_HEAD: 	-ms-hyphens: auto;
+#+HTML_HEAD: 	-o-hyphens: auto;
+#+HTML_HEAD: 	hyphens: auto;
+#+HTML_HEAD: }
+#+HTML_HEAD: img {
+#+HTML_HEAD: 	width: auto;
+#+HTML_HEAD: 	height: auto;
+#+HTML_HEAD: 	vertical-align: middle;
+#+HTML_HEAD: }
+#+HTML_HEAD: a img { border: 0; }
+#+HTML_HEAD: body > script {display: none !important;}
+#+HTML_HEAD: .skip-links {
+#+HTML_HEAD: 	position: absolute;
+#+HTML_HEAD: }
+#+HTML_HEAD: .skip-links a {
+#+HTML_HEAD: 	position: absolute;
+#+HTML_HEAD: 	left: -9999px;
+#+HTML_HEAD: 	padding: 0.5em;
+#+HTML_HEAD: 	background: #000;
+#+HTML_HEAD: 	color:#fff;
+#+HTML_HEAD: 	text-decoration: none;
+#+HTML_HEAD: }
+#+HTML_HEAD: .skip-links a:focus {
+#+HTML_HEAD: 	position: static;
+#+HTML_HEAD: }
+#+HTML_HEAD: abbr[title] {
+#+HTML_HEAD:   border-bottom: 1px dotted;
+#+HTML_HEAD:   cursor: help;
+#+HTML_HEAD: }
+#+HTML_HEAD: blockquote {
+#+HTML_HEAD:   margin: .75em 0 .75em 20px;
+#+HTML_HEAD:   padding: 0 0 0 10px;
+#+HTML_HEAD:   border-left: solid 2px #ddd;
+#+HTML_HEAD: }
+#+HTML_HEAD: q, cite {
+#+HTML_HEAD:   font-style: italic;
+#+HTML_HEAD: }
+#+HTML_HEAD: q cite, q q {
+#+HTML_HEAD:   font-style: normal
+#+HTML_HEAD: }
+#+HTML_HEAD: q {
+#+HTML_HEAD:   quotes: none;
+#+HTML_HEAD: }
+#+HTML_HEAD: q:before, q:after {
+#+HTML_HEAD:   content: ""; /* Nécessaire pour Safari/Chrome */
+#+HTML_HEAD: }
+#+HTML_HEAD: blockquote p, li p {
+#+HTML_HEAD:   margin: .5em 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: dl {
+#+HTML_HEAD:   margin: .75em 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: dt {
+#+HTML_HEAD:   margin: .75em 0 0 0;
+#+HTML_HEAD:   font-weight: bold;
+#+HTML_HEAD: }
+#+HTML_HEAD: dd {
+#+HTML_HEAD:   margin: .25em 0 .25em 32px;
+#+HTML_HEAD: }
+#+HTML_HEAD: table {
+#+HTML_HEAD:   margin: 0;
+#+HTML_HEAD:   border: 1px solid gray; /* Pas de bordure = "none". */
+#+HTML_HEAD:   border-collapse: collapse; /* Valeur par défaut: "separate". */
+#+HTML_HEAD:   border-spacing: 0;
+#+HTML_HEAD: }
+#+HTML_HEAD: table td, table th {
+#+HTML_HEAD:   padding: 4px; /* Pas de retrait autour du texte = "0". */
+#+HTML_HEAD:   border: 1px solid #ccc; /* Pas de bordure = "none". */
+#+HTML_HEAD:   vertical-align: top; /* Valeur par défaut: "middle" */
+#+HTML_HEAD: }
+#+HTML_HEAD: article, aside, dialog, figure, footer, header,
+#+HTML_HEAD: hgroup, menu, nav, section {
+#+HTML_HEAD:   display: block;
+#+HTML_HEAD: }
+#+HTML_HEAD: a {
+#+HTML_HEAD:     color: #fb4934;
+#+HTML_HEAD: }
+#+HTML_HEAD: pre {
+#+HTML_HEAD:   background-color: #1d2021;
+#+HTML_HEAD:   overflow: auto;
+#+HTML_HEAD:   font-family: 'Monaco', monospace;
+#+HTML_HEAD:   padding: 0 1em;
+#+HTML_HEAD: }
+#+HTML_HEAD: </style>
