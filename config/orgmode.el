@@ -63,6 +63,7 @@
   (setq org-src-preserve-indentation nil)
   (setq org-startup-folded 'content)
   (setq org-cycle-separator-lines 2)
+  (setq org-export-headline-levels 6)
   (org-indent-mode 1)
   (df/font-setup))
 

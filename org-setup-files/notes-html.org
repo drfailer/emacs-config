@@ -71,6 +71,7 @@
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.3125em;
 #+HTML_HEAD: 	margin:  1.3125em 0 0 0;
+#+HTML_HEAD:    color: #689d6a;
 #+HTML_HEAD: }
 #+HTML_HEAD: .smaller {
 #+HTML_HEAD: 	font-size: .7143em; /* equiv 10px */
