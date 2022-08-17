@@ -25,31 +25,7 @@
 ;; modus themes settings
 ;; (setq modus-themes-syntax '(faint))
 
-;; theme settings
-(defun df/theme-settings ()
-  (cond
-   ((equal df/default-theme 'white)
-    (progn
-      (load-theme 'modus-operandi t)
-      (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)))
-   ((equal df/default-theme 'black)
-    (progn
-      (load-theme 'modus-vivendi t)
-      (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
-      (set-face-attribute 'line-number nil :background "#010101")))
-   ((equal df/default-theme 'one) (load-theme 'doom-one t))
-   ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
-   ((equal df/default-theme 'gruvbox)
-    (progn
-      (load-theme 'gruvbox-dark-hard t)
-      (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#252525" :foreground "grey" :box nil)
-      (set-face-attribute 'line-number nil :background "#1d2021")))))
-(df/theme-settings)
 ;;-----------------------------------------------------------------------------
-
 ;; black baground
 (defun df/black-bg ()
   (interactive)
@@ -60,7 +36,6 @@
 
 ;;-----------------------------------------------------------------------------
 ;; Transparancy:
-
 (defun df/set-transparancy (an af)
   "set transparancy `an' for the current focused emacs frame and `af' for non
 focused ones."
@@ -83,6 +58,39 @@ focused ones."
     (progn
 	(df/set-transparancy 90 90)
 	(setq df/transparancy-on 1))))
+
+;;-----------------------------------------------------------------------------
+;; theme settings
+(defun df/theme-settings ()
+  (cond
+   ((equal df/default-theme 'white)
+    (progn
+      (load-theme 'modus-operandi t)
+      (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)))
+   ((equal df/default-theme 'black)
+    (progn
+      (load-theme 'modus-vivendi t)
+      (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
+      (set-face-attribute 'line-number nil :background "#010101")))
+   ((equal df/default-theme 'one) (load-theme 'doom-one t))
+   ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
+   ((equal df/default-theme 'gruvbox)
+    (progn
+      (load-theme 'gruvbox-dark-hard t)
+      (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#252525" :foreground "grey" :box nil)
+      (set-face-attribute 'line-number nil :background "#1d2021")))
+   ((equal df/default-theme 'gruvbox-black)
+    (progn
+      (load-theme 'gruvbox-dark-hard t)
+      (df/black-bg)
+      (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
+      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
+      (set-face-attribute 'line-number nil :background "#010101")))
+   ))
+(df/theme-settings)
 
 ;;-----------------------------------------------------------------------------
 ;; MODELINE SETTINGS:
@@ -198,13 +206,14 @@ format to nil or to `df/mode-line-format' depending of the status of
 ;; switch theme with a menu and apply my settings
 (defun df/switch-theme ()
   (interactive)
-  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "zenburn"))))
+  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "gruvbox-black" "zenburn"))))
     (progn
       (cond
        ((string= theme "one") (setq df/default-theme 'one))
        ((string= theme "white") (setq df/default-theme 'white))
        ((string= theme "dark") (setq df/default-theme 'black))
        ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
+       ((string= theme "gruvbox-black") (setq df/default-theme 'gruvbox-black))
        ((string= theme "zenburn") (setq df/default-theme 'zenburn))
        (t (message "Unknown theme")))
       (df/theme-settings))))
