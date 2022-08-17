@@ -25,7 +25,7 @@
   (setq evil-want-C-u-scroll t)
   :config
   (evil-set-leader '(normal visual) " ") ;; <leader>
-  (evil-set-initial-state 'dired-mode 'emacs)
+  ;; (evil-set-initial-state 'dired-mode 'emacs)
   (setq evil-insert-state-cursor '(box "white")
 	evil-normal-state-cursor '(box "white")))
 
@@ -152,6 +152,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
 (evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
 (evil-define-key 'normal 'global (kbd "<leader>f g") 'rgrep)
+(evil-define-key 'normal 'global (kbd "<leader>f t") 'treemacs)
 
 ;; toggle stuff
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
@@ -187,10 +188,16 @@
 (define-key evil-window-map (kbd ";") 'winner-undo)
 
 (defun df/dired-alternate-up ()
+  "Open the parent directory with dired without openning new buffer."
   (interactive)
   (find-alternate-file ".."))
 
-;; dired
+;; dired evil
+(evil-collection-define-key 'normal 'dired-mode-map
+  "h" 'df/dired-alternate-up
+  "l" 'dired-find-alternate-file)
+
+;; dired emacs mode
 (eval-after-load "dired"
 	  '(progn
 	    (define-key dired-mode-map (kbd "h") 'df/dired-alternate-up)
