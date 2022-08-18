@@ -85,7 +85,14 @@ focused ones."
    ((equal df/default-theme 'gruvbox-black)
     (progn
       (load-theme 'gruvbox-dark-hard t)
-      (df/black-bg)
+      (df/black-bg) ;; set backgroud to black
+      (custom-set-faces ;; change Org blocks backgroud color
+       '(org-block-begin-line
+	 ((t (:background "#111111" :extend t))))
+       '(org-block
+	 ((t (:background "#090909" :extend t))))
+       '(org-block-end-line
+	 ((t (:background "#111111" :extend t)))))
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
@@ -141,7 +148,7 @@ focused ones."
   (require 'spaceline-config)
   (setq powerline-default-separator (quote arrow))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (spaceline-emacs-theme))
+  (spaceline-spacemacs-theme))
 
 ;;-----------------------------------------------------------------------------
 ;; TOGGLE MODE LINE (doesn't work with spaceline):
