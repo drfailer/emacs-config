@@ -134,7 +134,6 @@
   (cd path)
   (call-interactively 'find-file))
 
-
 ;; NOTE: may be fun and useful
 ;; (completing-read
 ;;  "Complete a foo: "

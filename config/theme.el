@@ -100,32 +100,6 @@ focused ones."
 (df/theme-settings)
 
 ;;-----------------------------------------------------------------------------
-;; SWITCH THEMES:
-;; switch theme with a menu and apply my settings
-(defun df/switch-theme ()
-  (interactive)
-  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "gruvbox-black" "zenburn"))))
-    (progn
-      (cond
-       ((string= theme "one") (setq df/default-theme 'one))
-       ((string= theme "white") (setq df/default-theme 'white))
-       ((string= theme "dark") (setq df/default-theme 'black))
-       ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
-       ((string= theme "gruvbox-black") (setq df/default-theme 'gruvbox-black))
-       ((string= theme "zenburn") (setq df/default-theme 'zenburn))
-       (t (message "Unknown theme")))
-      (df/theme-settings))))
-
-(defun disable-all-themes ()
-  "disable all active themes."
-  (dolist (i custom-enabled-themes)
-    (disable-theme i)))
-
-;; disable previous theme before loading a new one
-(defadvice load-theme (before disable-themes-first activate)
-  (disable-all-themes))
-
-;;-----------------------------------------------------------------------------
 ;; MODELINE SETTINGS:
 (setq mode-line-position (list " [%l:%c]"))
 (setq mode-line-format nil)
@@ -142,12 +116,14 @@ focused ones."
 
 ;;-----------------------------------------------------------------------------
 ;; SPACELINE:
+(setq df/spaceline-active nil)
 (use-package spaceline
   :ensure t
   :config
   (require 'spaceline-config)
   (setq powerline-default-separator (quote arrow))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (setq df/spaceline-active t)
   (spaceline-spacemacs-theme))
 
 ;;-----------------------------------------------------------------------------
@@ -166,3 +142,31 @@ format to nil or to `df/mode-line-format' depending of the status of
     (progn
       (setq df/mode-line-hidden nil)
       (setq mode-line-format df/mode-line-format))))
+
+;;-----------------------------------------------------------------------------
+;; SWITCH THEMES:
+;; switch theme with a menu and apply my settings
+(defun df/switch-theme ()
+  (interactive)
+  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "gruvbox-black" "zenburn"))))
+    (progn
+      (cond
+       ((string= theme "one") (setq df/default-theme 'one))
+       ((string= theme "white") (setq df/default-theme 'white))
+       ((string= theme "dark") (setq df/default-theme 'black))
+       ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
+       ((string= theme "gruvbox-black") (setq df/default-theme 'gruvbox-black))
+       ((string= theme "zenburn") (setq df/default-theme 'zenburn))
+       (t (message "Unknown theme")))
+      (df/theme-settings)
+      (if df/spaceline-active ;; recompile spaceline if it is available
+	(spaceline-compile)))))
+
+(defun disable-all-themes ()
+  "disable all active themes."
+  (dolist (i custom-enabled-themes)
+    (disable-theme i)))
+
+;; disable previous theme before loading a new one
+(defadvice load-theme (before disable-themes-first activate)
+  (disable-all-themes))
