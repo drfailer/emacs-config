@@ -88,11 +88,11 @@ focused ones."
       (df/black-bg) ;; set backgroud to black
       (custom-set-faces ;; change Org blocks backgroud color
        '(org-block-begin-line
-	 ((t (:background "#111111" :extend t))))
+	 ((t (:background "#111111" :foreground "#000000" :extend t))))
        '(org-block
 	 ((t (:background "#090909" :extend t))))
        '(org-block-end-line
-	 ((t (:background "#111111" :extend t)))))
+	 ((t (:background "#111111" :foreground "#000000" :extend t)))))
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
