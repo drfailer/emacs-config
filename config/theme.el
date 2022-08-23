@@ -34,6 +34,17 @@
     (set-face-background 'fringe "#000000")
     (set-face-background 'line-number "#000000")))
 
+(defun df/org_src_color (color)
+  (if (equal color 'black)
+      (custom-set-faces ;; change Org blocks backgroud color
+       '(org-block-begin-line ((t (:background "#111111" :foreground "#000000" :extend t))))
+       '(org-block ((t (:background "#090909" :extend t))))
+       '(org-block-end-line ((t (:background "#111111" :foreground "#000000" :extend t)))))
+    (custom-set-faces ;; change Org blocks backgroud color
+     '(org-block-begin-line ((t (:background "#EEEEEE" :foreground "#FFFFFF" :extend t))))
+     '(org-block ((t (:background "#F0F0F0" :extend t))))
+     '(org-block-end-line ((t (:background "#EEEEEE" :foreground "#FFFFFF" :extend t)))))))
+
 ;;-----------------------------------------------------------------------------
 ;; Transparancy:
 (defun df/set-transparancy (an af)
@@ -66,11 +77,13 @@ focused ones."
    ((equal df/default-theme 'white) ;;; MODUS-OPERANDI
     (progn
       (load-theme 'modus-operandi t)
+      (df/org_src_color 'white)
       (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)))
    ((equal df/default-theme 'black) ;;; MODUS-VIVENDI
     (progn
       (load-theme 'modus-vivendi t)
+      (df/org_src_color 'black)
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
@@ -86,13 +99,7 @@ focused ones."
     (progn
       (load-theme 'gruvbox-dark-hard t)
       (df/black-bg) ;; set backgroud to black
-      (custom-set-faces ;; change Org blocks backgroud color
-       '(org-block-begin-line
-	 ((t (:background "#111111" :foreground "#000000" :extend t))))
-       '(org-block
-	 ((t (:background "#090909" :extend t))))
-       '(org-block-end-line
-	 ((t (:background "#111111" :foreground "#000000" :extend t)))))
+      (df/org_src_color 'black)
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
@@ -100,13 +107,7 @@ focused ones."
     (progn
       (load-theme 'zenburn t)
       (df/black-bg) ;; set backgroud to black
-      (custom-set-faces ;; change Org blocks backgroud color
-       '(org-block-begin-line
-	 ((t (:background "#111111" :foreground "#000000" :extend t))))
-       '(org-block
-	 ((t (:background "#090909" :extend t))))
-       '(org-block-end-line
-	 ((t (:background "#111111" :foreground "#000000" :extend t)))))))
+      (df/org_src_color 'black)))
    ))
 (df/theme-settings)
 
