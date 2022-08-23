@@ -152,7 +152,6 @@
 (evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
 (evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
 (evil-define-key 'normal 'global (kbd "<leader>f g") 'rgrep)
-(evil-define-key 'normal 'global (kbd "<leader>f t") 'treemacs)
 
 ;; toggle stuff
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
@@ -160,6 +159,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>t w") 'df/writing-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t p") 'df/var-pitch-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t a") 'df/toggle-transparancy)
+(evil-define-key 'normal 'global (kbd "<leader>t t") 'treemacs)
 
 ;; multiedit (https://github.com/hlissner/evil-multiedit)
 (evil-define-key 'visual 'global (kbd "R") 'evil-multiedit-match-all)
