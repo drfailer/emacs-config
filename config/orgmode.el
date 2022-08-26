@@ -147,7 +147,7 @@
   (org-display-inline-images)
   (df/var-pitch-mode)
   (df/writing-mode-on)
-  (text-scale-set 3))
+  (text-scale-set 2))
 
 (defun df/prez-end ()
   (df/writing-mode-off)

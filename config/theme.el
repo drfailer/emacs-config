@@ -22,6 +22,7 @@
 	modus-themes-paren-match '(bold intense)
 	modus-themes-links '(neutral-underline background)
 	modus-themes-prompts '(intense bold) ;; repl and minibuffer prompts
+	modus-themes-mode-line '(accented borderless)
 	;; completion settings
 	modus-themes-completions '((matches . (extrabold))
                                    (selection . (semibold accented))
@@ -116,8 +117,7 @@ focused ones."
     (progn
       (load-theme 'modus-vivendi t)
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
-      (set-face-attribute 'line-number nil :background "#010101")))
+      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)))
    ((equal df/default-theme 'one) (load-theme 'doom-one t)) ;;; ONE
    ((equal df/default-theme 'zenburn) (load-theme 'zenburn t)) ;;; ZENBURN
    ((equal df/default-theme 'gruvbox) ;;; GRUVBOX
@@ -167,7 +167,8 @@ focused ones."
   (setq powerline-default-separator (quote arrow))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq df/spaceline-active t)
-  (spaceline-spacemacs-theme))
+  (spaceline-spacemacs-theme)
+  (powerline-reset))
 
 ;;-----------------------------------------------------------------------------
 ;; TOGGLE MODE LINE (doesn't work with spaceline):
