@@ -4,9 +4,40 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
-(setq df/default-theme 'gruvbox-black)
+(setq df/default-theme 'black)
 (use-package modus-themes
-  :ensure t)
+  :ensure t
+  :config
+  (setq modus-themes-italic-constructs nil
+	modus-themes-bold-constructs t
+	modus-themes-mixed-fonts t
+	modus-themes-subtle-line-numbers t
+	modus-themes-intense-mouseovers nil
+	modus-themes-deuteranopia t
+	modus-themes-variable-pitch-ui nil
+	modus-themes-fringes nil ;; fringe in black
+	modus-themes-mode-line '(borderless)
+	modus-themes-syntax '(alt-syntax green-strings)
+	modus-themes-hl-line '(accented)
+	modus-themes-paren-match '(bold intense)
+	modus-themes-links '(neutral-underline background)
+	modus-themes-prompts '(intense bold) ;; repl and minibuffer prompts
+	;; completion settings
+	modus-themes-completions '((matches . (extrabold))
+                                   (selection . (semibold accented))
+                                   (popup . (accented intense)))
+	modus-themes-region '(bg-only)
+	modus-themes-diffs 'desaturated
+
+	modus-themes-org-blocks nil ; {nil,'gray-background,'tinted-background}
+
+	;; TODO: test this
+	modus-themes-org-agenda ; this is an alist: read the manual or its doc string
+	'((header-block . (1.3))
+          (header-date . (grayscale workaholic bold-today 1.1))
+          (event . (accented varied))
+          (scheduled . uniform)
+          (habit . traffic-light))))
 (use-package doom-themes
   :ensure t)
 (use-package gruvbox-theme
@@ -14,13 +45,14 @@
 (use-package zenburn-theme
   :ensure t)
 
-;; modus themes org headings
-(setq modus-themes-headings
-      '((1 . (rainbow nil))
-	(2 . (rainbow nil))
-	(3 . (rainbow nil))
-	(4 . (rainbow nil))
-	(t . (semilight nil))))
+;;; TODO: get rid of this
+;; ;; modus themes org headings
+;; (setq modus-themes-headings
+;;       '((1 . (rainbow nil))
+;; 	(2 . (rainbow nil))
+;; 	(3 . (rainbow nil))
+;; 	(4 . (rainbow nil))
+;; 	(t . (semilight nil))))
 
 ;; modus themes settings
 ;; (setq modus-themes-syntax '(faint))
@@ -55,7 +87,8 @@ focused ones."
     (add-to-list 'default-frame-alist (list 'alpha an af))))
 
 ;; set default transparancy
-(df/set-transparancy 90 90)
+;; (df/set-transparancy 90 90)
+(df/set-transparancy 100 100)
 
 ;; toggle transparancy.
 (setq df/transparancy-on 1)
@@ -77,13 +110,11 @@ focused ones."
    ((equal df/default-theme 'white) ;;; MODUS-OPERANDI
     (progn
       (load-theme 'modus-operandi t)
-      (df/org_src_color 'white)
       (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)))
    ((equal df/default-theme 'black) ;;; MODUS-VIVENDI
     (progn
       (load-theme 'modus-vivendi t)
-      (df/org_src_color 'black)
       (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#010101")))
