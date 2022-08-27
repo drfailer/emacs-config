@@ -50,6 +50,7 @@
 (use-package zenburn-theme
   :ensure t)
 
+
 ;;-----------------------------------------------------------------------------
 ;; black baground
 (defun df/black-bg ()
@@ -58,6 +59,7 @@
     (set-background-color "#000000")
     (set-face-background 'fringe "#000000")
     (set-face-background 'line-number "#000000")))
+
 
 ;;-----------------------------------------------------------------------------
 ;; Transparancy:
@@ -95,20 +97,14 @@ focused ones."
     (progn
       (load-theme 'modus-operandi t)
       (custom-set-faces
-       '(powerline-active1 ((t (:foreground "#000000" :background "#FFFFFF")))))
-      ;; (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
-      ;; (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)
-      ))
+       '(powerline-active1 ((t (:foreground "#000000" :background "#FFFFFF")))))))
    ;;===========================================================================
    ;; MODUS-VIVENDI:
    ((equal df/default-theme 'black)
     (progn
       (load-theme 'modus-vivendi t)
       (custom-set-faces
-       '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#000000")))))
-      ;; (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
-      ;; (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
-      ))
+       '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#000000")))))))
    ;;===========================================================================
    ;; ONE:
    ((equal df/default-theme 'one) (load-theme 'doom-one t))
