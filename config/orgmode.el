@@ -118,7 +118,7 @@
 (defun df/writing-mode-on ()
   (setq-local df/writing-mode-active t)
   (setq-local global-hl-line-mode nil)
-  (org-indent-mode 1)
+  ;; (org-indent-mode 1)
   (display-line-numbers-mode 0)
   ;; (text-scale-set 1)
   (visual-fill-column-mode 1))

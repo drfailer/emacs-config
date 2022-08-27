@@ -65,10 +65,11 @@
        '(:eval (propertize
                 " " 'display
                 `((space :align-to (- (+ right right-fringe right-margin)
-                                      ,(+ 5 (string-width mode-name)
+                                      ,(+ 5
 					  (string-width eol-mnemonic-unix)
 					  (string-width display-time-string)
-					  (string-width battery-mode-line-string)))))))
+					  (string-width battery-mode-line-string)
+					  (string-width (propertize " %m " 'face 'font-lock-string-face))))))))
 
        ;;----------------------------------------------------------------------
        ;; encoding and eol

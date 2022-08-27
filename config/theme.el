@@ -2,6 +2,7 @@
 ;; COLOR:
 ;;===========================================================================;;
 
+
 ;;-----------------------------------------------------------------------------
 ;; THEME
 (setq df/default-theme 'black)
@@ -15,14 +16,14 @@
 	modus-themes-intense-mouseovers nil
 	modus-themes-deuteranopia t
 	modus-themes-variable-pitch-ui nil
+	modus-themes-inhibit-reload t
 	modus-themes-fringes nil ;; fringe in black
-	modus-themes-mode-line '(borderless)
+	modus-themes-mode-line '(accented borderless) ;; modeline
 	modus-themes-syntax '(alt-syntax green-strings)
 	modus-themes-hl-line '(accented)
 	modus-themes-paren-match '(bold intense)
 	modus-themes-links '(neutral-underline background)
 	modus-themes-prompts '(intense bold) ;; repl and minibuffer prompts
-	modus-themes-mode-line '(accented borderless)
 	;; completion settings
 	modus-themes-completions '((matches . (extrabold))
                                    (selection . (semibold accented))
@@ -38,25 +39,16 @@
           (header-date . (grayscale workaholic bold-today 1.1))
           (event . (accented varied))
           (scheduled . uniform)
-          (habit . traffic-light))))
+          (habit . traffic-light))
+	modus-themes-headings ;; org headings
+	'((t . (semibold)))))
+
 (use-package doom-themes
   :ensure t)
 (use-package gruvbox-theme
   :ensure t)
 (use-package zenburn-theme
   :ensure t)
-
-;;; TODO: get rid of this
-;; ;; modus themes org headings
-;; (setq modus-themes-headings
-;;       '((1 . (rainbow nil))
-;; 	(2 . (rainbow nil))
-;; 	(3 . (rainbow nil))
-;; 	(4 . (rainbow nil))
-;; 	(t . (semilight nil))))
-
-;; modus themes settings
-;; (setq modus-themes-syntax '(faint))
 
 ;;-----------------------------------------------------------------------------
 ;; black baground
@@ -66,17 +58,6 @@
     (set-background-color "#000000")
     (set-face-background 'fringe "#000000")
     (set-face-background 'line-number "#000000")))
-
-(defun df/org_src_color (color)
-  (if (equal color 'black)
-      (custom-set-faces ;; change Org blocks backgroud color
-       '(org-block-begin-line ((t (:background "#111111" :foreground "#000000" :extend t))))
-       '(org-block ((t (:background "#090909" :extend t))))
-       '(org-block-end-line ((t (:background "#111111" :foreground "#000000" :extend t)))))
-    (custom-set-faces ;; change Org blocks backgroud color
-     '(org-block-begin-line ((t (:background "#EEEEEE" :foreground "#FFFFFF" :extend t))))
-     '(org-block ((t (:background "#F0F0F0" :extend t))))
-     '(org-block-end-line ((t (:background "#EEEEEE" :foreground "#FFFFFF" :extend t)))))))
 
 ;;-----------------------------------------------------------------------------
 ;; Transparancy:
@@ -108,37 +89,40 @@ focused ones."
 ;; theme settings
 (defun df/theme-settings ()
   (cond
-   ((equal df/default-theme 'white) ;;; MODUS-OPERANDI
+   ;;===========================================================================
+   ;; MODUS-OPERANDI:
+   ((equal df/default-theme 'white)
     (progn
       (load-theme 'modus-operandi t)
-      (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)))
-   ((equal df/default-theme 'black) ;;; MODUS-VIVENDI
+      (custom-set-faces
+       '(powerline-active1 ((t (:foreground "#000000" :background "#FFFFFF")))))
+      ;; (set-face-attribute 'mode-line nil :background "#F1F1F1" :foreground "black" :box nil)
+      ;; (set-face-attribute 'mode-line-inactive nil :background "#FFFFFF" :foreground "grey" :box nil)
+      ))
+   ;;===========================================================================
+   ;; MODUS-VIVENDI:
+   ((equal df/default-theme 'black)
     (progn
       (load-theme 'modus-vivendi t)
-      (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)))
-   ((equal df/default-theme 'one) (load-theme 'doom-one t)) ;;; ONE
-   ((equal df/default-theme 'zenburn) (load-theme 'zenburn t)) ;;; ZENBURN
-   ((equal df/default-theme 'gruvbox) ;;; GRUVBOX
+      (custom-set-faces
+       '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#000000")))))
+      ;; (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
+      ;; (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
+      ))
+   ;;===========================================================================
+   ;; ONE:
+   ((equal df/default-theme 'one) (load-theme 'doom-one t))
+   ;;===========================================================================
+   ;; ZENBURN:
+   ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
+   ;;===========================================================================
+   ;; GRUVBOX:
+   ((equal df/default-theme 'gruvbox)
     (progn
       (load-theme 'gruvbox-dark-hard t)
       (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#252525" :foreground "grey" :box nil)
       (set-face-attribute 'line-number nil :background "#1d2021")))
-   ((equal df/default-theme 'gruvbox-black) ;;; GRUVBOX-BLACK
-    (progn
-      (load-theme 'gruvbox-dark-hard t)
-      (df/black-bg) ;; set backgroud to black
-      (df/org_src_color 'black)
-      (set-face-attribute 'mode-line nil :background "#090909" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#121212" :foreground "grey" :box nil)
-      (set-face-attribute 'line-number nil :background "#010101")))
-   ((equal df/default-theme 'darkburn) ;;; DARKBURN
-    (progn
-      (load-theme 'zenburn t)
-      (df/black-bg) ;; set backgroud to black
-      (df/org_src_color 'black)))
    ))
 (df/theme-settings)
 
@@ -167,8 +151,8 @@ focused ones."
   (setq powerline-default-separator (quote arrow))
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (setq df/spaceline-active t)
-  (spaceline-spacemacs-theme)
-  (powerline-reset))
+  (spaceline-spacemacs-theme))
+
 
 ;;-----------------------------------------------------------------------------
 ;; TOGGLE MODE LINE (doesn't work with spaceline):
@@ -192,16 +176,14 @@ format to nil or to `df/mode-line-format' depending of the status of
 ;; switch theme with a menu and apply my settings
 (defun df/switch-theme ()
   (interactive)
-  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "gruvbox-black" "zenburn" "darkburn"))))
+  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "zenburn"))))
     (progn
       (cond
        ((string= theme "one") (setq df/default-theme 'one))
        ((string= theme "white") (setq df/default-theme 'white))
        ((string= theme "dark") (setq df/default-theme 'black))
        ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
-       ((string= theme "gruvbox-black") (setq df/default-theme 'gruvbox-black))
        ((string= theme "zenburn") (setq df/default-theme 'zenburn))
-       ((string= theme "darkburn") (setq df/default-theme 'darkburn))
        (t (message "Unknown theme")))
       (df/theme-settings)
       (if df/spaceline-active ;; recompile spaceline if it is available
