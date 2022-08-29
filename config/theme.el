@@ -22,7 +22,7 @@
 	modus-themes-syntax '(alt-syntax green-strings)
 	modus-themes-hl-line '(accented)
 	modus-themes-paren-match '(bold intense)
-	modus-themes-links '(neutral-underline background)
+	modus-themes-links '(neutral-underline)
 	modus-themes-prompts '(intense bold) ;; repl and minibuffer prompts
 	;; completion settings
 	modus-themes-completions '((matches . (extrabold))
