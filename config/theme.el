@@ -10,7 +10,7 @@
   :ensure t
   :config
   (setq modus-themes-italic-constructs nil
-	modus-themes-bold-constructs t
+	modus-themes-bold-constructs nil
 	modus-themes-mixed-fonts t
 	modus-themes-subtle-line-numbers t
 	modus-themes-intense-mouseovers nil
@@ -19,6 +19,7 @@
 	modus-themes-inhibit-reload t
 	modus-themes-fringes nil ;; fringe in black
 	modus-themes-mode-line '(accented borderless) ;; modeline
+	modus-themes-markup '(background intence)
 	modus-themes-syntax '(alt-syntax green-strings)
 	modus-themes-hl-line '(accented)
 	modus-themes-paren-match '(bold intense)
