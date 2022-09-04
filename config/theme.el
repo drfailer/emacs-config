@@ -5,7 +5,7 @@
 
 ;;-----------------------------------------------------------------------------
 ;; THEME
-(setq df/default-theme 'black)
+(setq df/default-theme 'monokai)
 (use-package modus-themes
   :ensure t
   :config
@@ -44,7 +44,7 @@
 	modus-themes-headings ;; org headings
 	'((t . (semibold)))))
 
-(use-package doom-themes
+(use-package monokai-theme
   :ensure t)
 (use-package gruvbox-theme
   :ensure t)
@@ -108,7 +108,7 @@ focused ones."
        '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#000000")))))))
    ;;===========================================================================
    ;; ONE:
-   ((equal df/default-theme 'one) (load-theme 'doom-one t))
+   ((equal df/default-theme 'monokai) (load-theme 'monokai t))
    ;;===========================================================================
    ;; ZENBURN:
    ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
@@ -173,10 +173,10 @@ format to nil or to `df/mode-line-format' depending of the status of
 ;; switch theme with a menu and apply my settings
 (defun df/switch-theme ()
   (interactive)
-  (let ((theme (completing-read "Themes: " '("one" "dark" "white" "gruvbox" "zenburn"))))
+  (let ((theme (completing-read "Themes: " '("monokai" "dark" "white" "gruvbox" "zenburn"))))
     (progn
       (cond
-       ((string= theme "one") (setq df/default-theme 'one))
+       ((string= theme "monokai") (setq df/default-theme 'monokai))
        ((string= theme "white") (setq df/default-theme 'white))
        ((string= theme "dark") (setq df/default-theme 'black))
        ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
