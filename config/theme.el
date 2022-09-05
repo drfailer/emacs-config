@@ -1,11 +1,9 @@
 ;;===========================================================================;;
-;; COLOR:
+;; MODELINE AND THEMES:
 ;;===========================================================================;;
 
-
 ;;-----------------------------------------------------------------------------
-;; THEME
-(setq df/default-theme 'monokai)
+;; THEMES PACKAGES
 (use-package modus-themes
   :ensure t
   :config
@@ -14,21 +12,27 @@
 	modus-themes-mixed-fonts t
 	modus-themes-subtle-line-numbers t
 	modus-themes-intense-mouseovers nil
-	modus-themes-deuteranopia t
+	modus-themes-deuteranopia nil
+	modus-themes-tabs-accented nil
 	modus-themes-variable-pitch-ui nil
 	modus-themes-inhibit-reload t
 	modus-themes-fringes nil ;; fringe in black
+	modus-themes-lang-checkers nil
 	modus-themes-mode-line '(accented borderless) ;; modeline
 	modus-themes-markup '(background intence)
 	modus-themes-syntax '(alt-syntax green-strings)
 	modus-themes-hl-line '(accented)
 	modus-themes-paren-match '(bold intense)
 	modus-themes-links '(neutral-underline)
+	modus-themes-box-buttons nil
 	modus-themes-prompts '(intense bold) ;; repl and minibuffer prompts
+
 	;; completion settings
 	modus-themes-completions '((matches . (extrabold))
                                    (selection . (semibold accented))
                                    (popup . (accented intense)))
+
+	modus-themes-mail-citations nil
 	modus-themes-region '(bg-only)
 	modus-themes-diffs 'desaturated
 
@@ -42,7 +46,12 @@
           (scheduled . uniform)
           (habit . traffic-light))
 	modus-themes-headings ;; org headings
-	'((t . (semibold)))))
+	'((t . (semibold))))
+
+  ;; lighter background
+  ;; (setq modus-themes-vivendi-color-overrides
+  ;; 	'((bg-main . "#080808")))
+  )
 
 (use-package monokai-theme
   :ensure t)
@@ -51,19 +60,17 @@
 (use-package zenburn-theme
   :ensure t)
 
-
 ;;-----------------------------------------------------------------------------
-;; black baground
+;; BACKGROUND SETTINGS (color and alpha)
 (defun df/black-bg ()
+  "Set the main background, the fringe and the line-number's background to black
+for the current frame."
   (interactive)
   (progn
     (set-background-color "#000000")
     (set-face-background 'fringe "#000000")
     (set-face-background 'line-number "#000000")))
 
-
-;;-----------------------------------------------------------------------------
-;; Transparancy:
 (defun df/set-transparancy (an af)
   "set transparancy `an' for the current focused emacs frame and `af' for non
 focused ones."
@@ -71,12 +78,6 @@ focused ones."
     (set-frame-parameter (selected-frame) 'alpha (list an af))
     (add-to-list 'default-frame-alist (list 'alpha an af))))
 
-;; set default transparancy
-;; (df/set-transparancy 90 90)
-(df/set-transparancy 100 100)
-
-;; toggle transparancy.
-(setq df/transparancy-on 1)
 (defun df/toggle-transparancy ()
   "Allow to toggle transparancy."
   (interactive)
@@ -88,103 +89,54 @@ focused ones."
 	(df/set-transparancy 90 90)
 	(setq df/transparancy-on 1))))
 
+;; set default transparancy
+(if df/transparancy-on
+    (df/set-transparancy 90 90)
+  (df/set-transparancy 100 100))
+
 ;;-----------------------------------------------------------------------------
-;; theme settings
+;; THEME SETTINGS
 (defun df/theme-settings ()
+  "Apply a theme and the corresponding settings depending on the value of
+`df/current-theme'."
   (cond
-   ;;===========================================================================
    ;; MODUS-OPERANDI:
-   ((equal df/default-theme 'white)
+   ((string= df/current-theme "operandi")
     (progn
       (load-theme 'modus-operandi t)
-      (custom-set-faces
-       '(powerline-active1 ((t (:foreground "#000000" :background "#FFFFFF")))))))
-   ;;===========================================================================
+      (set-face-attribute 'powerline-active1 nil :foreground "#000000" :background "#FFFFFF")))
    ;; MODUS-VIVENDI:
-   ((equal df/default-theme 'black)
+   ((string= df/current-theme "vivendi")
     (progn
       (load-theme 'modus-vivendi t)
-      (custom-set-faces
-       '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#000000")))))))
-   ;;===========================================================================
-   ;; ONE:
-   ((equal df/default-theme 'monokai) (load-theme 'monokai t))
-   ;;===========================================================================
+      (set-face-attribute 'powerline-active1 nil :foreground "#FFFFFF" :background "#000000")))
+   ;; MONOKAI:
+   ((string= df/current-theme "monokai") (load-theme 'monokai t))
    ;; ZENBURN:
-   ((equal df/default-theme 'zenburn) (load-theme 'zenburn t))
-   ;;===========================================================================
+   ((string= df/current-theme "zenburn") (load-theme 'zenburn t))
    ;; GRUVBOX:
-   ((equal df/default-theme 'gruvbox)
+   ((string= df/current-theme "gruvbox")
     (progn
       (load-theme 'gruvbox-dark-hard t)
       (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
       (set-face-attribute 'mode-line-inactive nil :background "#252525" :foreground "grey" :box nil)
-      (set-face-attribute 'line-number nil :background "#1d2021")))
-   ))
+      (set-face-attribute 'line-number nil :background "#1d2021")))))
 (df/theme-settings)
 
-;;-----------------------------------------------------------------------------
-;; MODELINE SETTINGS:
-(setq mode-line-position (list " [%l:%c]"))
-(setq mode-line-format nil)
-(setq display-time-string-forms
-      '((propertize (concat "  " 24-hours ":" minutes " ")
- 		    'face 'font-lock-keyword-face)))
-(setq battery-mode-line-format " %b%p%%")
-(display-battery-mode)
-(display-time-mode)
-
-;;-----------------------------------------------------------------------------
-;; CUSTOM MODELINE:
-;; (load "~/.emacs.d/config/modeline.el") ;; custom modeline
-
-;;-----------------------------------------------------------------------------
-;; SPACELINE:
-(setq df/spaceline-active nil)
-(use-package spaceline
-  :ensure t
-  :config
-  (require 'spaceline-config)
-  (setq powerline-default-separator (quote arrow))
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (setq df/spaceline-active t)
-  (spaceline-spacemacs-theme))
-
-
-;;-----------------------------------------------------------------------------
-;; TOGGLE MODE LINE (doesn't work with spaceline):
-(setq-default df/mode-line-hidden nil) ;; mode line active by default
-
-(defun df/toggle-mode-line ()
-  "function used to toggle the mode line, it sets up the modeline
-format to nil or to `df/mode-line-format' depending of the status of
-`df/mode-line-hidden'"
-  (interactive)
-  (if (not df/mode-line-hidden)
-      (progn
-	(setq df/mode-line-hidden t)
-	(setq mode-line-format nil))
-    (progn
-      (setq df/mode-line-hidden nil)
-      (setq mode-line-format df/mode-line-format))))
 
 ;;-----------------------------------------------------------------------------
 ;; SWITCH THEMES:
 ;; switch theme with a menu and apply my settings
+(defconst df/themes-collection '("monokai" "vivendi" "operandi" "gruvbox" "zenburn"))
 (defun df/switch-theme ()
+  "Allow to switch between different themes from my collection. Change
+`df/current-theme'."
   (interactive)
-  (let ((theme (completing-read "Themes: " '("monokai" "dark" "white" "gruvbox" "zenburn"))))
-    (progn
-      (cond
-       ((string= theme "monokai") (setq df/default-theme 'monokai))
-       ((string= theme "white") (setq df/default-theme 'white))
-       ((string= theme "dark") (setq df/default-theme 'black))
-       ((string= theme "gruvbox") (setq df/default-theme 'gruvbox))
-       ((string= theme "zenburn") (setq df/default-theme 'zenburn))
-       (t (message "Unknown theme")))
-      (df/theme-settings)
-      (if df/spaceline-active ;; recompile spaceline if it is available
-	(spaceline-compile)))))
+  (setq df/current-theme
+	(completing-read "Themes: " df/themes-collection))
+  (df/theme-settings)
+  (if df/use-spaceline ;; recompile spaceline if needed
+	(spaceline-compile)))
 
 (defun disable-all-themes ()
   "disable all active themes."

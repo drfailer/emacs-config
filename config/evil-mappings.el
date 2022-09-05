@@ -224,7 +224,7 @@
 
 ;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-set-key (kbd "<f5>") #'(lambda () (revert-buffer t)))
+(global-set-key (kbd "<f5>") #'(lambda () (interactive) (revert-buffer nil t)))
 ;; simpler mapping for azerty keyboard 
 (global-set-key (kbd "C-x c") 'delete-window)
 (global-set-key (kbd "C-x &") 'delete-other-windows)

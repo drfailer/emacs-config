@@ -46,7 +46,8 @@
 (load "~/.emacs.d/config/completion.el") ;; corfu & more
 (load "~/.emacs.d/config/evil-mappings.el") ;; evil and mappings
 (load "~/.emacs.d/config/orgmode.el") ;; org stuff
-(load "~/.emacs.d/config/theme.el") ;; theming and modeline format
+(load "~/.emacs.d/config/modeline.el") ;; modeline settings
+(load "~/.emacs.d/config/theme.el") ;; theme settings
 (load "~/.emacs.d/config/conf-eshell.el") ;; eshell
 (load "~/.emacs.d/config/treemacs.el") ;; treemacs
 (load "~/.emacs.d/config/lsp.el") ;; lsp

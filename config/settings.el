@@ -13,23 +13,26 @@
 (global-hl-line-mode 1)
 (blink-cursor-mode 0)
 (show-paren-mode t)
-(setq make-backup-files nil) ;; no backup files
-(setq-default truncate-lines t)
 (global-display-line-numbers-mode 1) ;; line number
 (menu-bar--display-line-numbers-mode-relative)
-;; turn off ring bell
-(setq ring-bell-function 'ignore)
 (delete-selection-mode 1)
+(indent-tabs-mode 0) ;; use space rather than tabs
+(electric-pair-mode 1)
+(setq make-backup-files nil) ;; no backup files
+(setq ring-bell-function 'ignore) ;; turn off ring bell
+(setq inferior-lisp-program "sbcl") ;; use sbcl when run lisp
+(setq-default truncate-lines t)
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq electric-pair-pairs '((?\" . ?\") (?\( . ?\)) (?\[ . ?\]) (?\{ . ?\})))
 
-;; fix scrolling
-(setq scroll-step            1
-    scroll-conservatively  10000)
-
-;; use sbcl when run lisp
-(setq inferior-lisp-program "sbcl")
-
-;; use space rather than tabs
-(indent-tabs-mode 0)
+;; personal settings
+(setq-default df/fp-font "JetBrains Mono-9")
+(setq-default df/vp-font "FiraGO-9.5:weight=Light")
+(setq-default df/use-spaceline t)
+(setq-default df/mode-line-hidden nil) ;; mode line active by default
+(setq-default df/current-theme "vivendi")
+(setq-default df/transparancy-on nil)
 
 ;;-----------------------------------------------------------------------------
 ;; UTF8
@@ -43,29 +46,39 @@
 (set-selection-coding-system 'utf-8)
 
 ;;-----------------------------------------------------------------------------
-;; AUTO-PAIRING
-;;-----------------------------------------------------------------------------
-(electric-pair-mode 1)
-(setq electric-pair-pairs
-    '(
-        (?\" . ?\")
-        (?\( . ?\))
-        (?\[ . ?\])
-        (?\{ . ?\})))
-
-;;-----------------------------------------------------------------------------
 ;; FONTS SETTINGS
 ;;-----------------------------------------------------------------------------
 (defun df/set-fonts ()
-  ;; (set-face-attribute 'default nil :font "Hack-9")
-  ;; (set-face-attribute 'fixed-pitch nil :font "Hack-9")
-  ;; (set-face-attribute 'default nil :font "Fira Code-9")
-  ;; (set-face-attribute 'fixed-pitch nil :font "Fira Code-9")
-  (set-face-attribute 'default nil :font "JetBrains Mono-9")
-  (set-face-attribute 'fixed-pitch nil :font "JetBrains Mono-9")
-  (set-face-attribute 'variable-pitch nil :font "FiraGO-9.5:weight=Light")
-  ;; (set-face-attribute 'variable-pitch nil :font "DejaVu Sans-9.5")
-  )
+  "Apply font settings."
+  (set-face-attribute 'default nil :font df/fp-font)
+  (set-face-attribute 'fixed-pitch nil :font df/fp-font)
+  (set-face-attribute 'variable-pitch nil :font df/vp-font))
+
+(defun df/switch-fp-font ()
+  "Interactive function that allows the user to switch between some fixed pitch
+fonts. Change the global variable `df/fp-font'."
+  (interactive)
+  (progn
+    (setq df/fp-font
+	(completing-read
+	 "Fixed pitch font: "
+	 '(("hack" "Hack-9") ("jetbrains" "JetBrains Mono-9") ("fira code" "Fira Code-9"))))
+    (df/set-fonts)))
+
+(defun df/switch-vp-font ()
+  "Interactive function that allows the user to switch between some variable
+pitch fonts. Change the global variable `df/vp-font'."
+  (interactive)
+  (progn
+    (setq df/vp-font
+	(completing-read
+	 "Variable pitch font: "
+	 '(("dejavu sans" "DejaVu Sans-9.5") ("firago" "FiraGO-9.5:weight=Light"))))
+    (df/set-fonts)))
+
+;;-----------------------------------------------------------------------------
+;; SETTINGS FOR NEW DAEMON FRAMES
+;;-----------------------------------------------------------------------------
 (if (daemonp)
     (add-hook 'after-make-frame-functions
               (lambda (frame)
