@@ -186,7 +186,7 @@
 
 ;; Open agenda and schedule
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c C-a") (lambda () (interactive) (find-file "~/.emacs.d/Org/agenda.org")))
+;; (global-set-key (kbd "C-c C-a") (lambda () (interactive) (find-file "~/.emacs.d/Org/agenda.org")))
 (global-set-key (kbd "C-c s") 'org-agenda-schedule)
 (global-set-key (kbd "C-c c") 'org-capture)
 

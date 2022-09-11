@@ -4,14 +4,14 @@
 
 
 ;;-----------------------------------------------------------------------------
-;; EVIL:
+;;; EVIL:
 ;;-----------------------------------------------------------------------------
-;; UNDO
+;;;; UNDO
 ;; vim style undo
 (use-package undo-fu
   :ensure t)
 
-;; VIM BINDINGS
+;;;; VIM BINDINGS
 (use-package evil
   :demand t
   :bind (("<escape>" . keyboard-escape-quit))
@@ -29,40 +29,40 @@
   (setq evil-insert-state-cursor '(box "white")
 	evil-normal-state-cursor '(box "white")))
 
-;; evil collection (evil integration everywhere)
+;;;; evil collection (evil integration everywhere)
 (use-package evil-collection
   :ensure t
   :after evil
   :init
   (evil-collection-init))
 
-;; vim surround
+;;;; vim surround
 (use-package evil-smartparens
   :hook (smartparens-mode . evil-smartparens-mode))
 
-;; Commentary
+;;;; Commentary
 (use-package evil-commentary
   :ensure t
   :after evil
   :bind (:map evil-normal-state-map
               ("gc" . evil-commentary)))
 
-;; Surround
+;;;; Surround
 (use-package evil-surround
   :config
   (global-evil-surround-mode 1))
 
-;; use `gl' to align left or `gL' to align right
+;;;; use `gl' to align left or `gL' to align right
 (use-package evil-lion
   :ensure t
   :config
   (evil-lion-mode))
 
-;; multiple cursor
+;;;; multiple cursor
 (use-package evil-multiedit
   :ensure t)
 
-;; vim like folds
+;;;; vim like folds
 (use-package vimish-fold
   :ensure
   :after evil)
@@ -76,11 +76,11 @@
   :config
   (global-evil-vimish-fold-mode))
 
-;; enable to map keysequence without modifier key (ex: "kj" -> ESC)
+;;;; enable to map keysequence without modifier key (ex: "kj" -> ESC)
 (use-package key-chord
   :ensure t)
 
-;; Enable evil mode
+;;;; Enable evil mode
 (evil-mode 1)
 
 ;;-----------------------------------------------------------------------------
@@ -104,34 +104,45 @@
   (interactive)
   (setq fill-column 80)
   (fill-region (region-beginning) (region-end)))
-;;-----------------------------------------------------------------------------
-;; MAPPINGS:
-;;-----------------------------------------------------------------------------
 
+;;-----------------------------------------------------------------------------
+;;; MAPPINGS:
+;;-----------------------------------------------------------------------------
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map  "kj" 'evil-normal-state) ;; remap kj as escape
 
-;; Moving threw panes:
+;;;; Moving threw panes:
 (define-key evil-normal-state-map  (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map  (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map  (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map  (kbd "C-l") 'evil-window-right)
 
-;; fix cyclig in org mode
+;;;; fix cyclig in org mode
 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
 
-;; launching app
+;;;; outline minor mode mappings
+(evil-define-key 'normal outline-minor-mode-map (kbd "<tab>") #'outline-cycle-buffer)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-n") #'outline-next-visible-heading)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-p") #'outline-previous-visible-heading)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-f") #'outline-forward-same-level)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-b") #'outline-backward-same-level)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-a") #'outline-show-all)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-o") #'outline-hide-other)
+(evil-define-key 'normal outline-minor-mode-map (kbd "C-c C-u") #'outline-up-heading)
+
+;;;; launching app
 (evil-define-key 'normal 'global (kbd "<leader>v e s") 'eshell)
 (evil-define-key 'normal 'global (kbd "<leader>v t")   'df/open-zsh-term)
+(evil-define-key 'normal 'global (kbd "<leader>v i")   'imenu)
 (evil-define-key 'normal 'global (kbd "<leader>e")     'dired-jump-other-window)
 (evil-define-key 'normal 'global (kbd "<leader>x")     'dired-jump)
 
-;; indent
+;;;; indent
 (evil-define-key '(normal visual) 'global (kbd "<leader>TAB") 'indent-region)
 (evil-define-key 'visual 'global (kbd "<leader>gq") 'df/fill-gegion)
 
-;; buffer management
+;;;; buffer management
 (evil-define-key 'normal 'global (kbd "<leader>f b") 'switch-to-buffer)
 (evil-define-key 'normal 'global (kbd "<leader>b b") 'switch-to-buffer)
 (evil-define-key 'normal 'global (kbd "<leader>b c") 'clone-indirect-buffer-other-window)
@@ -141,27 +152,28 @@
 (evil-define-key 'normal 'global (kbd "<leader>b B") 'ibuffer-list-buffers)
 (evil-define-key 'normal 'global (kbd "<leader>b K") 'kill-buffer)
 
-;; bookmarks
+;;;; bookmarks
 (evil-define-key 'normal 'global (kbd "<leader>f B") 'bookmark-jump)
 (evil-define-key 'normal 'global (kbd "<leader>B j") 'bookmark-jump)
 (evil-define-key 'normal 'global (kbd "<leader>B s") 'bookmark-set)
 
-;; files mappings
+;;;; files mappings
 (evil-define-key 'normal 'global (kbd "<leader>f f") 'find-file)
 (evil-define-key 'normal 'global (kbd "<leader>f C") 'copy-file)
 (evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
 (evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
 (evil-define-key 'normal 'global (kbd "<leader>f g") 'rgrep)
 
-;; toggle stuff
+;;;; toggle stuff
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
 (evil-define-key 'normal 'global (kbd "<leader>t m") 'df/toggle-mode-line)
 (evil-define-key 'normal 'global (kbd "<leader>t w") 'df/writing-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t p") 'df/var-pitch-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t a") 'df/toggle-transparancy)
 (evil-define-key 'normal 'global (kbd "<leader>t t") 'treemacs)
+(evil-define-key 'normal 'global (kbd "<leader>t o") 'outline-minor-mode)
 
-;; multiedit (https://github.com/hlissner/evil-multiedit)
+;;;; multiedit (https://github.com/hlissner/evil-multiedit)
 (evil-define-key 'visual 'global (kbd "R") 'evil-multiedit-match-all)
 (evil-define-key '(normal visual) 'global (kbd "M-d") 'evil-multiedit-match-and-next)
 (evil-define-key 'insert 'global (kbd "M-d") 'evil-multiedit-toggle-marker-here)
@@ -173,31 +185,30 @@
 (evil-define-key 'global evil-multiedit-mod-map (kbd "C-p") 'evil-multiedit-prev)
 (evil-define-key 'insert evil-multiedit-insert-state-map (kbd "C-n") 'evil-multiedit-next)
 (evil-define-key 'insert evil-multiedit-insert-state-map (kbd "c-p") 'evil-multiedit-prev)
-
 (evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match)
-
 
 ;; (evil-define-key 'normal 'global (kbd "<leader>z") 'z)
 
-;; web search
+;;;; web search
 (evil-define-key 'normal 'global (kbd "<leader>f s") 'df/web-search)
 
-;; winner mode
+;;;; winner mode
 (winner-mode)
 (define-key evil-window-map (kbd ",") 'winner-undo)
 (define-key evil-window-map (kbd ";") 'winner-undo)
 
+;;;; dired functions
 (defun df/dired-alternate-up ()
   "Open the parent directory with dired without openning new buffer."
   (interactive)
   (find-alternate-file ".."))
 
-;; dired evil
+;;;; dired evil
 (evil-collection-define-key 'normal 'dired-mode-map
   "h" 'df/dired-alternate-up
   "l" 'dired-find-alternate-file)
 
-;; dired emacs mode
+;;;; dired emacs mode
 (eval-after-load "dired"
 	  '(progn
 	    (define-key dired-mode-map (kbd "h") 'df/dired-alternate-up)
@@ -209,23 +220,25 @@
 	    (define-key dired-mode-map (kbd "^") 'describe-mode)
 	    (define-key dired-mode-map (kbd "n") 'dired-do-redisplay)))
 
-;; run region of shell script using <leader>rr
+;;;; run region of shell script using <leader>rr
 (add-hook 'shell-mode-hook
 	  (defun df/shellcmd ()
 	    (interactive)
 	    (shell-command-on-region (region-beginning) (region-end) "bash"))
 	  (evil-define-key 'normal 'local (kbd "<leader>r r") 'df/shellcmd))
 
-;; compile
+;;;; compiling
 (evil-define-key 'normal 'global (kbd "<leader>c c") 'compile)
 
+;;;; org
 (add-hook 'org-mode
           (evil-define-key 'normal 'global (kbd "<leader>t P") 'org-tree-slide-mode))
 
-;; Simple convenient mappings:
+;;;; Simple convenient mappings:
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") #'(lambda () (interactive) (revert-buffer nil t)))
-;; simpler mapping for azerty keyboard 
+
+;;;; Simpler mapping for azerty keyboard 
 (global-set-key (kbd "C-x c") 'delete-window)
 (global-set-key (kbd "C-x &") 'delete-other-windows)
 (global-set-key (kbd "C-x é") 'split-window-below)

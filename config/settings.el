@@ -25,6 +25,8 @@
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq electric-pair-pairs '((?\" . ?\") (?\( . ?\)) (?\[ . ?\]) (?\{ . ?\})))
+;; (setq outline-minor-mode-highlight 'override)
+(setq outline-minor-mode-cycle t)
 
 ;; personal settings
 (setq-default df/fp-font "JetBrains Mono-9")
