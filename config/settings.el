@@ -62,7 +62,7 @@ fonts. Change the global variable `df/fp-font'."
     (setq df/fp-font
 	(completing-read
 	 "Fixed pitch font: "
-	 '(("hack" "Hack-9") ("jetbrains" "JetBrains Mono-9") ("fira code" "Fira Code-9"))))
+	 '("Hack-9" "JetBrains Mono-9" "Fira Code-9")))
     (df/set-fonts)))
 
 (defun df/switch-vp-font ()
@@ -73,7 +73,7 @@ pitch fonts. Change the global variable `df/vp-font'."
     (setq df/vp-font
 	(completing-read
 	 "Variable pitch font: "
-	 '(("dejavu sans" "DejaVu Sans-9.5") ("firago" "FiraGO-9.5:weight=Light"))))
+	 '("DejaVu Sans-9.5" "FiraGO-9.5:weight=Light")))
     (df/set-fonts)))
 
 ;;-----------------------------------------------------------------------------
