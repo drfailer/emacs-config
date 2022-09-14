@@ -172,6 +172,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>t a") 'df/toggle-transparancy)
 (evil-define-key 'normal 'global (kbd "<leader>t t") 'treemacs)
 (evil-define-key 'normal 'global (kbd "<leader>t o") 'outline-minor-mode)
+(evil-define-key 'normal 'global (kbd "<leader>t f") 'refill-mode)
 
 ;;;; multiedit (https://github.com/hlissner/evil-multiedit)
 (evil-define-key 'visual 'global (kbd "R") 'evil-multiedit-match-all)

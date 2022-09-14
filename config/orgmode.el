@@ -23,15 +23,20 @@
 (add-hook 'text-scale-mode-hook 'update-org-latex-fragments)
 
 (defun df/font-setup ()
- ;; Ensure that anything that should be fixed-pitch in Org files appears that way
- (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
- (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
- (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
- (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
- (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
- (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
- (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
- (set-face-attribute 'line-number nil :inherit 'fixed-pitch))
+  ;; Replace list hyphen with dot
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+  (set-face-attribute 'line-number nil :inherit 'fixed-pitch))
 
 ;; toggle variable-pitch-mode with proper fonts
 (setq df/var-pitch-enable nil)
@@ -73,7 +78,7 @@
 (org-babel-do-load-languages
 'org-babel-load-languages
 '((haskell . t) (emacs-lisp . t) (shell . t)
-    (C . t) (lua . t) (java . t) (haskell . t)
+    (C . t) (lua . t) (java . t) (python . t)
     (lisp . t)))
 (setq org-confirm-babel-evaluate nil)
 
