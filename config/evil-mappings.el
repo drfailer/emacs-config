@@ -173,6 +173,8 @@
 (evil-define-key 'normal 'global (kbd "<leader>t t") 'treemacs)
 (evil-define-key 'normal 'global (kbd "<leader>t o") 'outline-minor-mode)
 (evil-define-key 'normal 'global (kbd "<leader>t f") 'refill-mode)
+(evil-define-key 'normal 'global (kbd "<leader>t s") 'flyspell-mode)
+(evil-define-key 'normal 'global (kbd "<leader>t S") 'ispell-change-dictionary)
 
 ;;;; multiedit (https://github.com/hlissner/evil-multiedit)
 (evil-define-key 'visual 'global (kbd "R") 'evil-multiedit-match-all)

@@ -5,11 +5,12 @@
 #+HTML_HEAD: 	font-size: 95%;
 #+HTML_HEAD: }
 #+HTML_HEAD: body {
-#+HTML_HEAD: 	background-color: #282828;
+#+HTML_HEAD: 	background-color: #000000;
 #+HTML_HEAD: 	color: #fff;
 #+HTML_HEAD: 	font-family: "Century Gothic", helvetica, arial, sans-serif;
-#+HTML_HEAD: 	max-width: 1000px;
-#+HTML_HEAD: 	margin: auto;
+#+HTML_HEAD: 	width: 80%;
+#+HTML_HEAD: 	margin-left: auto;
+#+HTML_HEAD: 	margin-right: auto;
 #+HTML_HEAD: }
 #+HTML_HEAD: p,
 #+HTML_HEAD: ul,
@@ -33,42 +34,42 @@
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.6154em;
 #+HTML_HEAD: 	margin: 15px 0 2px;
-#+HTML_HEAD:    color: #458598;
+#+HTML_HEAD:    color: #fafafa;
 #+HTML_HEAD: }
 #+HTML_HEAD: h2, .h2-like {
 #+HTML_HEAD: 	font-size: 1.7143em; /* equiv 24px */
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.75em;
 #+HTML_HEAD: 	margin: 12px 0 2px;
-#+HTML_HEAD:    color: #d79921;
+#+HTML_HEAD:    color: #FBFFC4;
 #+HTML_HEAD: }
 #+HTML_HEAD: h3, .h3-like {
 #+HTML_HEAD: 	font-size: 1.5714em; /* equiv 22px */
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.909em;
 #+HTML_HEAD: 	margin: 10px 0 2px;
-#+HTML_HEAD:    color: #b16286;
+#+HTML_HEAD:    color: #CAF4FF;
 #+HTML_HEAD: }
 #+HTML_HEAD: h4, .h4-like {
 #+HTML_HEAD: 	font-size: 1.4286em; /* equiv 20px */
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.05em;
 #+HTML_HEAD: 	margin: 8px 0 2px;
-#+HTML_HEAD:    color: #cc241d;
+#+HTML_HEAD:    color: #CAFFEF;
 #+HTML_HEAD: }
 #+HTML_HEAD: h5, .h5-like {
 #+HTML_HEAD: 	font-size: 1.2857em; /* equiv 18px */
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.1667em;
 #+HTML_HEAD: 	margin: 8px 0 2px;
-#+HTML_HEAD:    color: #b8bb26;
+#+HTML_HEAD:    color: #CAFFEF;
 #+HTML_HEAD: }
 #+HTML_HEAD: h6, .h6-like {
 #+HTML_HEAD: 	font-size: 1.1429em; /* equiv 16px */
 #+HTML_HEAD: 	font-weight: normal;
 #+HTML_HEAD: 	line-height: 1.3125em;
 #+HTML_HEAD: 	margin: 8px 0 2px;
-#+HTML_HEAD:    color: #689d6a;
+#+HTML_HEAD:    color: #CAFFEF;
 #+HTML_HEAD: }
 #+HTML_HEAD: .smaller {
 #+HTML_HEAD: 	font-size: .7143em; /* equiv 10px */
@@ -215,10 +216,10 @@
 #+HTML_HEAD:   display: block;
 #+HTML_HEAD: }
 #+HTML_HEAD: a {
-#+HTML_HEAD:     color: #fb4934;
+#+HTML_HEAD:     color: #F0F0F0;
 #+HTML_HEAD: }
 #+HTML_HEAD: pre {
-#+HTML_HEAD:   background-color: #1d2021;
+#+HTML_HEAD:   background-color: #020202;
 #+HTML_HEAD:   overflow: auto;
 #+HTML_HEAD:   font-family: 'Monaco', monospace;
 #+HTML_HEAD:   padding: 0 1em;
