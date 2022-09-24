@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: setupfile
+# key: sf
+# --
+#+SETUPFILE: ~/.emacs.d/emacs-config/org-setup-files/${1:notes-html.org}
+$0
