@@ -108,7 +108,9 @@
 ;;-----------------------------------------------------------------------------
 ;;; MAPPINGS:
 ;;-----------------------------------------------------------------------------
-(require 'key-chord)
+(require 'key-chord
+	 :config
+	 (setq key-chord-two-keys-delay 0.3))
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map  "kj" 'evil-normal-state) ;; remap kj as escape
 
