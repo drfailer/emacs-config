@@ -53,7 +53,7 @@
 ;; lsp-mode mappings
 (evil-define-key 'normal 'global (kbd "<leader>l r")   'lsp-rename)
 (evil-define-key 'normal 'global (kbd "<leader>l o i") 'lsp-organize-imports)
-(evil-define-key 'normal 'global (kbd "<leader>l a")   'lsp-code-action?)
+(evil-define-key 'normal 'global (kbd "<leader>l a")   'lsp-execute-code-action)
 (evil-define-key 'normal 'global (kbd "<leader>l d g")   'lsp-ui-doc-glance)
 (evil-define-key 'normal 'global (kbd "<leader>l d s")   'lsp-ui-doc-show)
 (evil-define-key 'normal 'global (kbd "<leader>l d f")   'lsp-ui-doc-focus-frame)
@@ -68,6 +68,11 @@
 (add-hook 'lsp-completion-mode-hook
           (lambda ()
             (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
+
+;; Java
+;; (use-package lsp-java
+;;   :ensure t)
+;; (add-hook 'java-mode-hook #'lsp)
 
 ;;-----------------------------------------------------------------------------
 ;; fork of slime (lisp programming)
