@@ -69,6 +69,11 @@
           (lambda ()
             (setf (alist-get 'lsp-capf completion-category-defaults) '((styles . (orderless))))))
 
+;; Java
+;; (use-package lsp-java
+;;   :ensure t)
+;; (add-hook 'java-mode-hook #'lsp)
+
 ;;-----------------------------------------------------------------------------
 ;; fork of slime (lisp programming)
 ;; (use-package sly
