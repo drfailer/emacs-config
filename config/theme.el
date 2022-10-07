@@ -53,7 +53,7 @@
   ;; 	'((bg-main . "#080808")))
   )
 
-(use-package monokai-theme
+(use-package vscode-dark-plus-theme
   :ensure t)
 (use-package gruvbox-theme
   :ensure t)
@@ -110,8 +110,8 @@ focused ones."
     (progn
       (load-theme 'modus-vivendi t)
       (set-face-attribute 'powerline-active1 nil :foreground "#FFFFFF" :background "#000000")))
-   ;; MONOKAI:
-   ((string= df/current-theme "monokai") (load-theme 'monokai t))
+   ;; vsdark:
+   ((string= df/current-theme "vsdark") (load-theme 'vscode-dark-plus t))
    ;; ZENBURN:
    ((string= df/current-theme "zenburn") (load-theme 'zenburn t))
    ;; GRUVBOX:
@@ -127,7 +127,7 @@ focused ones."
 ;;-----------------------------------------------------------------------------
 ;; SWITCH THEMES:
 ;; switch theme with a menu and apply my settings
-(defconst df/themes-collection '("monokai" "vivendi" "operandi" "gruvbox" "zenburn"))
+(defconst df/themes-collection '("vsdark" "vivendi" "operandi" "gruvbox" "zenburn"))
 (defun df/switch-theme ()
   "Allow to switch between different themes from my collection. Change
 `df/current-theme'."
