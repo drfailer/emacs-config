@@ -1,0 +1,41 @@
+# -*- mode: snippet -*-
+# name: mktitle
+# key: mktitle
+# --
+#+begin_export latex
+\begin{titlepage}
+\begin{center}
+    
+    \textsc{\LARGE ${1:TITLE}}\\[0.5cm]
+    
+    {\huge \bfseries ${2:SUB-TITLE}\\[4cm]}
+
+      \centering
+      \includegraphics[scale=1]{./img/banner.png}
+
+      \vspace*{\fill}
+
+    \begin{minipage}{0.9\textwidth}
+      \begin{flushleft} \large
+        CHASSAGNOL Rémi\\
+        ZZ2 - F2 - promo24\\[2cm]
+      \end{flushleft}
+    \end{minipage}
+
+    \begin{minipage}{0.9\textwidth}
+      \begin{flushright} \large
+        \emph{Professeur:} ${3:PROF}\\
+      \end{flushright}
+    \end{minipage}
+
+    \textsc{${4:DATE}}
+
+  \end{center}
+\end{titlepage}
+
+\clearpage
+\tableofcontents
+\clearpage
+
+$0
+#+end_export
