@@ -69,6 +69,7 @@
   (setq org-startup-folded 'content)
   (setq org-cycle-separator-lines 2)
   (setq org-export-headline-levels 4)
+  (setq org-latex-listings t)
   (org-indent-mode 1)
   (df/font-setup))
 
