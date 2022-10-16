@@ -70,8 +70,22 @@
   (setq org-cycle-separator-lines 2)
   (setq org-export-headline-levels 4)
   (setq org-latex-listings t)
+  (setq org-latex-toc-command "\\clearpage \\tableofcontents \\clearpage")
   (org-indent-mode 1)
   (df/font-setup))
+
+(make-variable-buffer-local 'org-latex-title-command)
+(setq org-latex-title-command
+      (concat
+       "\\begin{titlepage}\n"
+       "\\centering\n"
+       "{\\LARGE %t \\par }\n"
+       ;; "\\vspace 2cm\n"
+       "{\\normalsize %a \\par}\n"
+       ;; "\\vspace 3cm\n"
+       "{\\small %D \\par}\n"
+       "{\\includegraphics{./img/banner.png}}\n"
+       "\\end{titlepage}\n"))
 
 ;;-----------------------------------------------------------------------------
 ;; org babel
