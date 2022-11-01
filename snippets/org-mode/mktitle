@@ -2,33 +2,32 @@
 # name: mktitle
 # key: mktitle
 # --
+#+LATEX_HEADER: \usepackage{multicol}
 #+begin_export latex
 \begin{titlepage}
 \begin{center}
     
-    \textsc{\LARGE ${1:TITLE}}\\[0.5cm]
+    \textsc{\LARGE TP}\\[0.5cm]
     
-    {\huge \bfseries ${2:SUB-TITLE}\\[4cm]}
+    {\huge \bfseries ${1:title}\\[2cm]}
 
       \centering
-      \includegraphics[scale=1]{./img/banner.png}
+      \includegraphics[scale=0.25]{./img/banner.png}
 
       \vspace*{\fill}
 
-    \begin{minipage}{0.9\textwidth}
-      \begin{flushleft} \large
-        CHASSAGNOL Rémi\\
-        ZZ2 - F2 - promo24\\[2cm]
-      \end{flushleft}
-    \end{minipage}
+    \begin{multicols}{2}
+      \large
+      CHASSAGNOL Rémi\\
+      ZZ2 - F2 - promo24\\[2cm]
 
-    \begin{minipage}{0.9\textwidth}
-      \begin{flushright} \large
-        \emph{Professeur:} ${3:PROF}\\
-      \end{flushright}
-    \end{minipage}
+      \columnbreak
 
-    \textsc{${4:DATE}}
+      \large
+      \emph{Professeur:} ${2:prof}\\
+    \end{multicols}
+
+    \textsc{${3:date}}
 
   \end{center}
 \end{titlepage}
@@ -36,6 +35,5 @@
 \clearpage
 \tableofcontents
 \clearpage
-
-$0
 #+end_export
+$0
