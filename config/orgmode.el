@@ -71,7 +71,7 @@
   (setq org-export-headline-levels 4)
   (setq org-latex-listings t)
   (setq org-latex-toc-command "\\clearpage \\tableofcontents \\clearpage")
-  (org-indent-mode 1)
+  (org-indent-mode 0)
   (df/font-setup))
 
 (make-variable-buffer-local 'org-latex-title-command)

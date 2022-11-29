@@ -33,7 +33,7 @@
 (setq-default df/vp-font "FiraGO-9.5:weight=Light")
 (setq-default df/use-spaceline t)
 (setq-default df/mode-line-hidden nil) ;; mode line active by default
-(setq-default df/current-theme "vsdark")
+(setq-default df/current-theme "one")
 (setq-default df/transparancy-on nil)
 
 ;;-----------------------------------------------------------------------------

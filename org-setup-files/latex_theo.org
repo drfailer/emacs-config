@@ -1,0 +1,14 @@
+#+LATEX_HEADER: \definecolor{mygreen}{rgb}{0,0.6,0}
+#+LATEX_HEADER: \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+#+LATEX_HEADER: \definecolor{mymauve}{rgb}{0.58,0,0.82}
+#+LATEX_HEADER: \definecolor{mybackground}{rgb}{0.96,0.95,0.98}
+#+LATEX_HEADER: \lstset{ 
+#+LATEX_HEADER:   backgroundcolor=\color{mybackground},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+#+LATEX_HEADER:   breaklines=true,                 % sets automatic line breaking
+#+LATEX_HEADER:   captionpos=b,                    % sets the caption-position to bottom
+#+LATEX_HEADER:   commentstyle=\color{mygreen},    % comment style
+#+LATEX_HEADER:   frame=lines,	                   % adds a frame around the code
+#+LATEX_HEADER:   keywordstyle=\color{blue},       % keyword style
+#+LATEX_HEADER:   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+#+LATEX_HEADER:   stringstyle=\color{mymauve},     % string literal style
+#+LATEX_HEADER: }
