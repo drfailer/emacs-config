@@ -94,7 +94,7 @@
 'org-babel-load-languages
 '((haskell . t) (emacs-lisp . t) (shell . t)
     (C . t) (lua . t) (java . t) (python . t)
-    (lisp . t)))
+    (lisp . t) (scheme . t)))
 (setq org-confirm-babel-evaluate nil)
 
 ;; nice bullets for headers;

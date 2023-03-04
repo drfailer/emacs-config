@@ -114,8 +114,10 @@ focused ones."
       (set-face-attribute 'powerline-active1 nil :foreground "#FFFFFF" :background "#000000")))
    ;; vsdark:
    ((string= df/current-theme "vsdark") (load-theme 'vscode-dark-plus t))
-   ;; vsdark:
+   ;; one:
    ((string= df/current-theme "one") (load-theme 'doom-one t))
+   ;; one:
+   ((string= df/current-theme "solarized") (load-theme 'doom-solarized-dark t))
    ;; ZENBURN:
    ((string= df/current-theme "zenburn") (load-theme 'zenburn t))
    ;; GRUVBOX:
@@ -131,7 +133,7 @@ focused ones."
 ;;-----------------------------------------------------------------------------
 ;; SWITCH THEMES:
 ;; switch theme with a menu and apply my settings
-(defconst df/themes-collection '("vsdark" "vivendi" "operandi" "gruvbox" "zenburn" "one"))
+(defconst df/themes-collection '("vsdark" "vivendi" "operandi" "gruvbox" "zenburn" "one" "solarized"))
 (defun df/switch-theme ()
   "Allow to switch between different themes from my collection. Change
 `df/current-theme'."

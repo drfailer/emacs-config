@@ -17,7 +17,8 @@
   :bind
   (:map corfu-map ("RET" . nil) ("C-<return>" . corfu-insert))
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  (corfu-popupinfo-mode))
 
 ;; Optionally use the 'orderless' completion style. See '+orderless-dispatch'
 ;; in the Consult wiki for an advanced Orderless style dispatcher.
@@ -38,11 +39,11 @@
   :bind (("M-n" . dabbrev-completion)
          ("C-M-j" . dabbrev-expand)))
 
-(use-package corfu-doc)
-(add-hook 'corfu-mode-hook #'corfu-doc-mode)
-(define-key corfu-map (kbd "M-k") #'corfu-doc-scroll-down) ;; corfu-next
-(define-key corfu-map (kbd "M-j") #'corfu-doc-scroll-up)  ;; corfu-previous
-(define-key corfu-map (kbd "M-d") #'corfu-doc-toggle)
+;; (use-package corfu-doc)
+;; (add-hook 'corfu-mode-hook #'corfu-doc-mode)
+(define-key corfu-map (kbd "M-k") #'corfu-popupinfo-scroll-down) ;; corfu-next
+(define-key corfu-map (kbd "M-j") #'corfu-popupinfo-scroll-up)  ;; corfu-previous
+(define-key corfu-map (kbd "M-d") #'corfu-popupinfo-toggle)
 
 (use-package cape
   :bind (("C-c C-f" . cape-file)
