@@ -15,7 +15,7 @@
   (corfu-quit-at-boundary t)
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
   :bind
-  (:map corfu-map ("RET" . nil) ("C-<return>" . corfu-insert))
+  (:map corfu-map ("RET" . nil) ("C-j" . corfu-insert))
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode))

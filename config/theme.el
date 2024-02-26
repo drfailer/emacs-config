@@ -53,13 +53,7 @@
   ;; 	'((bg-main . "#080808")))
   )
 
-(use-package vscode-dark-plus-theme
-  :ensure t)
-(use-package gruvbox-theme
-  :ensure t)
-(use-package zenburn-theme
-  :ensure t)
-(use-package doom-themes
+(use-package spacemacs-theme
   :ensure t)
 
 ;;-----------------------------------------------------------------------------
@@ -112,21 +106,8 @@ focused ones."
     (progn
       (load-theme 'modus-vivendi t)
       (set-face-attribute 'powerline-active1 nil :foreground "#FFFFFF" :background "#000000")))
-   ;; vsdark:
-   ((string= df/current-theme "vsdark") (load-theme 'vscode-dark-plus t))
-   ;; one:
-   ((string= df/current-theme "one") (load-theme 'doom-one t))
-   ;; one:
-   ((string= df/current-theme "solarized") (load-theme 'doom-solarized-dark t))
-   ;; ZENBURN:
-   ((string= df/current-theme "zenburn") (load-theme 'zenburn t))
-   ;; GRUVBOX:
-   ((string= df/current-theme "gruvbox")
-    (progn
-      (load-theme 'gruvbox-dark-hard t)
-      (set-face-attribute 'mode-line nil :background "#282828" :foreground "grey" :box nil)
-      (set-face-attribute 'mode-line-inactive nil :background "#252525" :foreground "grey" :box nil)
-      (set-face-attribute 'line-number nil :background "#1d2021")))))
+   ;; SPACE:
+   ((string= df/current-theme "space") (load-theme 'spacemacs-dark t))))
 (df/theme-settings)
 
 
