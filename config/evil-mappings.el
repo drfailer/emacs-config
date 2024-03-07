@@ -160,11 +160,15 @@
 (evil-define-key 'normal 'global (kbd "<leader>B s") 'bookmark-set)
 
 ;;;; files mappings
-(evil-define-key 'normal 'global (kbd "<leader>f f") 'find-file)
+;; (evil-define-key 'normal 'global (kbd "<leader>f f") 'find-file)
 (evil-define-key 'normal 'global (kbd "<leader>f C") 'copy-file)
 (evil-define-key 'normal 'global (kbd "<leader>f D") 'delete-file)
 (evil-define-key 'normal 'global (kbd "<leader>f R") 'rename-file)
 (evil-define-key 'normal 'global (kbd "<leader>f g") 'rgrep)
+
+;;;; find with consult
+(evil-define-key 'normal 'global (kbd "<leader>f f") 'consult-fd)
+(evil-define-key 'normal 'global (kbd "<leader>f g") 'consult-ripgrep)
 
 ;;;; toggle stuff
 (evil-define-key 'normal 'global (kbd "<leader>t c") 'df/toggle-gdfcim)
